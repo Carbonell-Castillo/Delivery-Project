@@ -14,6 +14,7 @@ import com.raven.form.MainForm;
 import Dashboard.style.menu.MenuItem;
 import Dashboard.style.menu.PopupMenu;
 import com.raven.form.DepartmentManagement;
+import com.raven.form.ListOfRegionsWithMoreShipments;
 import com.raven.form.ManagementOfRegionsAndPrices;
 import com.raven.form.MunicipalitiesManagement;
 //import com.raven.swing.icon.GoogleMaterialDesignIcons;
@@ -69,6 +70,10 @@ public class Main2 extends javax.swing.JFrame {
                             main.showForm(new MunicipalitiesManagement());
                         }
                         
+                    }else if(menuIndex==4){
+                        if(subMenuIndex==0){
+                            main.showForm(new ListOfRegionsWithMoreShipments());
+                        }
                     }
             }
         });
