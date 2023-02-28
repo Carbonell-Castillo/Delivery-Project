@@ -8,15 +8,20 @@ import dashboard.style.Header;
 import dashboard.style.Menu;
 import dashboard.style.menu.EventMenuSelected;
 import dashboard.style.menu.EventShowPopupMenu;
-import com.raven.form.KioskManagement;
-import com.raven.form.Form_Home;
-import com.raven.form.MainForm;
+import Dashboard.Admin.Form.KioskManagement;
+import Dashboard.Admin.Form.Form_Home;
+import Dashboard.Admin.Form.MainForm;
 import Dashboard.style.menu.MenuItem;
 import Dashboard.style.menu.PopupMenu;
-import com.raven.form.DepartmentManagement;
-import com.raven.form.ListOfRegionsWithMoreShipments;
-import com.raven.form.ManagementOfRegionsAndPrices;
-import com.raven.form.MunicipalitiesManagement;
+import Dashboard.Admin.Form.Account;
+import Dashboard.Admin.Form.Account2;
+import Dashboard.Admin.Form.DepartmentManagement;
+import Dashboard.Admin.Form.ListOfRegionsWithMoreShipments;
+import Dashboard.Admin.Form.ListOfUsersWithTheMostPacketsSent;
+import Dashboard.Admin.Form.ManagementOfRegionsAndPrices;
+import Dashboard.Admin.Form.MunicipalitiesManagement;
+import Dashboard.Admin.Form.TotalNumberOfPackagesSent;
+import Dashboard.Admin.Form.TotalRevenues;
 //import com.raven.swing.icon.GoogleMaterialDesignIcons;
 //import com.raven.swing.icon.IconFontSwing;
 import dashboard.style.menu.Menu1;
@@ -44,6 +49,7 @@ public class Main2 extends javax.swing.JFrame {
 
     public Main2() {
         initComponents();
+        
         init();
     }
 
@@ -73,7 +79,15 @@ public class Main2 extends javax.swing.JFrame {
                     }else if(menuIndex==4){
                         if(subMenuIndex==0){
                             main.showForm(new ListOfRegionsWithMoreShipments());
+                        }else if(subMenuIndex==1){
+                            main.showForm(new TotalNumberOfPackagesSent());
+                        }else if(subMenuIndex==2){
+                            main.showForm(new TotalRevenues());
+                        }else if(subMenuIndex==3){
+                            main.showForm(new ListOfUsersWithTheMostPacketsSent());
                         }
+                    }else if(menuIndex==5){
+                        main.showForm(new Account2());
                     }
             }
         });
