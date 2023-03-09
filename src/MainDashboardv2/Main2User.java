@@ -22,12 +22,6 @@ import Dashboard.Admin.Form.ManagementOfRegionsAndPrices;
 import Dashboard.Admin.Form.MunicipalitiesManagement;
 import Dashboard.Admin.Form.TotalNumberOfPackagesSent;
 import Dashboard.Admin.Form.TotalRevenues;
-import dashboard.Client.Form.Buy;
-import dashboard.Client.Form.CreditCardRegister;
-import dashboard.Client.Form.DownloadInvoiceAndGuide;
-import dashboard.Client.Form.InvoiceRegistration;
-import dashboard.Client.Form.PackageQuotation;
-import dashboard.Client.Form.SeeRequestedShipments;
 //import com.raven.swing.icon.GoogleMaterialDesignIcons;
 //import com.raven.swing.icon.IconFontSwing;
 import dashboard.style.menu.Menu1;
@@ -42,7 +36,7 @@ import org.jdesktop.animation.timing.TimingTargetAdapter;
  *
  * @author bruce
  */
-public class Main2 extends javax.swing.JFrame {
+public class Main2User extends javax.swing.JFrame {
 
     /**
      * Creates new form Main2
@@ -53,7 +47,7 @@ public class Main2 extends javax.swing.JFrame {
     private MainForm main;
     private Animator animator;
 
-    public Main2() {
+    public Main2User() {
         initComponents();
         
         init();
@@ -69,12 +63,10 @@ public class Main2 extends javax.swing.JFrame {
             @Override
             public void menuSelected(int menuIndex, int subMenuIndex) {
                 System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
-                if(1==2){
-                
                 if (menuIndex == 0) {
                     main.showForm(new Form_Home());
                 }else if (menuIndex == 1) {
-                        main.showForm(new KioskManagement());
+                       /* main.showForm(new KioskManagement());
                     }else if(menuIndex==2){
                         main.showForm(new ManagementOfRegionsAndPrices());
                     }else if(menuIndex==3){
@@ -82,10 +74,10 @@ public class Main2 extends javax.swing.JFrame {
                             main.showForm(new DepartmentManagement());
                         }else if(subMenuIndex==1){
                             main.showForm(new MunicipalitiesManagement());
-                        }
+                        }*/
                         
                     }else if(menuIndex==4){
-                        if(subMenuIndex==0){
+                        /*if(subMenuIndex==0){
                             main.showForm(new ListOfRegionsWithMoreShipments());
                         }else if(subMenuIndex==1){
                             main.showForm(new TotalNumberOfPackagesSent());
@@ -93,41 +85,19 @@ public class Main2 extends javax.swing.JFrame {
                             main.showForm(new TotalRevenues());
                         }else if(subMenuIndex==3){
                             main.showForm(new ListOfUsersWithTheMostPacketsSent());
-                        }
+                        }*/
                     }else if(menuIndex==5){
                         main.showForm(new Account2());
                     }
-            }else if(2==2){
-                if (menuIndex == 0) {
-                    main.showForm(new Form_Home());
-                }else if (menuIndex == 1) {
-                    if(subMenuIndex==0){
-                        main.showForm(new CreditCardRegister());
-                    }else if(subMenuIndex==1){
-                        main.showForm(new InvoiceRegistration());
-                    }
-                }else if(menuIndex==2){
-                    main.showForm(new PackageQuotation());
-                }else if(menuIndex==3){
-                    main.showForm(new Buy());
-                }else if(menuIndex==4){
-                    main.showForm(new DownloadInvoiceAndGuide());
-                }else if(menuIndex==5){
-                    main.showForm(new SeeRequestedShipments());
-                }else if(menuIndex==6){
-                    main.showForm(new Account2());
-                }
-                
-            }
             }
         });
         menu.addEventShowPopup(new EventShowPopupMenu() {
             @Override
             public void showPopup(Component com) {
                 MenuItem item = (MenuItem) com;
-                PopupMenu popup = new PopupMenu(Main2.this, item.getIndex(), item.getEventSelected(), item.getMenu().getSubMenu());
-                int x = Main2.this.getX() + 52;
-                int y = Main2.this.getY() + com.getY() + 86;
+                PopupMenu popup = new PopupMenu(Main2User.this, item.getIndex(), item.getEventSelected(), item.getMenu().getSubMenu());
+                int x = Main2User.this.getX() + 52;
+                int y = Main2User.this.getY() + com.getY() + 86;
                 popup.setLocation(x, y);
                 popup.setVisible(true);
             }
@@ -241,20 +211,21 @@ public class Main2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main2User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main2User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main2User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main2User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main2().setVisible(true);
+                new Main2User().setVisible(true);
             }
         });
     }

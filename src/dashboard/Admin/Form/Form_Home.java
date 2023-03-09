@@ -34,6 +34,9 @@ public class Form_Home extends javax.swing.JPanel {
     private void initTableData() {
         
         //We added column names
+        
+        //If is admin
+        /*
         table1.addColumn("Name");
         table1.addColumn("Gender");
         table1.addColumn("Course");
@@ -41,6 +44,18 @@ public class Form_Home extends javax.swing.JPanel {
         table1.addColumn("Fees");
         table1.addColumn("Action");
         table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Bruce"), "Male","Java", "Otro", 300, StatusType.PENDING});
+        
+        */
+        //if is client
+        table1.addColumn("Paquete");
+        table1.addColumn("Origen");
+        table1.addColumn("Destino");
+        table1.addColumn("Tipo de pago");
+        table1.addColumn("Precio");
+        table1.addColumn("Estado");
+        table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), "Zapatos"), "Guatemala","Mixco", "Contraentrega", 300, StatusType.PENDING});
+        table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), "Celular"), "Guatemala","Zacapa", "Contraentrega", 100, StatusType.APPROVED});
+        
         //table1.addRow(new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Jonh")), "","", "";
         //table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Jonh", "Male","Java", "Otro", 300).toRowTable(eventAction));
         /*table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/icon/profile1.jpg")), "Dara", "Male", "C++", 300).toRowTable(eventAction));

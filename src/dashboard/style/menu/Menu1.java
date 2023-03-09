@@ -61,7 +61,7 @@ public class Menu1 extends javax.swing.JPanel {
      //if(SG.getSESSION_ROLE()==0){
         
         
-        
+        /*
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCESSIBILITY, "Kioscos"));
         
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCOUNT_BALANCE_WALLET, "Regiones y precios"));
@@ -70,9 +70,10 @@ public class Menu1 extends javax.swing.JPanel {
         
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCOUNT_BOX, "Cuenta"));
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.EXIT_TO_APP, "Cerrar Sesion"));
+     */
         
 //}else if(SG.getSESSION_ROLE()==1){
-        /*
+        
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ADD, "Registro de datos", "Registro de tarjeta","Registro de facturacion"));
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ATTACH_MONEY, "Cotizacion de paquetes"));
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.BUSINESS, "Compra"));
@@ -81,7 +82,8 @@ public class Menu1 extends javax.swing.JPanel {
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.SEARCH, "Ver envios solicitados"));        
         
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCOUNT_BOX, "Cuenta"));
-        addMenu(new ModelMenu(GoogleMaterialDesignIcon.EXIT_TO_APP, "Cerrar Sesion"));*/
+        addMenu(new ModelMenu(GoogleMaterialDesignIcon.EXIT_TO_APP, "Cerrar Sesion"));
+        
         //}    
         /*addMenu(new ModelMenu(new ImageIcon(getClass().getResource("../../icon/2.png")), "Charts", "Morris", "Flot", "Line"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("../../icon/3.png")), "Report", "Income", "Expense", "Profit"));
