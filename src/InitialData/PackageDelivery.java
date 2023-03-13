@@ -10,11 +10,13 @@ import InitialData.User;
  *
  * @author bruce
  */
-public class Package {
+public class PackageDelivery {
+    private Client client;
     private String code, origin, destiny, paymentMethod, size,
                    numberOfPackages, dateSent, serviceType, status;
     
-    public Package(){
+    public PackageDelivery(){
+        client=null;
         code="";
         origin="";
         destiny="";
@@ -26,7 +28,8 @@ public class Package {
         status="";
     }
     
-    public Package(String code, String origin, String destiny, String paymentMethod, String size, String numberOfPackages, String dateSent, String serviceType, String status) {
+    public PackageDelivery(Client client, String code, String origin, String destiny, String paymentMethod, String size, String numberOfPackages, String dateSent, String serviceType, String status) {
+        this.client= client;
         this.code = code;
         this.origin = origin;
         this.destiny = destiny;
@@ -108,6 +111,14 @@ public class Package {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
     
     

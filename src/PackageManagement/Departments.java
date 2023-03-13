@@ -4,10 +4,53 @@
  */
 package PackageManagement;
 
+import InitialData.Department;
+import java.util.ArrayList;
+
 /**
  *
  * @author bruce
  */
 public class Departments {
+    private ArrayList <Department> departments;
     
+     public Departments(){
+        this.departments= new ArrayList();
+    }
+    
+    public void addDepartment(Department department){
+        departments.add(department);
+    }
+    
+    public Department getDepartmentRecord(int pos){
+        return departments.get(pos);
+    }
+    
+    public ArrayList searchDepartmentsRegionCode(String code){
+        ArrayList<Department>resultDepartments;
+        resultDepartments= new ArrayList();
+        
+        for (int i = 0; i < departments.size(); i++) {
+           Department department = departments.get(i);
+           if(department.getCode().equals(code)){
+               resultDepartments.add(department);
+           }
+        }
+        return resultDepartments;
+    }
+    
+    public ArrayList searchDeparmentName(String name){
+        ArrayList<Department>resultDepartments;
+        resultDepartments= new ArrayList();
+        
+        for (int i = 0; i < departments.size(); i++) {
+           Department department = departments.get(i);
+           if(department.getName().equals(name)){               
+               resultDepartments.add(department);               
+           }
+        }
+        
+        return resultDepartments;
+    }
+       
 }

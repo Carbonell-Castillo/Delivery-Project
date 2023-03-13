@@ -4,6 +4,11 @@
  */
 package InitialData;
 
+import PackageManagement.Departments;
+import PackageManagement.Kiosks;
+import PackageManagement.ManagementsOfRegionsAndPrices;
+import PackageManagement.Municipalities;
+import PackageManagement.Packages;
 import PackageManagement.Users;
 
 /**
@@ -13,7 +18,11 @@ import PackageManagement.Users;
 public class SG {
     //Region and price management
     public static Users user = new Users();
- 
+    public static Departments departments = new Departments();  
+    public static Kiosks kiosks= new Kiosks();
+    public static Municipalities municipalities= new Municipalities();
+    public static Packages packages= new Packages();
+    public static ManagementsOfRegionsAndPrices managementsOfRegionsAndPrices = new ManagementsOfRegionsAndPrices();
     //Session
     public static String SESSION_DPI = "";
     public static Integer SESSION_ROLE = -1;

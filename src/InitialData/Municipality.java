@@ -9,5 +9,5 @@ package InitialData;
  * @author bruce
  */
 public class Municipality extends DataManagement{
-   
+    
 }
