@@ -76,7 +76,7 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(table1);
 
-        textField1.setLabelText("Buscar por region");
+        textField1.setLabelText("Buscar por usuario");
 
         buttonCustom1.setText("Buscar");
         buttonCustom1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

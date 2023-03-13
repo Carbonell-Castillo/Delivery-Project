@@ -164,7 +164,7 @@
             </Container>
             <Component class="javaswing.controls.TextField" name="textField1">
               <Properties>
-                <Property name="labelText" type="java.lang.String" value="Buscar por region"/>
+                <Property name="labelText" type="java.lang.String" value="Buscar por usuario"/>
               </Properties>
             </Component>
             <Component class="javaswing.controls.ButtonCustom" name="buttonCustom1">

@@ -34,6 +34,10 @@ public class Users {
         return users.get(pos);
     }
     
+    public Client getClientRecord(int pos){
+        return customers.get(pos);
+    }
+    
     public ArrayList searchUserRecord(int DPI){
         ArrayList<User>resultUsers;
         resultUsers= new ArrayList();

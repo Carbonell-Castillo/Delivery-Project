@@ -22,6 +22,7 @@ import Dashboard.Admin.Form.ManagementOfRegionsAndPrices;
 import Dashboard.Admin.Form.MunicipalitiesManagement;
 import Dashboard.Admin.Form.TotalNumberOfPackagesSent;
 import Dashboard.Admin.Form.TotalRevenues;
+import dashboard.Admin.Form.ListOfUsers;
 import dashboard.Client.Form.Buy;
 import dashboard.Client.Form.CreditCardRegister;
 import dashboard.Client.Form.DownloadInvoiceAndGuide;
@@ -93,6 +94,8 @@ public class Main2 extends javax.swing.JFrame {
                             main.showForm(new TotalRevenues());
                         }else if(subMenuIndex==3){
                             main.showForm(new ListOfUsersWithTheMostPacketsSent());
+                        }else if(subMenuIndex==4){
+                            main.showForm(new ListOfUsers());
                         }
                     }else if(menuIndex==5){
                         main.showForm(new Account2());

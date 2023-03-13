@@ -12,24 +12,27 @@ import InitialData.User;
  */
 public class PackageDelivery {
     private Client client;
-    private String code, origin, destiny, paymentMethod, size,
-                   numberOfPackages, dateSent, serviceType, status;
+    private Integer paymentMethod, numberOfPackages;
+    private String code, RegionOrigin, origin, destiny, size,
+                    dateSent, serviceType, status; 
     
     public PackageDelivery(){
         client=null;
+        RegionOrigin="";
         code="";
         origin="";
         destiny="";
-        paymentMethod="";
+        paymentMethod=0;
         size="";
-        numberOfPackages="";
+        numberOfPackages=0;
         dateSent="";
         serviceType="";
         status="";
     }
     
-    public PackageDelivery(Client client, String code, String origin, String destiny, String paymentMethod, String size, String numberOfPackages, String dateSent, String serviceType, String status) {
+    public PackageDelivery(Client client, String RegionOrigin, String code, String origin, String destiny, Integer paymentMethod, String size, Integer numberOfPackages, String dateSent, String serviceType, String status) {
         this.client= client;
+        this.RegionOrigin= RegionOrigin;
         this.code = code;
         this.origin = origin;
         this.destiny = destiny;
@@ -65,11 +68,11 @@ public class PackageDelivery {
         this.destiny = destiny;
     }
 
-    public String getPaymentMethod() {
+    public Integer getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(Integer paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
@@ -81,11 +84,11 @@ public class PackageDelivery {
         this.size = size;
     }
 
-    public String getNumberOfPackages() {
+    public Integer getNumberOfPackages() {
         return numberOfPackages;
     }
 
-    public void setNumberOfPackages(String numberOfPackages) {
+    public void setNumberOfPackages(Integer numberOfPackages) {
         this.numberOfPackages = numberOfPackages;
     }
 
@@ -119,6 +122,14 @@ public class PackageDelivery {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public String getRegionOrigin() {
+        return RegionOrigin;
+    }
+
+    public void setRegionOrigin(String RegionOrigin) {
+        this.RegionOrigin = RegionOrigin;
     }
     
     
