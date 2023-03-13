@@ -5,6 +5,7 @@
 package InitialData;
 
 import InitialData.User;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,12 +15,44 @@ public class Client extends InitialData.Person{
     private User user;
     private String nameCreditCard, creditCard, expirationDate, CVV;
     
+    private ArrayList <CreditCard> creditCards;
+    
+   
     public Client(){
         nameCreditCard="";
         creditCard="";
         expirationDate="";
         CVV="";
+        this.creditCards = new ArrayList();
     }
+    
+    public void addCreditCard(CreditCard creditCard){
+        creditCards.add(creditCard);
+    }
+    
+    public CreditCard getCreditCardRecord(int pos){
+        return creditCards.get(pos);
+    }
+    
+    public CreditCard getCreditCardByNumber(String number){
+        CreditCard creditCardFound = new CreditCard();
+        
+        
+        for (int i = 0; i < creditCards.size(); i++) {
+            CreditCard creditCardClient = creditCards.get(i);
+            
+            if(creditCardClient.getCreditCard().equals(number)){
+                creditCardFound= creditCardClient;
+            }
+        }
+        
+        return creditCardFound;
+    }
+    
+    public ArrayList getAllCreditCards(){
+        return creditCards;
+    }
+    
     public Client(User user, String nameCreditCard, String creditCard, String expirationDate, String CVV) {
         this.user = user;
         this.nameCreditCard = nameCreditCard;
