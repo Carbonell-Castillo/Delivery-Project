@@ -12,16 +12,23 @@ import InitialData.User;
  */
 public class PackageDelivery {
     private Client client;
+    private CreditCard creditCard;
+    private BillingData billingData;
+    
+    
     private Integer paymentMethod, numberOfPackages;
-    private String code, RegionOrigin, origin, destiny, size,
+    private String code, RegionOrigin, origin, destiny, recipientsName, size,
                     dateSent, serviceType, status; 
     
     public PackageDelivery(){
         client=null;
+        creditCard=null;
+        billingData=null;
         RegionOrigin="";
         code="";
         origin="";
         destiny="";
+        recipientsName="";
         paymentMethod=0;
         size="";
         numberOfPackages=0;
@@ -29,19 +36,62 @@ public class PackageDelivery {
         serviceType="";
         status="";
     }
-    
-    public PackageDelivery(Client client, String RegionOrigin, String code, String origin, String destiny, Integer paymentMethod, String size, Integer numberOfPackages, String dateSent, String serviceType, String status) {
-        this.client= client;
-        this.RegionOrigin= RegionOrigin;
+
+    public PackageDelivery(Client client, CreditCard creditCard, BillingData billingData, Integer paymentMethod, Integer numberOfPackages, String code, String RegionOrigin, String origin, String destiny, String recipientsName, String size, String dateSent, String serviceType, String status) {
+        this.client = client;
+        this.creditCard = creditCard;
+        this.billingData = billingData;
+        this.paymentMethod = paymentMethod;
+        this.numberOfPackages = numberOfPackages;
         this.code = code;
+        this.RegionOrigin = RegionOrigin;
         this.origin = origin;
         this.destiny = destiny;
-        this.paymentMethod = paymentMethod;
+        this.recipientsName = recipientsName;
         this.size = size;
-        this.numberOfPackages = numberOfPackages;
         this.dateSent = dateSent;
         this.serviceType = serviceType;
         this.status = status;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
+    }
+
+    public BillingData getBillingData() {
+        return billingData;
+    }
+
+    public void setBillingData(BillingData billingData) {
+        this.billingData = billingData;
+    }
+
+    public Integer getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(Integer paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public Integer getNumberOfPackages() {
+        return numberOfPackages;
+    }
+
+    public void setNumberOfPackages(Integer numberOfPackages) {
+        this.numberOfPackages = numberOfPackages;
     }
 
     public String getCode() {
@@ -50,6 +100,14 @@ public class PackageDelivery {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getRegionOrigin() {
+        return RegionOrigin;
+    }
+
+    public void setRegionOrigin(String RegionOrigin) {
+        this.RegionOrigin = RegionOrigin;
     }
 
     public String getOrigin() {
@@ -68,12 +126,12 @@ public class PackageDelivery {
         this.destiny = destiny;
     }
 
-    public Integer getPaymentMethod() {
-        return paymentMethod;
+    public String getRecipientsName() {
+        return recipientsName;
     }
 
-    public void setPaymentMethod(Integer paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public void setRecipientsName(String recipientsName) {
+        this.recipientsName = recipientsName;
     }
 
     public String getSize() {
@@ -82,14 +140,6 @@ public class PackageDelivery {
 
     public void setSize(String size) {
         this.size = size;
-    }
-
-    public Integer getNumberOfPackages() {
-        return numberOfPackages;
-    }
-
-    public void setNumberOfPackages(Integer numberOfPackages) {
-        this.numberOfPackages = numberOfPackages;
     }
 
     public String getDateSent() {
@@ -115,23 +165,8 @@ public class PackageDelivery {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public String getRegionOrigin() {
-        return RegionOrigin;
-    }
-
-    public void setRegionOrigin(String RegionOrigin) {
-        this.RegionOrigin = RegionOrigin;
-    }
     
+   
     
     
     

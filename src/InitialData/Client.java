@@ -16,7 +16,7 @@ public class Client extends InitialData.Person{
     private String nameCreditCard, creditCard, expirationDate, CVV;
     
     private ArrayList <CreditCard> creditCards;
-    
+    private ArrayList <BillingData> billingDatas;
    
     public Client(){
         nameCreditCard="";
@@ -24,6 +24,7 @@ public class Client extends InitialData.Person{
         expirationDate="";
         CVV="";
         this.creditCards = new ArrayList();
+        this.billingDatas = new ArrayList();
     }
     
     public void addCreditCard(CreditCard creditCard){
@@ -33,6 +34,15 @@ public class Client extends InitialData.Person{
     public CreditCard getCreditCardRecord(int pos){
         return creditCards.get(pos);
     }
+   
+    public void addBillingData(BillingData billingData){
+        billingDatas.add(billingData);
+    }
+    
+    public BillingData getBillingData(int pos){
+        return billingDatas.get(pos);
+    }
+    
     
     public CreditCard getCreditCardByNumber(String number){
         CreditCard creditCardFound = new CreditCard();

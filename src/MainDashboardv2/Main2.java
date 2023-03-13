@@ -70,7 +70,7 @@ public class Main2 extends javax.swing.JFrame {
             @Override
             public void menuSelected(int menuIndex, int subMenuIndex) {
                 System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
-                if(1==1){
+                if(1==2){
                 
                 if (menuIndex == 0) {
                     main.showForm(new Form_Home());
@@ -100,7 +100,7 @@ public class Main2 extends javax.swing.JFrame {
                     }else if(menuIndex==5){
                         main.showForm(new Account2());
                     }
-            }else if(2==3){
+            }else if(3==3){
                 if (menuIndex == 0) {
                     main.showForm(new Form_Home());
                 }else if (menuIndex == 1) {
