@@ -23,7 +23,7 @@ public class StartDataPreview {
         user.setPhoto("/icon/profile.jpg");
         user.setPassword("admin");
         
-        user.setRole(1);
+        user.setRole(0);
         SG.user.addUserRecord(user);
     }
     

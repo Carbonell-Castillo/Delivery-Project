@@ -15,7 +15,7 @@ public class PackageDelivery {
     private CreditCard creditCard;
     private BillingData billingData;
     
-    
+    private double total; 
     private Integer paymentMethod, numberOfPackages;
     private String code, RegionOrigin, origin, destiny, recipientsName, size,
                     dateSent, serviceType, status; 
@@ -27,6 +27,7 @@ public class PackageDelivery {
         RegionOrigin="";
         code="";
         origin="";
+        total=0;
         destiny="";
         recipientsName="";
         paymentMethod=0;
@@ -37,10 +38,11 @@ public class PackageDelivery {
         status="";
     }
 
-    public PackageDelivery(Client client, CreditCard creditCard, BillingData billingData, Integer paymentMethod, Integer numberOfPackages, String code, String RegionOrigin, String origin, String destiny, String recipientsName, String size, String dateSent, String serviceType, String status) {
+    public PackageDelivery(Client client, CreditCard creditCard, BillingData billingData, double total, Integer paymentMethod, Integer numberOfPackages, String code, String RegionOrigin, String origin, String destiny, String recipientsName, String size, String dateSent, String serviceType, String status) {
         this.client = client;
         this.creditCard = creditCard;
         this.billingData = billingData;
+        this.total = total;
         this.paymentMethod = paymentMethod;
         this.numberOfPackages = numberOfPackages;
         this.code = code;
@@ -53,7 +55,7 @@ public class PackageDelivery {
         this.serviceType = serviceType;
         this.status = status;
     }
-
+     
     public Client getClient() {
         return client;
     }
@@ -76,6 +78,14 @@ public class PackageDelivery {
 
     public void setBillingData(BillingData billingData) {
         this.billingData = billingData;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public Integer getPaymentMethod() {
@@ -165,7 +175,8 @@ public class PackageDelivery {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
+   
    
     
     

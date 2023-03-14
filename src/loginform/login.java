@@ -6,6 +6,7 @@
 package loginform;
 
 import InitialData.SG;
+import InitialData.StartDataPreview;
 //import Main.main1;
 import javaswingnotifications.Notification;
 
@@ -20,6 +21,10 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
+        StartDataPreview startDataPreview = new StartDataPreview();
+        startDataPreview.StartUsersData();
+        startDataPreview.StartClientData();
+        
         txtusername.setBackground(new java.awt.Color(0,0,0,1));
         txtpassword.setBackground(new java.awt.Color(0,0,0,1));
     }
@@ -277,11 +282,8 @@ public class login extends javax.swing.JFrame {
         String password= txtpassword.getText();
         if(!user.isBlank() && !password.isBlank()){
             if(SG.user.validationUser(user, password)){
-            
-                System.out.println("Bievenido");
-                //main1 main = new main1();
-                //main.setVisible(true);
-                
+                MainDashboardv2.Main2 main = new MainDashboardv2.Main2();
+                main.setVisible(true);
             }else{
                 System.out.println("Contrasñea o datos incorrectos");
             }

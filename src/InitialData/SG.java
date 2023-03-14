@@ -27,7 +27,33 @@ public class SG {
     public static String SESSION_DPI = "";
     public static Integer SESSION_ROLE = -1;
     public static User userFound;
+    public static Client clientFound;
+    public static final double SURCHARGE_DELIVERY=5;
+    
+    
+    public static String getTypeOfPayment(Integer type){
+        String typePayment;
+            switch (type) {
+            case 0:
+                typePayment="Contraentrega";
+                break;
+            case 1:
+               typePayment="Tarjeta de credito";
+               break;
+            default:
+                throw new AssertionError();
+        }
+        return typePayment;
+    }
+    
+    public static Client getClientFound() {
+        return clientFound;
+    }
 
+    public static void setClientFound(Client clientFound) {
+        SG.clientFound = clientFound;
+    }
+    
     public static User getUserFound() {
         return userFound;
     }

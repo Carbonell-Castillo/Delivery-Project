@@ -3,6 +3,7 @@ package dashboard.style.menu;
 
 import Dashboard.style.menu.MenuAnimation;
 import Dashboard.style.menu.MenuItem;
+import InitialData.SG;
 
 
 
@@ -58,10 +59,10 @@ public class Menu1 extends javax.swing.JPanel {
 
     public void initMenuItem() {
          addMenu(new ModelMenu(GoogleMaterialDesignIcon.DASHBOARD, "Dashboard"));
-     //if(SG.getSESSION_ROLE()==0){
+     if(SG.getSESSION_ROLE()==0){
         
         
-        /*
+        
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCESSIBILITY, "Kioscos"));
         
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCOUNT_BALANCE_WALLET, "Regiones y precios"));
@@ -71,8 +72,8 @@ public class Menu1 extends javax.swing.JPanel {
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCOUNT_BOX, "Cuenta"));
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.EXIT_TO_APP, "Cerrar Sesion"));
      
-        */
-//}else if(SG.getSESSION_ROLE()==1){
+        
+}else if(SG.getSESSION_ROLE()==1){
         
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ADD, "Registro de datos", "Registro de tarjeta","Registro de facturacion"));
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ATTACH_MONEY, "Cotizacion de paquetes"));
@@ -96,7 +97,7 @@ public class Menu1 extends javax.swing.JPanel {
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("../../icon/10.png")), "Chat App", "Menu 001", "Menu 002", "Menu 003"));
 
 */
-        
+}
     }
 
     private void addMenu(ModelMenu menu) {

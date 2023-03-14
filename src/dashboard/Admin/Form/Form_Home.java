@@ -2,6 +2,7 @@ package Dashboard.Admin.Form;
 
 
 import Dashboard.table.ModelProfile;
+import InitialData.SG;
 import dashboard.style.Model_Card;
 import dashboard.table.StatusType;
 //import java.awt.Color;
@@ -36,25 +37,30 @@ public class Form_Home extends javax.swing.JPanel {
         //We added column names
         
         //If is admin
-        /*
-        table1.addColumn("Name");
-        table1.addColumn("Gender");
-        table1.addColumn("Course");
-        table1.addColumn("Another");
-        table1.addColumn("Fees");
-        table1.addColumn("Action");
-        table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Bruce"), "Male","Java", "Otro", 300, StatusType.PENDING});
+        if (SG.SESSION_ROLE == 0) {
+            table1.addColumn("Name");
+            table1.addColumn("Gender");
+            table1.addColumn("Course");
+            table1.addColumn("Another");
+            table1.addColumn("Fees");
+            table1.addColumn("Action");
+            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Bruce"), "Male", "Java", "Otro", 300, StatusType.PENDING});
+        } else if (SG.SESSION_ROLE == 1) {
+            table1.addColumn("Paquete");
+            table1.addColumn("Origen");
+            table1.addColumn("Destino");
+            table1.addColumn("Tipo de pago");
+            table1.addColumn("Precio");
+            table1.addColumn("Estado");
+            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), "Zapatos"), "Guatemala", "Mixco", "Contraentrega", 300, StatusType.PENDING});
+            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), "Celular"), "Guatemala", "Zacapa", "Contraentrega", 100, StatusType.APPROVED});
+        }
         
-        */
+        
+        
+        
         //if is client
-        table1.addColumn("Paquete");
-        table1.addColumn("Origen");
-        table1.addColumn("Destino");
-        table1.addColumn("Tipo de pago");
-        table1.addColumn("Precio");
-        table1.addColumn("Estado");
-        table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), "Zapatos"), "Guatemala","Mixco", "Contraentrega", 300, StatusType.PENDING});
-        table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), "Celular"), "Guatemala","Zacapa", "Contraentrega", 100, StatusType.APPROVED});
+        
         
         //table1.addRow(new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Jonh")), "","", "";
         //table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Jonh", "Male","Java", "Otro", 300).toRowTable(eventAction));

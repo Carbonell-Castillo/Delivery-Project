@@ -145,16 +145,16 @@ public class Packages {
         
     }
     
-    public ArrayList getPackagesByCode(String code){
-    ArrayList<PackageDelivery> resultPackages;
-        resultPackages = new ArrayList();
+    public PackageDelivery getPackagesByCode(String code){
+    PackageDelivery resultPackage = new PackageDelivery();
+        
         for (int i = 0; i < packages.size(); i++) {
             PackageDelivery packageDelivery = packages.get(i);
             if(packageDelivery.getCode().equals(code)){
-                resultPackages.add(packageDelivery);
+                resultPackage= packageDelivery;
             }
         }
-        return resultPackages;
+        return resultPackage;
     
     }
         
@@ -202,4 +202,18 @@ public class Packages {
         return resultPackages;
     }
     
+    public Boolean validateCodePackage(String code){
+        Boolean validation = false;
+        for (int i = 0; i < packages.size(); i++) {
+            PackageDelivery packageDelivery = packages.get(i);
+            if(packageDelivery.getCode().equals(code)){
+            validation=true;
+            }
+        }
+        return validation;
+    }
+        
+    public Integer getLength(){
+        return packages.size();
+    }
 }
