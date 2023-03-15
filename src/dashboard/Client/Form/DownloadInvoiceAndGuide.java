@@ -6,6 +6,10 @@ package dashboard.Client.Form;
 
 import InitialData.PackageDelivery;
 import InitialData.SG;
+import static dashboard.Client.Form.Buy.packageDelivery;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -190,7 +194,11 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDestinyActionPerformed
 
     private void cmdDownloadGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDownloadGuideActionPerformed
-        // TODO add your handling code here:
+        try {
+            SG.generateGuide(packageDelivery);
+        } catch (IOException ex) {
+            Logger.getLogger(Buy.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cmdDownloadGuideActionPerformed
 
     private void txtTypeOfPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTypeOfPaymentActionPerformed
@@ -203,12 +211,17 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
 
     private void downloadInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadInvoiceActionPerformed
         // TODO add your handling code here:
+        try {
+            SG.generateInvoice(packageDelivery);
+        } catch (IOException ex) {
+            Logger.getLogger(Buy.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_downloadInvoiceActionPerformed
-
+    public static PackageDelivery packageDelivery;
     private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
         // TODO add your handling code here:
         String code = txtCodePackage.getLabelText();
-        PackageDelivery packageDelivery = SG.packages.getPackagesByCode(code);
+        packageDelivery = SG.packages.getPackagesByCode(code);
         
         txtOrigin.setText(packageDelivery.getOrigin());
         txtDestiny.setText(packageDelivery.getDestiny());

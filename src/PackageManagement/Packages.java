@@ -63,9 +63,15 @@ public class Packages {
         
         for (int i = 0; i < packages.size(); i++) {
            PackageDelivery packageDelivery = packages.get(i);
-           if(packageDelivery.getClient().equals(client)){
+           if(packageDelivery.getClient().getUser().getId().equals(client.getUser().getId())){
+               
                resultPackages.add(packageDelivery);
+               
            }
+        }
+        
+        for (int i = 0; i < resultPackages.size(); i++) {
+            System.out.println("nn: "+resultPackages.get(i).getCode()+" "+resultPackages.get(i).getClient().getUser().getName());
         }
         return resultPackages;
     }
@@ -75,7 +81,7 @@ public class Packages {
         resultPackages = new ArrayList();
 
         Integer quantityPackageFound[] = new Integer[packages.size()];
-
+    int i2=0;
         for (int i = 0; i < SG.managementsOfRegionsAndPrices.getLength(); i++) {
             RegionAndPriceManagement managementsOfRegionsAndPrices = SG.managementsOfRegionsAndPrices.getRegionRecord(i);
             String regionCode;
@@ -86,10 +92,12 @@ public class Packages {
                 regionCode= region;
             }
             
+            
             for (int j = 0; j < packages.size(); j++) {
                 PackageDelivery packageDelivery = packages.get(j);
                 if (packageDelivery.getRegionOrigin().equals(regionCode)) {
-                    if (j > 0) {
+                    
+                    if (i2 > 0) {
                         if (!(resultPackages.get(j - 1).equals(resultPackages.get(j)))) {
                             resultPackages.add(packageDelivery);
                         }
@@ -99,6 +107,7 @@ public class Packages {
                     } else {
                         quantityPackageFound[i] = 1;
                     }
+                    i2=i2+1;
                 }
             }
         }
@@ -176,14 +185,14 @@ public class Packages {
         resultPackages = new ArrayList();
         
         SG.quantityPackageFound = new Integer[packages.size()];
-
+        int i2 =0;
         for (int i = 0; i < SG.user.getCustomers().size(); i++) {
             Client client = SG.user.getClientRecord(i);
 
             for (int j = 0; j < packages.size(); j++) {
                 PackageDelivery packageDelivery = packages.get(j);
                 if (packageDelivery.getClient().equals(client)) {
-                    if (j > 0) {
+                    if (i2 > 0) {
                         if (!(resultPackages.get(j - 1).equals(resultPackages.get(j)))) {
                             resultPackages.add(packageDelivery);
                         }
@@ -193,6 +202,7 @@ public class Packages {
                     } else {
                          SG.quantityPackageFound[i] = 1;
                     }
+                    i2=i2+1;
                 }
             }
         }

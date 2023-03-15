@@ -31,7 +31,6 @@ public class SeeRequestedShipments extends javax.swing.JPanel {
         if(SG.packages.allPackageClient(SG.getClientFound()).size()>0){
             for (int i = 0; i < SG.packages.allPackageClient(SG.getClientFound()).size(); i++) {
                 PackageDelivery packageDelivery = (PackageDelivery) SG.packages.allPackageClient(SG.getClientFound()).get(i);
-                PackageManagement.Buy buy = new PackageManagement.Buy(SG.clientFound, packageDelivery.getPaymentMethod());
                 table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), packageDelivery.getCode()), packageDelivery.getServiceType(),packageDelivery.getClient().getName(), packageDelivery.getTotal(), SG.getTypeOfPayment(packageDelivery.getPaymentMethod())});        
             }
         }else{
@@ -149,7 +148,7 @@ public class SeeRequestedShipments extends javax.swing.JPanel {
          if(SG.packages.allPackageClient(SG.getClientFound()).size()>0){
             for (int i = 0; i < SG.packages.searchPackageClientCode(SG.getClientFound(), codePackageSearch).size(); i++) {
                 PackageDelivery packageDelivery = (PackageDelivery) SG.packages.searchPackageClientCode(SG.getClientFound(), codePackageSearch).get(i);
-                table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), packageDelivery.getCode()), packageDelivery.getServiceType(),packageDelivery.getRecipientsName(), packageDelivery.getTotal(), SG.getTypeOfPayment(packageDelivery.getPaymentMethod())});        
+                table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), packageDelivery.getCode()), packageDelivery.getServiceType(), packageDelivery.getRecipientsName(), packageDelivery.getTotal(), SG.getTypeOfPayment(packageDelivery.getPaymentMethod())});        
                 
             }
         }else{

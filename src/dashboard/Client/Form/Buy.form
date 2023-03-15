@@ -102,7 +102,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="buttonCustom3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="buttonCustom4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmdDownloadGuide" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="lblTotal" min="-2" pref="333" max="-2" attributes="0"/>
                               <Component id="txtUserName5" min="-2" pref="333" max="-2" attributes="0"/>
@@ -191,7 +191,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="buttonCustom3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonCustom4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmdDownloadGuide" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="txtUserName3" min="-2" max="-2" attributes="0"/>
@@ -461,13 +461,16 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCustom3ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javaswing.controls.ButtonCustom" name="buttonCustom4">
+        <Component class="javaswing.controls.ButtonCustom" name="cmdDownloadGuide">
           <Properties>
             <Property name="text" type="java.lang.String" value="Descargar Guia"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdDownloadGuideActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javaswing.controls.ButtonCustom" name="cmdCancel">
           <Properties>

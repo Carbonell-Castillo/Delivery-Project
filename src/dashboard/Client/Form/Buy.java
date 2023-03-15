@@ -11,9 +11,12 @@ import InitialData.Municipality;
 import InitialData.PackageDelivery;
 import InitialData.RegionAndPriceManagement;
 import InitialData.SG;
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Date;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -92,7 +95,7 @@ public class Buy extends javax.swing.JPanel {
         rdServiceSpecial = new javax.swing.JRadioButton();
         lblSubtotal = new javax.swing.JLabel();
         buttonCustom3 = new javaswing.controls.ButtonCustom();
-        buttonCustom4 = new javaswing.controls.ButtonCustom();
+        cmdDownloadGuide = new javaswing.controls.ButtonCustom();
         cmdCancel = new javaswing.controls.ButtonCustom();
         buttonCustom5 = new javaswing.controls.ButtonCustom();
         txtReceive = new javaswing.controls.TextField();
@@ -226,8 +229,13 @@ public class Buy extends javax.swing.JPanel {
             }
         });
 
-        buttonCustom4.setText("Descargar Guia");
-        buttonCustom4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdDownloadGuide.setText("Descargar Guia");
+        cmdDownloadGuide.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdDownloadGuide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdDownloadGuideActionPerformed(evt);
+            }
+        });
 
         cmdCancel.setText("Cancelar Envio");
         cmdCancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -317,7 +325,7 @@ public class Buy extends javax.swing.JPanel {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(buttonCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmdDownloadGuide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUserName5, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -383,7 +391,7 @@ public class Buy extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cmdDownloadGuide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtUserName3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -486,16 +494,17 @@ public class Buy extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_cboDestinyDepartmentItemStateChanged
-
+    public static PackageDelivery packageDelivery;
     private void cmdPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPayActionPerformed
         // TODO add your handling code here:
         
-        PackageDelivery packageDelivery = new PackageDelivery();
+        
         Date date = new Date();
         Boolean validation= false;
         String code=generateCode();
         String serviceType="";
         String packageSizeText="";
+        packageDelivery = new PackageDelivery();
         try {
             if (validateCVV(cboCreditCard.getSelectedIndex(), txtCVV.getText())) {
                 
@@ -611,13 +620,26 @@ public static String generateCode(){
     }//GEN-LAST:event_txtCVVActionPerformed
 
     private void buttonCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom3ActionPerformed
-        // TODO add your handling code here:
+        try {
+            SG.generateInvoice(packageDelivery);
+        } catch (IOException ex) {
+            Logger.getLogger(Buy.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonCustom3ActionPerformed
+
+    private void cmdDownloadGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDownloadGuideActionPerformed
+        // TODO add your handling code here:
+          try {
+            SG.generateGuide(packageDelivery);
+        } catch (IOException ex) {
+            Logger.getLogger(Buy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_cmdDownloadGuideActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javaswing.controls.ButtonCustom buttonCustom3;
-    private javaswing.controls.ButtonCustom buttonCustom4;
     private javaswing.controls.ButtonCustom buttonCustom5;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -629,6 +651,7 @@ public static String generateCode(){
     private javaswing.controls.Combobox cboOriginMunicipality;
     private javaswing.controls.Combobox cboTypeOfPayment;
     private javaswing.controls.ButtonCustom cmdCancel;
+    private javaswing.controls.ButtonCustom cmdDownloadGuide;
     private javaswing.controls.ButtonCustom cmdPay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;

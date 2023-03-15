@@ -38,7 +38,7 @@ public class TotalRevenues extends javax.swing.JPanel {
             User user = client.getUser();
             table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName()+" "+user.getLastName()), packageDelivery.getDescription(), packageDelivery.getOrigin(), packageDelivery.getDestiny(),SG.getTypeOfPayment(packageDelivery.getPaymentMethod()), packageDelivery.getDateSent(), packageDelivery.getTotal()});
         }
-        lblTotal.setText("Total de ingresos: "+quantity);
+        lblTotal.setText("Total de ingresos: "+total);
         //We added column names
         
         //table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Mario Lopez"), "Celular","Zacapa", "Mixco", "Pago al contado","17/02/2023", "Q230"});
