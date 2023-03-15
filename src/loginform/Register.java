@@ -396,6 +396,7 @@ public class Register extends javax.swing.JFrame {
 
         if (validation) {
             SG.user.addUserRecord(user);
+            
             if (role == 1) {
                 SG.user.addCustomerRecord(client);
             }
@@ -404,6 +405,7 @@ public class Register extends javax.swing.JFrame {
             panel = new Notification(this, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Datos Almacenados correctamente");
 
             panel.showNotification();
+            clearText();
         } else {
             System.out.println("NOOOO");
 //            panel = new Notification(this, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Daots invalido, por favor, vuelvalo a intentar");    
@@ -418,6 +420,22 @@ public class Register extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_btnRegisterActionPerformed
+    
+    private void clearText(){
+        txtID.setText("");
+        txtName.setText("");
+        txtLastName.setText("");
+        txtUser.setText("");
+        txtEmail.setText("");
+        txtDateOfBirth.setText("");
+        txtPassword.setText("");
+        txtPhone.setText("");
+        
+        cboGender.setSelectedIndex(-1);
+        cboNacionality.setSelectedIndex(-1);
+        cboRole.setSelectedIndex(-1);
+        
+    }
     private boolean validateText(JTextField campoTexto) {
         String texto = campoTexto.getText().trim();
         if (texto.isEmpty()) {

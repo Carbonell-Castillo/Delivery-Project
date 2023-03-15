@@ -48,7 +48,7 @@ public class InvoiceRegistration extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(4, 72, 210));
-        jLabel1.setText("Manejo de Kioscos");
+        jLabel1.setText("Registro de datos/Registro de facturacion");
 
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtUserName.setForeground(new java.awt.Color(0, 0, 0));

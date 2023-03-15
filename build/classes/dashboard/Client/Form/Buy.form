@@ -208,13 +208,13 @@
                               <Component id="rdServiceStandar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rdServiceSpecial" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonCustom5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblSubtotal" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="68" max="32767" attributes="0"/>
+                  <EmptySpace pref="70" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -228,7 +228,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d2" green="48" red="4" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Departamentos y municipios/Departamentos"/>
+            <Property name="text" type="java.lang.String" value="Compra"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="txtUserName">
@@ -259,6 +259,9 @@
           <Properties>
             <Property name="labeText" type="java.lang.String" value="Departamentos"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cboOriginDepartmentItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="txtUserName2">
           <Properties>
@@ -346,7 +349,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="El total a pagar es: Q120"/>
+            <Property name="text" type="java.lang.String" value="El total a pagar es: Q0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="txtUserName5">
@@ -447,7 +450,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="El subtotal a pagar es: Q120"/>
+            <Property name="text" type="java.lang.String" value="El subtotal a pagar es: Q0"/>
           </Properties>
         </Component>
         <Component class="javaswing.controls.ButtonCustom" name="buttonCustom3">

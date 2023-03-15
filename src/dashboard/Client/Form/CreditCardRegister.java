@@ -54,7 +54,7 @@ public class CreditCardRegister extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(4, 72, 210));
-        jLabel2.setText("Dashboard / Home");
+        jLabel2.setText("Registro de datos/Registro de tarjeta");
 
         txtCreditCard.setLabelText("Numero de tarjeta");
         txtCreditCard.addActionListener(new java.awt.event.ActionListener() {
@@ -193,10 +193,17 @@ public class CreditCardRegister extends javax.swing.JPanel {
             System.out.println("Agregado correctamente");
             
             JOptionPane.showMessageDialog(null, "Almacenado Corrrectamente ");
+            clearData();
         }
         
     }//GEN-LAST:event_cmdSaveActionPerformed
 
+    public void clearData(){
+        txtName.setText("");
+        txtCreditCard.setText("");
+        txtCVV.setText("");
+        txtExpirationDate.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javaswing.controls.ButtonCustom cmdSave;

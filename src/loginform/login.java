@@ -282,7 +282,7 @@ public class login extends javax.swing.JFrame {
         String password= txtpassword.getText();
         if(!user.isBlank() && !password.isBlank()){
             if(SG.user.validationUser(user, password)){
-                MainDashboardv2.Main2 main = new MainDashboardv2.Main2();
+                MainDashboard.Main2 main = new MainDashboard.Main2();
                 main.setVisible(true);
             }else{
                 System.out.println("Contrasñea o datos incorrectos");

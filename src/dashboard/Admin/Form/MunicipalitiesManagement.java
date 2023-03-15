@@ -147,9 +147,13 @@ public class MunicipalitiesManagement extends javax.swing.JPanel {
         if (validation) {
             SG.municipalities.addMunicipality(municipality);
             JOptionPane.showMessageDialog(null, "Almacenado Corrrectamente ");
+            clearData();
         }
     }//GEN-LAST:event_cmdSaveActionPerformed
-
+    public void clearData(){
+    
+        txtName.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javaswing.controls.Combobox cboCodeDepartment;

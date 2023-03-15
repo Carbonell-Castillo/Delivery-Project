@@ -7,6 +7,7 @@ package Dashboard.Admin.Form;
 import InitialData.Kiosk;
 import InitialData.SG;
 import InitialData.User;
+import dashboard.style.Header;
 import java.awt.Dimension;
 import java.awt.Image;
 import javaswingnotifications.Notification;
@@ -313,7 +314,7 @@ public class Account2 extends javax.swing.JPanel {
                     user.setEmail(txtEmail.getText());
                     user.setPhoto(imagePath);
                     user.setKiokName((String) cboKioskos.getSelectedItem());
-
+                    user.setRole(SG.userFound.getRole());
                     //Validation password
                     System.out.println("salio");
                     String password = txtPassword.getText();

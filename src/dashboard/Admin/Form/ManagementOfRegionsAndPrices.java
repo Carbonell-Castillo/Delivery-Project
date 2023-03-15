@@ -159,7 +159,13 @@ public class ManagementOfRegionsAndPrices extends javax.swing.JPanel {
             regionAndPriceManagement.setName(txtName.getText());
             regionAndPriceManagement.setSpecialPrice(Double.parseDouble(txtSpecialPrice.getText()));
             regionAndPriceManagement.setStandardPrice(Double.parseDouble(txtStandartPrice.getText()));
-            validation=true;
+            if(SG.managementsOfRegionsAndPrices.searchRegionCode(txtCode.getText()).getCode().equals("")){
+            validation=true;    
+            }else{
+            validation=false;    
+            JOptionPane.showMessageDialog(null, "La region ya existe ");
+            }
+            
         } catch (Exception e) {
             System.out.println("Error en almacenar los datos");
         }
@@ -167,9 +173,15 @@ public class ManagementOfRegionsAndPrices extends javax.swing.JPanel {
         if (validation) {
             SG.managementsOfRegionsAndPrices.addRegion(regionAndPriceManagement);
             JOptionPane.showMessageDialog(null, "Almacenado Corrrectamente ");
+            clearData();
         }
     }//GEN-LAST:event_cmdSaveActionPerformed
-
+   public void clearData(){
+        txtCode.setText("");
+        txtName.setText("");
+        txtSpecialPrice.setText("");
+        txtStandartPrice.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javaswing.controls.ButtonCustom cmdSave;

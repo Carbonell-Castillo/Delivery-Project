@@ -42,10 +42,35 @@ public class SG {
     public static Integer quantityPackageFoundRegion[];
     
     
-    public static final double STICKY_PACKAGE=100;
-    public static final double MEDIUM_PACKAGE=200;
-    public static final double LARGE_PACKAGE=300;
+    public static  double STICKY_PACKAGE=100;
+    public static  double MEDIUM_PACKAGE=200;
+    public static  double LARGE_PACKAGE=300;
 
+    public static double getSTICKY_PACKAGE() {
+        return STICKY_PACKAGE;
+    }
+
+    public static void setSTICKY_PACKAGE(double STICKY_PACKAGE) {
+        SG.STICKY_PACKAGE = STICKY_PACKAGE;
+    }
+
+    public static double getMEDIUM_PACKAGE() {
+        return MEDIUM_PACKAGE;
+    }
+
+    public static void setMEDIUM_PACKAGE(double MEDIUM_PACKAGE) {
+        SG.MEDIUM_PACKAGE = MEDIUM_PACKAGE;
+    }
+
+    public static double getLARGE_PACKAGE() {
+        return LARGE_PACKAGE;
+    }
+
+    public static void setLARGE_PACKAGE(double LARGE_PACKAGE) {
+        SG.LARGE_PACKAGE = LARGE_PACKAGE;
+    }
+
+    
     public static Integer[] getQuantityPackageFound() {
         return quantityPackageFound;
     }

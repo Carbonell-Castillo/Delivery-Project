@@ -9,6 +9,7 @@ import InitialData.Municipality;
 import InitialData.RegionAndPriceManagement;
 import InitialData.SG;
 import PackageManagement.ManagementsOfRegionsAndPrices;
+import static dashboard.Client.Form.Buy.CodeRegion;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 
@@ -39,7 +40,14 @@ public class PackageQuotation extends javax.swing.JPanel {
             cboMunicipalityOrigin.addItem("["+municipality.getCode()+"]"+municipality.getName());
             cboDestinyMunicipality.addItem(municipality.getName());
         }
-      
+        rdPegueño.setText("Pegueño: Q"+SG.getSTICKY_PACKAGE());
+        rdMediano.setText("Mediano: Q"+SG.getMEDIUM_PACKAGE());
+        rdGrande.setText("Grande: Q"+SG.getLARGE_PACKAGE());
+        
+/*        cboOriginDepartment.setSelectedIndex(-1);
+        cboDestinyDepartment.setSelectedIndex(-1);
+        cboMunicipalityOrigin.setSelectedIndex(-1);
+        cboDestinyMunicipality.setSelectedIndex(-1);*/
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,17 +78,20 @@ public class PackageQuotation extends javax.swing.JPanel {
         rdMediano = new javax.swing.JRadioButton();
         rdGrande = new javax.swing.JRadioButton();
         cmdQuotation = new javaswing.controls.ButtonCustom();
-        txtSubtotal = new javax.swing.JLabel();
+        lblSubtotal = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jBuyHere = new javax.swing.JLabel();
+        txtUserName6 = new javax.swing.JLabel();
+        rdServiceStandar = new javax.swing.JRadioButton();
+        rdServiceSpecial = new javax.swing.JRadioButton();
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(999, 621));
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(4, 72, 210));
-        jLabel1.setText("Departamentos y municipios/Departamentos");
+        jLabel1.setText("Cotizacion de paquetes");
 
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtUserName.setForeground(new java.awt.Color(0, 0, 0));
@@ -93,6 +104,11 @@ public class PackageQuotation extends javax.swing.JPanel {
         txtUserName1.setText("Origen");
 
         cboOriginDepartment.setLabeText("Departamentos");
+        cboOriginDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboOriginDepartmentItemStateChanged(evt);
+            }
+        });
 
         txtUserName2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUserName2.setForeground(new java.awt.Color(0, 0, 0));
@@ -100,6 +116,11 @@ public class PackageQuotation extends javax.swing.JPanel {
         txtUserName2.setText("Destino");
 
         cboDestinyDepartment.setLabeText("Departamentos");
+        cboDestinyDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboDestinyDepartmentItemStateChanged(evt);
+            }
+        });
 
         cboMunicipalityOrigin.setLabeText("Municipios");
 
@@ -139,10 +160,10 @@ public class PackageQuotation extends javax.swing.JPanel {
             }
         });
 
-        txtSubtotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtSubtotal.setForeground(new java.awt.Color(0, 0, 0));
-        txtSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtSubtotal.setText("El monto total a pagar es: Q120");
+        lblSubtotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSubtotal.setForeground(new java.awt.Color(0, 0, 0));
+        lblSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSubtotal.setText("El monto total a pagar es: Q0");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Payments.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -158,65 +179,94 @@ public class PackageQuotation extends javax.swing.JPanel {
             }
         });
 
+        txtUserName6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUserName6.setForeground(new java.awt.Color(0, 0, 0));
+        txtUserName6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtUserName6.setText("TIpo de servicio:");
+
+        buttonGroup2.add(rdServiceStandar);
+        rdServiceStandar.setText("Servicio Estandar:: Q35");
+        rdServiceStandar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdServiceStandarActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(rdServiceSpecial);
+        rdServiceSpecial.setText("Precio Especial: Q45");
+        rdServiceSpecial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdServiceSpecialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUserName3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtNumberOfPackage, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUserName1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboOriginDepartment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboMunicipalityOrigin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(rdPegueño)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rdMediano)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rdGrande, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUserName1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboOriginDepartment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNumberOfPackage, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                            .addComponent(cboMunicipalityOrigin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtUserName2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboDestinyDepartment, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .addComponent(cboDestinyMunicipality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cboDestinyDepartment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboDestinyMunicipality, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(rdPegueño)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdMediano)
+                        .addGap(19, 19, 19)
+                        .addComponent(rdGrande, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUserName3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmdQuotation, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(3, 3, 3)
-                        .addComponent(jBuyHere)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 593, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBuyHere))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(rdServiceStandar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rdServiceSpecial))
+                    .addComponent(txtUserName6, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 651, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtUserName1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboOriginDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cboOriginDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboMunicipalityOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtUserName2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboDestinyDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboMunicipalityOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboDestinyMunicipality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(22, 22, 22)
+                        .addComponent(cboDestinyDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboDestinyMunicipality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNumberOfPackage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(txtUserName3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -224,9 +274,15 @@ public class PackageQuotation extends javax.swing.JPanel {
                     .addComponent(rdMediano)
                     .addComponent(rdGrande))
                 .addGap(18, 18, 18)
+                .addComponent(txtUserName6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdServiceStandar)
+                    .addComponent(rdServiceSpecial))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cmdQuotation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -244,7 +300,7 @@ public class PackageQuotation extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,35 +320,89 @@ public class PackageQuotation extends javax.swing.JPanel {
         // TODO add your handling code here:
         System.out.println("Aquiiiiiii");
     }//GEN-LAST:event_jBuyHereMouseClicked
-
+    private static double specialPricePackage=0;
+    private static double standarPricePackage=0;
+    public static double subtotal= 0;
     private void cmdQuotationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdQuotationActionPerformed
-        // TODO add your handling code here:
-        
         String DestinyDepartment= (String) cboDestinyDepartment.getSelectedItem();
         Department department = SG.departments.searchDeparmentName(DestinyDepartment);
         Boolean validation = false;
         double priceSize =0;
+        
         try {
             if (rdPegueño.isSelected()) {
-                priceSize=100;
+                priceSize=SG.STICKY_PACKAGE;
             }else if(rdMediano.isSelected()){
-                priceSize=150;
+                priceSize=SG.MEDIUM_PACKAGE;
             }else if(rdGrande.isSelected()){
-                priceSize= 200;
+                priceSize=SG.LARGE_PACKAGE;
             }
             Integer numberofPackage= Integer.parseInt(txtNumberOfPackage.getText());
             String regionCodeDepartment = department.getCode();
             RegionAndPriceManagement regionAndPriceManagement = SG.managementsOfRegionsAndPrices.searchRegionCode(regionCodeDepartment);
             
             PackageManagement.Buy buy = new PackageManagement.Buy(SG.getClientFound(), 0);
-            double subtotal =buy.getPackageQuote(regionAndPriceManagement.getStandardPrice(), priceSize, numberofPackage);
+            System.out.println(regionAndPriceManagement.getSpecialPrice()+"*"+priceSize+"*"+numberofPackage);
             
-            txtSubtotal.setText("El monto total a pagar es: Q"+subtotal);
+            if (rdServiceSpecial.isSelected()) {
+                System.out.println("Susbtotal antes: "+subtotal);
+                subtotal = buy.getPackageQuote(regionAndPriceManagement.getSpecialPrice(), priceSize, numberofPackage);
+                System.out.println("Susbtotal despues: "+subtotal);
+            }else if(rdServiceStandar.isSelected()){
+                System.out.println("Susbtotal antes: "+subtotal);
+                subtotal = buy.getPackageQuote(regionAndPriceManagement.getStandardPrice(), priceSize, numberofPackage);
+                System.out.println("Susbtotal despues: "+subtotal);
+            }
+            
+            lblSubtotal.setText("El monto total a pagar es: Q"+subtotal);
+            
             
         } catch (Exception e) {
             System.out.println("Error de cotizar");
         }
     }//GEN-LAST:event_cmdQuotationActionPerformed
+
+    private void rdServiceStandarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdServiceStandarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdServiceStandarActionPerformed
+
+    private void rdServiceSpecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdServiceSpecialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdServiceSpecialActionPerformed
+
+    private void cboDestinyDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboDestinyDepartmentItemStateChanged
+        for (int i = 0; i < SG.departments.getLength(); i++) {
+            Department department = SG.departments.getDepartmentRecord(i);
+            String regionCodeDepartment = department.getCode();
+            RegionAndPriceManagement regionAndPriceManagement = SG.managementsOfRegionsAndPrices.searchRegionCode(regionCodeDepartment);
+            if (cboDestinyDepartment.getSelectedItem().equals(department.getName())) {
+                specialPricePackage = regionAndPriceManagement.getSpecialPrice();
+                standarPricePackage = regionAndPriceManagement.getStandardPrice();
+                CodeRegion= regionAndPriceManagement.getCode();
+                rdServiceSpecial.setText("Servicio especial: "+specialPricePackage);
+                rdServiceStandar.setText("Servicio estandar: "+standarPricePackage);
+            }
+        }
+        
+        Department department = SG.departments.getDepartmentRecord(cboDestinyDepartment.getSelectedIndex());
+        cboDestinyMunicipality.removeAllItems();
+        for (int i = 0; i < SG.municipalities.searchMunicipalityCode(String.valueOf(cboDestinyDepartment.getSelectedIndex())).size(); i++) {
+            Municipality municipality = (Municipality) SG.municipalities.searchMunicipalityCode(String.valueOf(cboDestinyDepartment.getSelectedIndex())).get(i);
+            cboDestinyMunicipality.addItem(municipality.getName());
+            
+        }
+    }//GEN-LAST:event_cboDestinyDepartmentItemStateChanged
+
+    private void cboOriginDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboOriginDepartmentItemStateChanged
+        // TODO add your handling code here:
+         Department department = SG.departments.getDepartmentRecord(cboOriginDepartment.getSelectedIndex());
+        cboMunicipalityOrigin.removeAllItems();
+        for (int i = 0; i < SG.municipalities.searchMunicipalityCode(String.valueOf(cboOriginDepartment.getSelectedIndex())).size(); i++) {
+            Municipality municipality = (Municipality) SG.municipalities.searchMunicipalityCode(String.valueOf(cboOriginDepartment.getSelectedIndex())).get(i);
+            cboMunicipalityOrigin.addItem(municipality.getName());
+            
+        }
+    }//GEN-LAST:event_cboOriginDepartmentItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -311,14 +421,17 @@ public class PackageQuotation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblSubtotal;
     private javax.swing.JRadioButton rdGrande;
     private javax.swing.JRadioButton rdMediano;
     private javax.swing.JRadioButton rdPegueño;
+    private javax.swing.JRadioButton rdServiceSpecial;
+    private javax.swing.JRadioButton rdServiceStandar;
     private javaswing.controls.TextField txtNumberOfPackage;
-    private javax.swing.JLabel txtSubtotal;
     private javax.swing.JLabel txtUserName;
     private javax.swing.JLabel txtUserName1;
     private javax.swing.JLabel txtUserName2;
     private javax.swing.JLabel txtUserName3;
+    private javax.swing.JLabel txtUserName6;
     // End of variables declaration//GEN-END:variables
 }

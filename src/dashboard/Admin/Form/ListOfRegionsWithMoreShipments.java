@@ -28,7 +28,16 @@ public class ListOfRegionsWithMoreShipments extends javax.swing.JPanel {
     }
     private void initTableData() {
         
-        Search("");
+        table1.clearTable();
+        
+        Integer quantityListOfRegions=SG.packages.findPackagesWithHighShipmentVolumeInRegions("").size();
+         for (int i = 0; i < quantityListOfRegions; i++) {
+            RegionAndPriceManagement regionAndPriceManagement = (RegionAndPriceManagement) SG.packages.findPackagesWithHighShipmentVolumeInRegions("").get(i);
+             
+                table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/location.jpeg")), regionAndPriceManagement.getName()), regionAndPriceManagement.getCode(),SG.quantityPackageFoundRegion[i]});         
+             
+            
+        }
         //We added column names
         //table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Guatemala"), "2032032","10"});
         //table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Guatemala"), "2032032","10"});
@@ -36,11 +45,13 @@ public class ListOfRegionsWithMoreShipments extends javax.swing.JPanel {
     
     public void Search(String data){
         table1.clearTable();
-        
-        Integer quantityListOfRegions=SG.packages.findPackagesWithHighShipmentVolumeInRegions(data).size();
+        Integer quantityListOfRegions=SG.packages.findPackagesWithHighShipmentVolumeInRegions("").size();
          for (int i = 0; i < quantityListOfRegions; i++) {
             RegionAndPriceManagement regionAndPriceManagement = (RegionAndPriceManagement) SG.packages.findPackagesWithHighShipmentVolumeInRegions(data).get(i);
-            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), regionAndPriceManagement.getName()), regionAndPriceManagement.getCode(),SG.quantityPackageFoundRegion[i]});    
+             if (regionAndPriceManagement.getCode().equals(data)) {
+                table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/location.jpeg")), regionAndPriceManagement.getName()), regionAndPriceManagement.getCode(),SG.quantityPackageFoundRegion[i]});         
+             }
+            
         }
         
     }
@@ -82,7 +93,7 @@ public class ListOfRegionsWithMoreShipments extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(4, 72, 210));
-        jLabel1.setText("Dashboard / Home");
+        jLabel1.setText("Reportes/Regiones con mas envios");
 
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtUserName.setForeground(new java.awt.Color(0, 0, 0));

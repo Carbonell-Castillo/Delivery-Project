@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package MainDashboardv2;
+package MainDashboard;
 
 import dashboard.style.Header;
 import dashboard.style.Menu;
@@ -13,7 +13,6 @@ import Dashboard.Admin.Form.Form_Home;
 import Dashboard.Admin.Form.MainForm;
 import Dashboard.style.menu.MenuItem;
 import Dashboard.style.menu.PopupMenu;
-import Dashboard.Admin.Form.Account;
 import Dashboard.Admin.Form.Account2;
 import Dashboard.Admin.Form.DepartmentManagement;
 import Dashboard.Admin.Form.ListOfRegionsWithMoreShipments;
@@ -24,6 +23,7 @@ import Dashboard.Admin.Form.TotalNumberOfPackagesSent;
 import Dashboard.Admin.Form.TotalRevenues;
 import InitialData.SG;
 import dashboard.Admin.Form.ListOfUsers;
+import dashboard.Admin.Form.PriceConfiguration;
 import dashboard.Client.Form.Buy;
 import dashboard.Client.Form.CreditCardRegister;
 import dashboard.Client.Form.DownloadInvoiceAndGuide;
@@ -76,9 +76,10 @@ public class Main2 extends javax.swing.JFrame {
                 if (menuIndex == 0) {
                     main.showForm(new Form_Home());
                 }else if (menuIndex == 1) {
-                        main.showForm(new KioskManagement());
-                    }else if(menuIndex==2){
                         main.showForm(new ManagementOfRegionsAndPrices());
+                    }else if(menuIndex==2){
+                        main.showForm(new KioskManagement());
+                        
                     }else if(menuIndex==3){
                         if(subMenuIndex==0){
                             main.showForm(new DepartmentManagement());
@@ -86,7 +87,9 @@ public class Main2 extends javax.swing.JFrame {
                             main.showForm(new MunicipalitiesManagement());
                         }
                         
-                    }else if(menuIndex==4){
+                    }else if (menuIndex==4) {
+                        main.showForm(new PriceConfiguration());
+                    }else if(menuIndex==5){
                         if(subMenuIndex==0){
                             main.showForm(new ListOfRegionsWithMoreShipments());
                         }else if(subMenuIndex==1){
@@ -98,9 +101,9 @@ public class Main2 extends javax.swing.JFrame {
                         }else if(subMenuIndex==4){
                             main.showForm(new ListOfUsers());
                         }
-                    }else if(menuIndex==5){
-                        main.showForm(new Account2());
                     }else if(menuIndex==6){
+                        main.showForm(new Account2());
+                    }else if(menuIndex==7){
                     main.setVisible(false);
                 }
             }else if(SG.SESSION_ROLE==1){

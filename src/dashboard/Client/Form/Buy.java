@@ -34,6 +34,7 @@ public class Buy extends javax.swing.JPanel {
     }
 
     public void initData(){
+        
         for (int i = 0; i < SG.departments.getLength(); i++) {
             Department department = SG.departments.getDepartmentRecord(i);
             cboOriginDepartment.addItem("["+department.getCode()+"]"+department.getName());    
@@ -57,6 +58,15 @@ public class Buy extends javax.swing.JPanel {
             BillingData billingData = SG.clientFound.getBillingData(i);
             cboBillingData.addItem(billingData.getNit()+" "+billingData.getAddress());
         }
+        
+        rdPegueño.setText("Pegueño: Q"+SG.getSTICKY_PACKAGE());
+        rdMediano.setText("Mediano: Q"+SG.getMEDIUM_PACKAGE());
+        rdGrande.setText("Grande: Q"+SG.getLARGE_PACKAGE());
+        /*
+        cboOriginDepartment.setSelectedIndex(-1);
+        cboDestinyDepartment.setSelectedIndex(-1);
+        cboOriginMunicipality.setSelectedIndex(-1);
+        cboDestinyMunicipality.setSelectedIndex(-1)*/;
     }
 
     /**
@@ -107,7 +117,7 @@ public class Buy extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(4, 72, 210));
-        jLabel1.setText("Departamentos y municipios/Departamentos");
+        jLabel1.setText("Compra");
 
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtUserName.setForeground(new java.awt.Color(0, 0, 0));
@@ -120,6 +130,11 @@ public class Buy extends javax.swing.JPanel {
         txtUserName1.setText("Origen");
 
         cboOriginDepartment.setLabeText("Departamentos");
+        cboOriginDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboOriginDepartmentItemStateChanged(evt);
+            }
+        });
 
         txtUserName2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUserName2.setForeground(new java.awt.Color(0, 0, 0));
@@ -166,7 +181,7 @@ public class Buy extends javax.swing.JPanel {
         lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTotal.setForeground(new java.awt.Color(0, 0, 0));
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTotal.setText("El total a pagar es: Q120");
+        lblTotal.setText("El total a pagar es: Q0");
 
         txtUserName5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtUserName5.setForeground(new java.awt.Color(0, 0, 0));
@@ -219,7 +234,7 @@ public class Buy extends javax.swing.JPanel {
         lblSubtotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblSubtotal.setForeground(new java.awt.Color(0, 0, 0));
         lblSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSubtotal.setText("El subtotal a pagar es: Q120");
+        lblSubtotal.setText("El subtotal a pagar es: Q0");
 
         buttonCustom3.setText("Descargar Factura");
         buttonCustom3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -405,11 +420,11 @@ public class Buy extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rdServiceStandar)
                             .addComponent(rdServiceSpecial))
-                        .addGap(14, 14, 14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -450,7 +465,7 @@ public class Buy extends javax.swing.JPanel {
         
         try {
             if (rdPegueño.isSelected()) {
-                priceSize=SG.STICKY_PACKAGE;
+                priceSize=SG.getSTICKY_PACKAGE();
             }else if(rdMediano.isSelected()){
                 priceSize=SG.MEDIUM_PACKAGE;
             }else if(rdGrande.isSelected()){
@@ -462,12 +477,16 @@ public class Buy extends javax.swing.JPanel {
             
             PackageManagement.Buy buy = new PackageManagement.Buy(SG.getClientFound(), 0);
             System.out.println(regionAndPriceManagement.getSpecialPrice()+"*"+priceSize+"*"+numberofPackage);
-            subtotal = buy.getPackageQuote(regionAndPriceManagement.getStandardPrice(), priceSize, numberofPackage);
+            
             
             if (rdServiceSpecial.isSelected()) {
-                subtotal= subtotal+specialPricePackage;
+                System.out.println("Susbtotal antes: "+subtotal);
+                subtotal = buy.getPackageQuote(regionAndPriceManagement.getSpecialPrice(), priceSize, numberofPackage);
+                System.out.println("Susbtotal despues: "+subtotal);
             }else if(rdServiceStandar.isSelected()){
-                subtotal = subtotal+standarPricePackage;
+                System.out.println("Susbtotal antes: "+subtotal);
+                subtotal = buy.getPackageQuote(regionAndPriceManagement.getStandardPrice(), priceSize, numberofPackage);
+                System.out.println("Susbtotal despues: "+subtotal);
             }
             
             lblSubtotal.setText("El monto total a pagar es: Q"+subtotal);
@@ -491,6 +510,14 @@ public class Buy extends javax.swing.JPanel {
                 rdServiceSpecial.setText("Servicio especial: "+specialPricePackage);
                 rdServiceStandar.setText("Servicio estandar: "+standarPricePackage);
             }
+        }
+        
+        Department department = SG.departments.getDepartmentRecord(cboDestinyDepartment.getSelectedIndex());
+        cboDestinyMunicipality.removeAllItems();
+        for (int i = 0; i < SG.municipalities.searchMunicipalityCode(String.valueOf(cboDestinyDepartment.getSelectedIndex())).size(); i++) {
+            Municipality municipality = (Municipality) SG.municipalities.searchMunicipalityCode(String.valueOf(cboDestinyDepartment.getSelectedIndex())).get(i);
+            cboDestinyMunicipality.addItem(municipality.getName());
+            
         }
         
     }//GEN-LAST:event_cboDestinyDepartmentItemStateChanged
@@ -661,6 +688,17 @@ public static String generateCode(){
         }
         
     }//GEN-LAST:event_cmdDownloadGuideActionPerformed
+
+    private void cboOriginDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboOriginDepartmentItemStateChanged
+        // TODO add your handling code here:
+        Department department = SG.departments.getDepartmentRecord(cboOriginDepartment.getSelectedIndex());
+        cboOriginMunicipality.removeAllItems();
+        for (int i = 0; i < SG.municipalities.searchMunicipalityCode(String.valueOf(cboOriginDepartment.getSelectedIndex())).size(); i++) {
+            Municipality municipality = (Municipality) SG.municipalities.searchMunicipalityCode(String.valueOf(cboOriginDepartment.getSelectedIndex())).get(i);
+            cboOriginMunicipality.addItem(municipality.getName());
+            
+        }
+    }//GEN-LAST:event_cboOriginDepartmentItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

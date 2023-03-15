@@ -29,12 +29,16 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
         
     private void initTableData() {
         table1.clearTable();
+        if(SG.packages.getLength()>0){
+            
+        
         Integer quantity = SG.packages.getUsersWithMorePackages().size();
         for (int i = 0; i < quantity; i++) {
             Client client = (Client) SG.packages.getUsersWithMorePackages().get(i);
             User user = client.getUser();
             table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName() + " " + user.getLastName()), user.getNationality(), SG.quantityPackageFound[i]});
 
+        }
         }
         //We added column names
 
@@ -43,6 +47,7 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
     
     private void Search(String data){
         table1.clearTable();
+        if(SG.packages.getLength()>0){
         Integer quantity = SG.packages.getUsersWithMorePackages().size();
         for (int i = 0; i < quantity; i++) {
             Client client = (Client) SG.packages.getUsersWithMorePackages().get(i);
@@ -54,7 +59,7 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
             table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName() + " " + user.getLastName()), user.getNationality(), SG.quantityPackageFound[i]});
             }
             
-
+        }
         }
     }
     /**
@@ -85,7 +90,7 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(4, 72, 210));
-        jLabel1.setText("Dashboard / Home");
+        jLabel1.setText("Reportes/Usuarios con mas paquetes");
 
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtUserName.setForeground(new java.awt.Color(0, 0, 0));

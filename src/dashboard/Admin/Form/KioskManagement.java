@@ -73,7 +73,7 @@ public class KioskManagement extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,9 +138,14 @@ public class KioskManagement extends javax.swing.JPanel {
         if (validation) {
             SG.kiosks.addKiosk(kiosk);
             JOptionPane.showMessageDialog(null, "Almacenado Corrrectamente ");
+            clearData();
         }
     }//GEN-LAST:event_cmdSaveActionPerformed
-
+   public void clearData(){
+        txtCode.setText("");
+        txtName.setText("");
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javaswing.controls.Combobox cboRegion;
     private javaswing.controls.ButtonCustom cmdSave;

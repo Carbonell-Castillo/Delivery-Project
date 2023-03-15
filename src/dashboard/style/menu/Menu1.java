@@ -63,10 +63,12 @@ public class Menu1 extends javax.swing.JPanel {
         
         
         
-        addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCESSIBILITY, "Kioscos"));
+        
         
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCOUNT_BALANCE_WALLET, "Regiones y precios"));
+        addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCESSIBILITY, "Kioscos"));
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ADD_LOCATION, "Departamentos y Municipios", "Añadir Departamentos", "Añadir Municipios"));
+        addMenu(new ModelMenu(GoogleMaterialDesignIcon.MONEY_OFF, "Precios de paquetes"));
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.SEARCH, "Reportes", "Regiones con mas envios", "Total de paquetes enviados", "Ingreso totales", "Usuarios com mas paquetes", "Listado de usuarios"));
         
         addMenu(new ModelMenu(GoogleMaterialDesignIcon.ACCOUNT_BOX, "Cuenta"));

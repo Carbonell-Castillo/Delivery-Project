@@ -91,7 +91,7 @@ public class TotalNumberOfPackagesSent extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(4, 72, 210));
-        jLabel1.setText("Dashboard / Home");
+        jLabel1.setText("Reportes/Total de paquetes enviados");
 
         lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTotal.setForeground(new java.awt.Color(0, 0, 0));
