@@ -30,18 +30,17 @@ public class ManagementsOfRegionsAndPrices {
         return regions.get(pos);
     }
     
-    public ArrayList searchRegionCode(String code){
-        ArrayList<RegionAndPriceManagement>resultRegions;
-        resultRegions= new ArrayList();
+    public RegionAndPriceManagement searchRegionCode(String code){
+        RegionAndPriceManagement resultRegion = new RegionAndPriceManagement();
         
         for (int i = 0; i < regions.size(); i++) {
            RegionAndPriceManagement region = regions.get(i);
            if(region.getCode().equals(code)){
-               resultRegions.add(region);
+               resultRegion = region;
            }
         }
         
-        return resultRegions;
+        return resultRegion;
     }
     
     

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Departments {
     private ArrayList <Department> departments;
     
-     public Departments(){
+    public Departments(){
         this.departments= new ArrayList();
     }
     
@@ -39,18 +39,21 @@ public class Departments {
         return resultDepartments;
     }
     
-    public ArrayList searchDeparmentName(String name){
-        ArrayList<Department>resultDepartments;
-        resultDepartments= new ArrayList();
+    public Department searchDeparmentName(String name){
+        Department departmentResult= new Department();
         
         for (int i = 0; i < departments.size(); i++) {
            Department department = departments.get(i);
            if(department.getName().equals(name)){               
-               resultDepartments.add(department);               
+               departmentResult=department;               
            }
         }
         
-        return resultDepartments;
+        return departmentResult;
+    }
+    
+    public Integer getLength(){
+        return departments.size();
     }
        
 }

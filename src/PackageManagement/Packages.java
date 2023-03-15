@@ -137,7 +137,20 @@ public class Packages {
         resultPackages = new ArrayList();
         for (int i = 0; i < packages.size(); i++) {
             PackageDelivery packageDelivery = packages.get(i);
-            if(packageDelivery.getOrigin().equals(origin)){
+            if(packageDelivery.getOrigin().contains(origin)){
+                resultPackages.add(packageDelivery);
+            }
+        }
+        return resultPackages;
+        
+    }
+    
+    public ArrayList getPackageByDescription(String descríption){
+        ArrayList<PackageDelivery> resultPackages;
+        resultPackages = new ArrayList();
+        for (int i = 0; i < packages.size(); i++) {
+            PackageDelivery packageDelivery = packages.get(i);
+            if(packageDelivery.getDescription().contains(descríption)){
                 resultPackages.add(packageDelivery);
             }
         }
@@ -162,7 +175,7 @@ public class Packages {
         ArrayList<PackageDelivery> resultPackages;
         resultPackages = new ArrayList();
         
-        Integer quantityPackageFound[] = new Integer[packages.size()];
+        SG.quantityPackageFound = new Integer[packages.size()];
 
         for (int i = 0; i < SG.user.getCustomers().size(); i++) {
             Client client = SG.user.getClientRecord(i);
@@ -175,21 +188,21 @@ public class Packages {
                             resultPackages.add(packageDelivery);
                         }
                     }
-                    if (quantityPackageFound[i] != null) {
-                        quantityPackageFound[i] = quantityPackageFound[i] + 1;
+                    if ( SG.quantityPackageFound[i] != null) {
+                         SG.quantityPackageFound[i] =  SG.quantityPackageFound[i] + 1;
                     } else {
-                        quantityPackageFound[i] = 1;
+                         SG.quantityPackageFound[i] = 1;
                     }
                 }
             }
         }
 
-        for (int i = 0; i < quantityPackageFound.length - 1; i++) {
-            for (int j = 0; j < quantityPackageFound.length - i - 1; j++) {
-                if (quantityPackageFound[j] < quantityPackageFound[j + 1]) {
-                    int temp = quantityPackageFound[j];
-                    quantityPackageFound[j] = quantityPackageFound[j + 1];
-                    quantityPackageFound[j + 1] = temp;
+        for (int i = 0; i <  SG.quantityPackageFound.length - 1; i++) {
+            for (int j = 0; j <  SG.quantityPackageFound.length - i - 1; j++) {
+                if ( SG.quantityPackageFound[j] <  SG.quantityPackageFound[j + 1]) {
+                    int temp =  SG.quantityPackageFound[j];
+                     SG.quantityPackageFound[j] =  SG.quantityPackageFound[j + 1];
+                     SG.quantityPackageFound[j + 1] = temp;
 
                     PackageDelivery tempPackage = resultPackages.get(j);
                     resultPackages.set(j, resultPackages.get(j + 1));

@@ -28,8 +28,8 @@
               <Component id="jSeparator1" min="-2" pref="8" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lbUserName" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbRole" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblRole" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="pic" min="-2" pref="38" max="-2" attributes="0"/>
@@ -43,9 +43,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="lbUserName" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lbRole" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRole" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="cmdMenu" max="32767" attributes="0"/>
                   <Component id="pic" max="32767" attributes="0"/>
@@ -75,7 +75,7 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
     </Container>
-    <Component class="javax.swing.JLabel" name="lbUserName">
+    <Component class="javax.swing.JLabel" name="lblName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="sansserif" size="12" style="1"/>
@@ -86,7 +86,7 @@
         <Property name="text" type="java.lang.String" value="Bruce Castillo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbRole">
+    <Component class="javax.swing.JLabel" name="lblRole">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="7f" green="7f" red="7f" type="rgb"/>

@@ -2,7 +2,10 @@ package Dashboard.Admin.Form;
 
 
 import Dashboard.table.ModelProfile;
+import InitialData.Client;
+import InitialData.PackageDelivery;
 import InitialData.SG;
+import InitialData.User;
 import dashboard.style.Model_Card;
 import dashboard.table.StatusType;
 //import java.awt.Color;
@@ -26,9 +29,16 @@ public class Form_Home extends javax.swing.JPanel {
     }
     
     private void initCards(){
-            card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/stock.png")), "Total de usuarios", "120", "Incremento del 12%"));
-            card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/profit.png")), "Total de pedidos", "345", "Incremento del 25%"));
-            card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon//flag.png")), "Total de kioscos", "90", "Incremento del 30%"));
+        if (SG.SESSION_ROLE == 0) {
+            card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/stock.png")), "Total de usuarios", SG.user.getLength().toString(), "Incremento del 12%"));
+            card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/profit.png")), "Total de pedidos", SG.packages.getLength().toString(), "Incremento del 25%"));
+            card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon//flag.png")), "Total de kioscos", SG.kiosks.getLength().toString(), "Incremento del 30%"));
+        } else if (SG.SESSION_ROLE == 1) {
+            card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/stock.png")), "Tarjetas de credito", String.valueOf(SG.clientFound.getAllCreditCards().size()), "Incremento del 12%"));
+            card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/profit.png")), "Datos de facturacion", String.valueOf(SG.clientFound.getBillingDatas().size()), "Incremento del 25%"));
+            card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon//flag.png")), "Total de pedidos", String.valueOf(SG.packages.allPackageClient(SG.clientFound)), "Incremento del 30%"));
+        }
+            
     }
     
 
@@ -36,15 +46,22 @@ public class Form_Home extends javax.swing.JPanel {
         
         //We added column names
         
+        lblWelcome.setText("¡Bievenido "+ SG.userFound.getName()+" "+SG.userFound.getLastName()+"!" );
         //If is admin
         if (SG.SESSION_ROLE == 0) {
+           
             table1.addColumn("Name");
-            table1.addColumn("Gender");
-            table1.addColumn("Course");
-            table1.addColumn("Another");
-            table1.addColumn("Fees");
-            table1.addColumn("Action");
-            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Bruce"), "Male", "Java", "Otro", 300, StatusType.PENDING});
+            table1.addColumn("Usuario");
+            table1.addColumn("Genero");
+            table1.addColumn("Nacionalidad");
+            table1.addColumn("Telefono");
+            table1.addColumn("Rol");
+            table1.addColumn("Estado");
+        Integer quantity = SG.user.getUsers().size();
+        for (int i = 0; i < quantity; i++) {
+            User user =SG.user.getUserRecord(i);
+            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName() + " " + user.getLastName()), user.getUser(), user.getGender(), user.getNationality(),user.getPhoneNumber(), SG.getTypeRole(user.getRole()), StatusType.APPROVED});
+        }
         } else if (SG.SESSION_ROLE == 1) {
             table1.addColumn("Paquete");
             table1.addColumn("Origen");
@@ -52,8 +69,17 @@ public class Form_Home extends javax.swing.JPanel {
             table1.addColumn("Tipo de pago");
             table1.addColumn("Precio");
             table1.addColumn("Estado");
-            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), "Zapatos"), "Guatemala", "Mixco", "Contraentrega", 300, StatusType.PENDING});
-            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), "Celular"), "Guatemala", "Zacapa", "Contraentrega", 100, StatusType.APPROVED});
+            
+                    table1.clearTable();
+        Integer quantity= SG.packages.getLength();
+        double total=0;
+        for (int i = 0; i < quantity; i++) {
+            PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
+            Client client = packageDelivery.getClient();
+            total= total + packageDelivery.getTotal();
+            User user = client.getUser();
+            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), packageDelivery.getDescription()), packageDelivery.getOrigin(), packageDelivery.getDestiny(), SG.getTypeOfPayment(packageDelivery.getPaymentMethod()), packageDelivery.getTotal(), StatusType.PENDING});
+        }
         }
         
         
@@ -110,7 +136,7 @@ public class Form_Home extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table1 = new Dashboard.table.Table();
-        txtUserName = new javax.swing.JLabel();
+        lblWelcome = new javax.swing.JLabel();
         card1 = new dashboard.style.Card1();
         card2 = new dashboard.style.Card1();
         card3 = new dashboard.style.Card1();
@@ -164,10 +190,10 @@ public class Form_Home extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtUserName.setForeground(new java.awt.Color(0, 0, 0));
-        txtUserName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtUserName.setText("¡Bievenido Bruce Castillo!");
+        lblWelcome.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblWelcome.setForeground(new java.awt.Color(0, 0, 0));
+        lblWelcome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblWelcome.setText("¡Bievenido Bruce Castillo!");
 
         card1.setColor1(new java.awt.Color(153, 51, 255));
         card1.setColor2(new java.awt.Color(204, 0, 204));
@@ -188,7 +214,7 @@ public class Form_Home extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -206,7 +232,7 @@ public class Form_Home extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(8, 8, 8)
-                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(card3, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
@@ -225,7 +251,7 @@ public class Form_Home extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblWelcome;
     private Dashboard.table.Table table1;
-    private javax.swing.JLabel txtUserName;
     // End of variables declaration//GEN-END:variables
 }

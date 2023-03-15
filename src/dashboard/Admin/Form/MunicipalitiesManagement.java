@@ -4,6 +4,11 @@
  */
 package Dashboard.Admin.Form;
 
+import InitialData.Department;
+import InitialData.Municipality;
+import InitialData.SG;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bruce
@@ -15,8 +20,16 @@ public class MunicipalitiesManagement extends javax.swing.JPanel {
      */
     public MunicipalitiesManagement() {
         initComponents();
+        initData();
     }
-
+    
+    public void initData(){
+        for (int i = 0; i < SG.departments.getLength(); i++) {
+            Department department = SG.departments.getDepartmentRecord(i);
+            cboCodeDepartment.addItem("["+i+"]"+department.getName());
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,10 +42,10 @@ public class MunicipalitiesManagement extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtUserName = new javax.swing.JLabel();
-        textField2 = new javaswing.controls.TextField();
+        txtName = new javaswing.controls.TextField();
         jLabel2 = new javax.swing.JLabel();
-        buttonCustom1 = new javaswing.controls.ButtonCustom();
-        combobox1 = new javaswing.controls.Combobox();
+        cmdSave = new javaswing.controls.ButtonCustom();
+        cboCodeDepartment = new javaswing.controls.Combobox();
 
         setPreferredSize(new java.awt.Dimension(999, 621));
 
@@ -48,19 +61,24 @@ public class MunicipalitiesManagement extends javax.swing.JPanel {
         txtUserName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtUserName.setText("Manejo de municipios");
 
-        textField2.setLabelText("Nombre");
-        textField2.addActionListener(new java.awt.event.ActionListener() {
+        txtName.setLabelText("Nombre");
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/data.png"))); // NOI18N
 
-        buttonCustom1.setText("Almacenar");
-        buttonCustom1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSave.setText("Almacenar");
+        cmdSave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSaveActionPerformed(evt);
+            }
+        });
 
-        combobox1.setLabeText("Codigo de Departamento");
+        cboCodeDepartment.setLabeText("Codigo de Departamento");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -72,10 +90,10 @@ public class MunicipalitiesManagement extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(buttonCustom1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmdSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(combobox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))))
+                            .addComponent(cboCodeDepartment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(90, 90, 90))
@@ -87,11 +105,11 @@ public class MunicipalitiesManagement extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
-                .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboCodeDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 525, Short.MAX_VALUE)
         );
@@ -100,26 +118,46 @@ public class MunicipalitiesManagement extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void cmdSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSaveActionPerformed
+        // TODO add your handling code here:
+        Municipality municipality = new Municipality();
+        Boolean validation = false;
+        
+        try {
+            municipality.setCode(String.valueOf(cboCodeDepartment.getSelectedIndex()));
+            municipality.setName(txtName.getText());
+            validation= true;
+        } catch (Exception e) {
+            System.out.println("Error al almacenar");
+            
+        }
+        
+        if (validation) {
+            SG.municipalities.addMunicipality(municipality);
+            JOptionPane.showMessageDialog(null, "Almacenado Corrrectamente ");
+        }
+    }//GEN-LAST:event_cmdSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswing.controls.ButtonCustom buttonCustom1;
-    private javaswing.controls.Combobox combobox1;
+    private javaswing.controls.Combobox cboCodeDepartment;
+    private javaswing.controls.ButtonCustom cmdSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javaswing.controls.TextField textField2;
+    private javaswing.controls.TextField txtName;
     private javax.swing.JLabel txtUserName;
     // End of variables declaration//GEN-END:variables
 }

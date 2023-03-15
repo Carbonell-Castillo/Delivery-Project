@@ -1,11 +1,24 @@
 package dashboard.style;
 
+import InitialData.SG;
+import InitialData.User;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 
 public class Header extends javax.swing.JPanel {
 
     public Header() {
         initComponents();
+        initData();
+    }
+    
+    public void initData(){
+        User user = SG.getUserFound();
+        ImageIcon icon = new ImageIcon(user.getPhoto());
+        pic.setIcon(icon);
+        lblRole.setText(SG.getTypeRole(user.getRole()));
+        lblName.setText(user.getName()+" "+user.getLastName());
+        
     }
 
     public void addMenuEvent(ActionListener event) {
@@ -18,8 +31,8 @@ public class Header extends javax.swing.JPanel {
 
         cmdMenu = new Dashboard.style.menu.Button();
         pic = new Dashboard.style.menu.ImageAvatar();
-        lbUserName = new javax.swing.JLabel();
-        lbRole = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        lblRole = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -28,12 +41,12 @@ public class Header extends javax.swing.JPanel {
 
         pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/profile.jpg"))); // NOI18N
 
-        lbUserName.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        lbUserName.setForeground(new java.awt.Color(127, 127, 127));
-        lbUserName.setText("Bruce Castillo");
+        lblName.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        lblName.setForeground(new java.awt.Color(127, 127, 127));
+        lblName.setText("Bruce Castillo");
 
-        lbRole.setForeground(new java.awt.Color(127, 127, 127));
-        lbRole.setText("Admin");
+        lblRole.setForeground(new java.awt.Color(127, 127, 127));
+        lblRole.setText("Admin");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -48,8 +61,8 @@ public class Header extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbUserName, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbRole, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(lblName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblRole, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(pic, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
@@ -60,9 +73,9 @@ public class Header extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbUserName)
+                        .addComponent(lblName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbRole))
+                        .addComponent(lblRole))
                     .addComponent(cmdMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1))
@@ -73,8 +86,8 @@ public class Header extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Dashboard.style.menu.Button cmdMenu;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbRole;
-    private javax.swing.JLabel lbUserName;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblRole;
     private Dashboard.style.menu.ImageAvatar pic;
     // End of variables declaration//GEN-END:variables
 }

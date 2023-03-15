@@ -18,7 +18,7 @@ public class PackageDelivery {
     private double total; 
     private Integer paymentMethod, numberOfPackages;
     private String code, RegionOrigin, origin, destiny, recipientsName, size,
-                    dateSent, serviceType, status; 
+                    dateSent, serviceType, description, status; 
     
     public PackageDelivery(){
         client=null;
@@ -35,10 +35,11 @@ public class PackageDelivery {
         numberOfPackages=0;
         dateSent="";
         serviceType="";
+        description="";
         status="";
     }
 
-    public PackageDelivery(Client client, CreditCard creditCard, BillingData billingData, double total, Integer paymentMethod, Integer numberOfPackages, String code, String RegionOrigin, String origin, String destiny, String recipientsName, String size, String dateSent, String serviceType, String status) {
+    public PackageDelivery(Client client, CreditCard creditCard, BillingData billingData, double total, Integer paymentMethod, Integer numberOfPackages, String code, String RegionOrigin, String origin, String destiny, String recipientsName, String size, String dateSent, String serviceType, String description, String status) {
         this.client = client;
         this.creditCard = creditCard;
         this.billingData = billingData;
@@ -53,9 +54,10 @@ public class PackageDelivery {
         this.size = size;
         this.dateSent = dateSent;
         this.serviceType = serviceType;
+        this.description = description;
         this.status = status;
     }
-     
+
     public Client getClient() {
         return client;
     }
@@ -168,6 +170,14 @@ public class PackageDelivery {
         this.serviceType = serviceType;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -176,7 +186,7 @@ public class PackageDelivery {
         this.status = status;
     }
 
-   
+    
    
     
     

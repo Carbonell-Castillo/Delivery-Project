@@ -52,6 +52,20 @@ public class Users {
         return resultUsers;
     }
     
+    public ArrayList searchUser(String userSearch){
+        ArrayList<User>resultUsers;
+        resultUsers= new ArrayList();
+        
+        for (int i = 0; i < users.size(); i++) {
+           User user = users.get(i);
+           if(user.getUser().equals(userSearch)){
+               resultUsers.add(user);
+           }
+        }
+        
+        return resultUsers;
+    }
+    
     public Boolean validationUser(String email, String password){
         Boolean validacion=false;
         for (int i = 0; i < users.size(); i++) {
@@ -60,11 +74,23 @@ public class Users {
                 SG.setSESSION_DPI(users.get(i).getId());
                 SG.setSESSION_ROLE(users.get(i).getRole());
                 SG.setUserFound(users.get(i));
+                if(users.get(i).getRole()==1){
+                    findClient(users.get(i));
+                }
             }
         }
         return validacion;
     }
     
+    public void findClient(User user){
+        for (int i = 0; i < customers.size(); i++) {
+            Client client = customers.get(i);
+            if(client.getUser().equals(user)){
+                SG.setClientFound(client);
+            }
+            
+        }
+    }
     public Boolean validationUserRegister(String dpi, String user, String email){
         Boolean validation=false;
         for (int i = 0; i < users.size(); i++) {
@@ -92,6 +118,9 @@ public class Users {
         this.customers = customers;
     }
     
-    
+        
+    public Integer getLength(){
+        return users.size();
+    }
     
 }

@@ -4,6 +4,12 @@
  */
 package dashboard.Client.Form;
 
+import InitialData.Client;
+import InitialData.CreditCard;
+import InitialData.SG;
+import javaswingnotifications.Notification;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bruce
@@ -29,11 +35,11 @@ public class CreditCardRegister extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         txtUserName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        textField1 = new javaswing.controls.TextField();
-        textField2 = new javaswing.controls.TextField();
-        textField3 = new javaswing.controls.TextField();
-        textField4 = new javaswing.controls.TextField();
-        buttonCustom1 = new javaswing.controls.ButtonCustom();
+        txtCreditCard = new javaswing.controls.TextField();
+        txtName = new javaswing.controls.TextField();
+        txtExpirationDate = new javaswing.controls.TextField();
+        txtCVV = new javaswing.controls.TextField();
+        cmdSave = new javaswing.controls.ButtonCustom();
         jLabel3 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(999, 621));
@@ -50,36 +56,41 @@ public class CreditCardRegister extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(4, 72, 210));
         jLabel2.setText("Dashboard / Home");
 
-        textField1.setLabelText("Numero de tarjeta");
-        textField1.addActionListener(new java.awt.event.ActionListener() {
+        txtCreditCard.setLabelText("Numero de tarjeta");
+        txtCreditCard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
+                txtCreditCardActionPerformed(evt);
             }
         });
 
-        textField2.setLabelText("Nombre");
-        textField2.addActionListener(new java.awt.event.ActionListener() {
+        txtName.setLabelText("Nombre");
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
-        textField3.setLabelText("Fecha de vencimiento");
-        textField3.addActionListener(new java.awt.event.ActionListener() {
+        txtExpirationDate.setLabelText("Fecha de vencimiento");
+        txtExpirationDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField3ActionPerformed(evt);
+                txtExpirationDateActionPerformed(evt);
             }
         });
 
-        textField4.setLabelText("CVV");
-        textField4.addActionListener(new java.awt.event.ActionListener() {
+        txtCVV.setLabelText("CVV");
+        txtCVV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField4ActionPerformed(evt);
+                txtCVVActionPerformed(evt);
             }
         });
 
-        buttonCustom1.setText("Almacenar");
-        buttonCustom1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSave.setText("Almacenar");
+        cmdSave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSaveActionPerformed(evt);
+            }
+        });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/CreditCard.png"))); // NOI18N
@@ -92,15 +103,15 @@ public class CreditCardRegister extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2)
-                    .addComponent(buttonCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmdSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtExpirationDate, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCVV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtCreditCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -111,15 +122,15 @@ public class CreditCardRegister extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCreditCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtExpirationDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel3)
@@ -130,7 +141,7 @@ public class CreditCardRegister extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1148, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,32 +149,58 @@ public class CreditCardRegister extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+    private void txtCreditCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCreditCardActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField1ActionPerformed
+    }//GEN-LAST:event_txtCreditCardActionPerformed
 
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
 
-    private void textField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField3ActionPerformed
+    private void txtExpirationDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExpirationDateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField3ActionPerformed
+    }//GEN-LAST:event_txtExpirationDateActionPerformed
 
-    private void textField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField4ActionPerformed
+    private void txtCVVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCVVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField4ActionPerformed
+    }//GEN-LAST:event_txtCVVActionPerformed
+
+    private void cmdSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSaveActionPerformed
+        // TODO add your handling code here:
+        Client client = SG.getClientFound();
+        CreditCard creditCard = new CreditCard();
+        Notification panel;
+        Boolean validation= false;
+        try {
+            creditCard.setNameCreditCard(txtName.getText());
+            creditCard.setExpirationDate(txtExpirationDate.getText());
+            creditCard.setCVV(txtCVV.getText());
+            creditCard.setCreditCard(txtCreditCard.getText());
+            validation= true;
+            
+        } catch (Exception e) {
+            System.out.println("Error een almacenar");
+        }
+        
+        if(validation){
+            client.addCreditCard(creditCard);
+            System.out.println("Agregado correctamente");
+            
+            JOptionPane.showMessageDialog(null, "Almacenado Corrrectamente ");
+        }
+        
+    }//GEN-LAST:event_cmdSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswing.controls.ButtonCustom buttonCustom1;
+    private javaswing.controls.ButtonCustom cmdSave;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javaswing.controls.TextField textField1;
-    private javaswing.controls.TextField textField2;
-    private javaswing.controls.TextField textField3;
-    private javaswing.controls.TextField textField4;
+    private javaswing.controls.TextField txtCVV;
+    private javaswing.controls.TextField txtCreditCard;
+    private javaswing.controls.TextField txtExpirationDate;
+    private javaswing.controls.TextField txtName;
     private javax.swing.JLabel txtUserName;
     // End of variables declaration//GEN-END:variables
 }

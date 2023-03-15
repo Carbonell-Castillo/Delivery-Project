@@ -40,5 +40,8 @@ public class Municipalities {
         return resultMunicipalities;
     }
     
-    
+        
+    public Integer getLength(){
+        return municipalities.size();
+    }
 }

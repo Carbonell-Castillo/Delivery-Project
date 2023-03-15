@@ -21,12 +21,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="1" pref="999" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="525" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -50,10 +50,10 @@
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtUserName" alignment="0" min="-2" pref="333" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="buttonCustom1" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
+                          <Component id="cmdSave" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="combobox1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="textField2" alignment="0" pref="280" max="32767" attributes="0"/>
+                              <Component id="cboCodeDepartment" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtName" alignment="0" pref="280" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -70,11 +70,11 @@
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Component id="txtUserName" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="combobox1" min="-2" max="-2" attributes="0"/>
+                  <Component id="cboCodeDepartment" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="textField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="buttonCustom1" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="cmdSave" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Component id="jLabel2" alignment="0" pref="525" max="32767" attributes="0"/>
@@ -105,12 +105,12 @@
             <Property name="text" type="java.lang.String" value="Manejo de municipios"/>
           </Properties>
         </Component>
-        <Component class="javaswing.controls.TextField" name="textField2">
+        <Component class="javaswing.controls.TextField" name="txtName">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="Nombre"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -120,15 +120,18 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javaswing.controls.ButtonCustom" name="buttonCustom1">
+        <Component class="javaswing.controls.ButtonCustom" name="cmdSave">
           <Properties>
             <Property name="text" type="java.lang.String" value="Almacenar"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdSaveActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javaswing.controls.Combobox" name="combobox1">
+        <Component class="javaswing.controls.Combobox" name="cboCodeDepartment">
           <Properties>
             <Property name="labeText" type="java.lang.String" value="Codigo de Departamento"/>
           </Properties>

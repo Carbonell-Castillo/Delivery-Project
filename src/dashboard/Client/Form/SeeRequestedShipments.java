@@ -5,6 +5,8 @@
 package dashboard.Client.Form;
 
 import Dashboard.table.ModelProfile;
+import InitialData.PackageDelivery;
+import InitialData.SG;
 import javax.swing.ImageIcon;
 
 /**
@@ -26,8 +28,20 @@ public class SeeRequestedShipments extends javax.swing.JPanel {
     private void initTableData() {
         
         //We added column names
+        if(SG.packages.allPackageClient(SG.getClientFound()).size()>0){
+            for (int i = 0; i < SG.packages.allPackageClient(SG.getClientFound()).size(); i++) {
+                PackageDelivery packageDelivery = (PackageDelivery) SG.packages.allPackageClient(SG.getClientFound()).get(i);
+                PackageManagement.Buy buy = new PackageManagement.Buy(SG.clientFound, packageDelivery.getPaymentMethod());
+                table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), packageDelivery.getCode()), packageDelivery.getServiceType(),packageDelivery.getClient().getName(), packageDelivery.getTotal(), SG.getTypeOfPayment(packageDelivery.getPaymentMethod())});        
+            }
+        }else{
+            System.out.println("No existen registros previos");
+        }
+        
+        /*
         table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), "010SDF"), "Estandar","Mario", "Q120", "Contraentrega"});
         table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), "2343SF"), "Estandar","Krystell", "Q320", "Contraentrega"});
+        */
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,8 +57,8 @@ public class SeeRequestedShipments extends javax.swing.JPanel {
         txtUserName = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table1 = new Dashboard.table.Table();
-        textField1 = new javaswing.controls.TextField();
-        buttonCustom1 = new javaswing.controls.ButtonCustom();
+        txtCodePackage = new javaswing.controls.TextField();
+        cmdSearch = new javaswing.controls.ButtonCustom();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(999, 621));
@@ -71,13 +85,13 @@ public class SeeRequestedShipments extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(table1);
 
-        textField1.setLabelText("Codigo de paquete");
+        txtCodePackage.setLabelText("Codigo de paquete");
 
-        buttonCustom1.setText("Buscar");
-        buttonCustom1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        buttonCustom1.addActionListener(new java.awt.event.ActionListener() {
+        cmdSearch.setText("Buscar");
+        cmdSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCustom1ActionPerformed(evt);
+                cmdSearchActionPerformed(evt);
             }
         });
 
@@ -93,9 +107,9 @@ public class SeeRequestedShipments extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCodePackage, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 324, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -109,8 +123,8 @@ public class SeeRequestedShipments extends javax.swing.JPanel {
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonCustom1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodePackage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmdSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                 .addContainerGap())
@@ -128,18 +142,30 @@ public class SeeRequestedShipments extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonCustom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom1ActionPerformed
+    private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonCustom1ActionPerformed
+        String codePackageSearch ="";
+        
+         if(SG.packages.allPackageClient(SG.getClientFound()).size()>0){
+            for (int i = 0; i < SG.packages.searchPackageClientCode(SG.getClientFound(), codePackageSearch).size(); i++) {
+                PackageDelivery packageDelivery = (PackageDelivery) SG.packages.searchPackageClientCode(SG.getClientFound(), codePackageSearch).get(i);
+                table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), packageDelivery.getCode()), packageDelivery.getServiceType(),packageDelivery.getRecipientsName(), packageDelivery.getTotal(), SG.getTypeOfPayment(packageDelivery.getPaymentMethod())});        
+                
+            }
+        }else{
+            System.out.println("No existen registros previos");
+        }
+        
+    }//GEN-LAST:event_cmdSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswing.controls.ButtonCustom buttonCustom1;
+    private javaswing.controls.ButtonCustom cmdSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private Dashboard.table.Table table1;
-    private javaswing.controls.TextField textField1;
+    private javaswing.controls.TextField txtCodePackage;
     private javax.swing.JLabel txtUserName;
     // End of variables declaration//GEN-END:variables
 }

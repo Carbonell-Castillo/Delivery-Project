@@ -4,6 +4,18 @@
  */
 package dashboard.Client.Form;
 
+import InitialData.BillingData;
+import InitialData.CreditCard;
+import InitialData.Department;
+import InitialData.Municipality;
+import InitialData.PackageDelivery;
+import InitialData.RegionAndPriceManagement;
+import InitialData.SG;
+import java.security.SecureRandom;
+import java.util.Date;
+import java.util.Random;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bruce
@@ -15,6 +27,33 @@ public class Buy extends javax.swing.JPanel {
      */
     public Buy() {
         initComponents();
+        initData();
+    }
+
+    public void initData(){
+        for (int i = 0; i < SG.departments.getLength(); i++) {
+            Department department = SG.departments.getDepartmentRecord(i);
+            cboOriginDepartment.addItem("["+department.getCode()+"]"+department.getName());    
+            cboDestinyDepartment.addItem(department.getName());  
+        }
+        
+        for (int i = 0; i < SG.municipalities.getLength(); i++) {
+            Municipality municipality = SG.municipalities.getMunicipalityRecord(i);
+            cboOriginMunicipality.addItem("["+municipality.getCode()+"]"+municipality.getName());
+            cboDestinyMunicipality.addItem(municipality.getName());
+        }
+        
+        for (int i = 0; i < SG.clientFound.getAllCreditCards().size(); i++) {
+            CreditCard creditCard = SG.clientFound.getCreditCardRecord(i);
+            String creditCardNumber = creditCard.getCreditCard();
+            String lastNumbers= "XXXXXXX" + creditCardNumber.substring(creditCardNumber.length() - 4);
+            cboCreditCard.addItem(lastNumbers);
+        }
+      
+        for (int i = 0; i < SG.clientFound.getAllBillingData().size(); i++) {
+            BillingData billingData = SG.clientFound.getBillingData(i);
+            cboBillingData.addItem(billingData.getNit()+" "+billingData.getAddress());
+        }
     }
 
     /**
@@ -32,29 +71,33 @@ public class Buy extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtUserName = new javax.swing.JLabel();
         txtUserName1 = new javax.swing.JLabel();
-        combobox1 = new javaswing.controls.Combobox();
+        cboOriginDepartment = new javaswing.controls.Combobox();
         txtUserName2 = new javax.swing.JLabel();
-        combobox2 = new javaswing.controls.Combobox();
-        combobox3 = new javaswing.controls.Combobox();
-        combobox4 = new javaswing.controls.Combobox();
-        textField1 = new javaswing.controls.TextField();
+        cboDestinyDepartment = new javaswing.controls.Combobox();
+        cboOriginMunicipality = new javaswing.controls.Combobox();
+        cboDestinyMunicipality = new javaswing.controls.Combobox();
+        txtNumberOfPackage = new javaswing.controls.TextField();
         txtUserName3 = new javax.swing.JLabel();
         rdPegueño = new javax.swing.JRadioButton();
         rdMediano = new javax.swing.JRadioButton();
         rdGrande = new javax.swing.JRadioButton();
-        txtUserName4 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         txtUserName5 = new javax.swing.JLabel();
-        combobox5 = new javaswing.controls.Combobox();
-        combobox6 = new javaswing.controls.Combobox();
-        buttonCustom2 = new javaswing.controls.ButtonCustom();
-        combobox7 = new javaswing.controls.Combobox();
+        cboTypeOfPayment = new javaswing.controls.Combobox();
+        cboBillingData = new javaswing.controls.Combobox();
+        cmdPay = new javaswing.controls.ButtonCustom();
+        cboCreditCard = new javaswing.controls.Combobox();
         txtUserName6 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        txtUserName7 = new javax.swing.JLabel();
+        rdServiceStandar = new javax.swing.JRadioButton();
+        rdServiceSpecial = new javax.swing.JRadioButton();
+        lblSubtotal = new javax.swing.JLabel();
         buttonCustom3 = new javaswing.controls.ButtonCustom();
         buttonCustom4 = new javaswing.controls.ButtonCustom();
+        cmdCancel = new javaswing.controls.ButtonCustom();
         buttonCustom5 = new javaswing.controls.ButtonCustom();
+        txtReceive = new javaswing.controls.TextField();
+        txtDescription = new javaswing.controls.TextField();
+        txtCVV = new javaswing.controls.TextField();
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(999, 621));
@@ -73,23 +116,28 @@ public class Buy extends javax.swing.JPanel {
         txtUserName1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtUserName1.setText("Origen");
 
-        combobox1.setLabeText("Departamentos");
+        cboOriginDepartment.setLabeText("Departamentos");
 
         txtUserName2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUserName2.setForeground(new java.awt.Color(0, 0, 0));
         txtUserName2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtUserName2.setText("Destino");
 
-        combobox2.setLabeText("Departamentos");
+        cboDestinyDepartment.setLabeText("Departamentos");
+        cboDestinyDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboDestinyDepartmentItemStateChanged(evt);
+            }
+        });
 
-        combobox3.setLabeText("Municipios");
+        cboOriginMunicipality.setLabeText("Municipios");
 
-        combobox4.setLabeText("Municipios");
+        cboDestinyMunicipality.setLabeText("Municipios");
 
-        textField1.setLabelText("Número de paquetes");
-        textField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNumberOfPackage.setLabelText("Número de paquetes");
+        txtNumberOfPackage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
+                txtNumberOfPackageActionPerformed(evt);
             }
         });
 
@@ -112,64 +160,112 @@ public class Buy extends javax.swing.JPanel {
         buttonGroup1.add(rdGrande);
         rdGrande.setText("Grande");
 
-        txtUserName4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtUserName4.setForeground(new java.awt.Color(0, 0, 0));
-        txtUserName4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtUserName4.setText("El total a pagar es: Q120");
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(0, 0, 0));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTotal.setText("El total a pagar es: Q120");
 
         txtUserName5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtUserName5.setForeground(new java.awt.Color(0, 0, 0));
         txtUserName5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtUserName5.setText("Compra");
 
-        combobox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contra entrega", "Pago con tarjeta" }));
-        combobox5.setSelectedIndex(-1);
-        combobox5.setLabeText("Tipo de pago");
+        cboTypeOfPayment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contra entrega (+Q5)", "Pago con tarjeta" }));
+        cboTypeOfPayment.setSelectedIndex(-1);
+        cboTypeOfPayment.setLabeText("Tipo de pago");
+        cboTypeOfPayment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboTypeOfPaymentItemStateChanged(evt);
+            }
+        });
 
-        combobox6.setLabeText("Datos de facturacion");
+        cboBillingData.setLabeText("Datos de facturacion");
 
-        buttonCustom2.setText("Realizar pago y Enviar");
-        buttonCustom2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdPay.setText("Realizar pago y Enviar");
+        cmdPay.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdPayActionPerformed(evt);
+            }
+        });
 
-        combobox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contra entrega", "Pago con tarjeta" }));
-        combobox7.setSelectedIndex(-1);
-        combobox7.setLabeText("Seleccione su tarjeta");
+        cboCreditCard.setSelectedIndex(-1);
+        cboCreditCard.setLabeText("Seleccione su tarjeta");
 
         txtUserName6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUserName6.setForeground(new java.awt.Color(0, 0, 0));
         txtUserName6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtUserName6.setText("TIpo de servicio:");
 
-        buttonGroup2.add(jRadioButton1);
-        jRadioButton1.setText("Servicio Estandar:: Q35");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rdServiceStandar);
+        rdServiceStandar.setText("Servicio Estandar:: Q35");
+        rdServiceStandar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rdServiceStandarActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(jRadioButton2);
-        jRadioButton2.setText("Precio Especial: Q45");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rdServiceSpecial);
+        rdServiceSpecial.setText("Precio Especial: Q45");
+        rdServiceSpecial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                rdServiceSpecialActionPerformed(evt);
             }
         });
 
-        txtUserName7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtUserName7.setForeground(new java.awt.Color(0, 0, 0));
-        txtUserName7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtUserName7.setText("El subtotal a pagar es: Q120");
+        lblSubtotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSubtotal.setForeground(new java.awt.Color(0, 0, 0));
+        lblSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSubtotal.setText("El subtotal a pagar es: Q120");
 
         buttonCustom3.setText("Descargar Factura");
         buttonCustom3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        buttonCustom3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCustom3ActionPerformed(evt);
+            }
+        });
 
         buttonCustom4.setText("Descargar Guia");
         buttonCustom4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        buttonCustom5.setText("Cancelar Envio");
+        cmdCancel.setText("Cancelar Envio");
+        cmdCancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdCancel.setStyle(javaswing.controls.ButtonCustom.ButtonStyle.DESTRUCTIVE);
+        cmdCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCancelActionPerformed(evt);
+            }
+        });
+
+        buttonCustom5.setText("Cotizar");
         buttonCustom5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        buttonCustom5.setStyle(javaswing.controls.ButtonCustom.ButtonStyle.DESTRUCTIVE);
+        buttonCustom5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCustom5ActionPerformed(evt);
+            }
+        });
+
+        txtReceive.setLabelText("Nombre quien recibe");
+        txtReceive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtReceiveActionPerformed(evt);
+            }
+        });
+
+        txtDescription.setLabelText("Descripcion");
+        txtDescription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescriptionActionPerformed(evt);
+            }
+        });
+
+        txtCVV.setLabelText("CVV");
+        txtCVV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCVVActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -178,52 +274,65 @@ public class Buy extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUserName7, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2))
                     .addComponent(jLabel1)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUserName1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combobox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(combobox3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(rdPegueño)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(rdMediano)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(rdGrande, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(rdPegueño)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtUserName2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combobox2, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                                    .addComponent(combobox4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(txtUserName3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUserName6, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(82, 82, 82)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rdMediano)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdGrande, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(108, 108, 108))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(rdServiceStandar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdServiceSpecial))
+                                    .addComponent(txtUserName3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUserName6, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtDescription, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                                            .addComponent(txtReceive, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtUserName1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cboOriginDepartment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cboOriginMunicipality, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txtUserName2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(cboDestinyDepartment, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                                                    .addComponent(cboDestinyMunicipality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addComponent(txtNumberOfPackage, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(buttonCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtUserName4, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUserName5, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(combobox5, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboTypeOfPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(combobox6, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(combobox7, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboBillingData, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(buttonCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboCreditCard, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(buttonCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtCVV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(cmdPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmdCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,116 +342,312 @@ public class Buy extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(txtUserName1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cboOriginDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(txtUserName2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(combobox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(cboDestinyDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(combobox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combobox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cboOriginMunicipality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboDestinyMunicipality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtNumberOfPackage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtReceive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(combobox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combobox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cboTypeOfPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboBillingData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(combobox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cboCreditCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(buttonCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(cmdPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmdCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(txtUserName5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUserName3)
-                    .addComponent(txtUserName4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdPegueño)
-                    .addComponent(rdMediano)
-                    .addComponent(rdGrande)
-                    .addComponent(buttonCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtUserName6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addGap(18, 18, 18)
-                .addComponent(txtUserName7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(407, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtUserName3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdPegueño)
+                            .addComponent(rdMediano)
+                            .addComponent(rdGrande))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUserName6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdServiceStandar)
+                            .addComponent(rdServiceSpecial))
+                        .addGap(14, 14, 14)
+                        .addComponent(buttonCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1112, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1112, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+    private void txtNumberOfPackageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberOfPackageActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField1ActionPerformed
+    }//GEN-LAST:event_txtNumberOfPackageActionPerformed
 
     private void rdPegueñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdPegueñoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rdPegueñoActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rdServiceStandarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdServiceStandarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rdServiceStandarActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void rdServiceSpecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdServiceSpecialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_rdServiceSpecialActionPerformed
+    private static double specialPricePackage=0;
+    private static double standarPricePackage=0;
+    public static double subtotal= 0;
+    private void buttonCustom5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom5ActionPerformed
+        String DestinyDepartment= (String) cboDestinyDepartment.getSelectedItem();
+        Department department = SG.departments.searchDeparmentName(DestinyDepartment);
+        Boolean validation = false;
+        double priceSize =0;
+        
+        try {
+            if (rdPegueño.isSelected()) {
+                priceSize=SG.STICKY_PACKAGE;
+            }else if(rdMediano.isSelected()){
+                priceSize=SG.MEDIUM_PACKAGE;
+            }else if(rdGrande.isSelected()){
+                priceSize=SG.LARGE_PACKAGE;
+            }
+            Integer numberofPackage= Integer.parseInt(txtNumberOfPackage.getText());
+            String regionCodeDepartment = department.getCode();
+            RegionAndPriceManagement regionAndPriceManagement = SG.managementsOfRegionsAndPrices.searchRegionCode(regionCodeDepartment);
+            
+            PackageManagement.Buy buy = new PackageManagement.Buy(SG.getClientFound(), 0);
+            System.out.println(regionAndPriceManagement.getSpecialPrice()+"*"+priceSize+"*"+numberofPackage);
+            subtotal = buy.getPackageQuote(regionAndPriceManagement.getStandardPrice(), priceSize, numberofPackage);
+            
+            if (rdServiceSpecial.isSelected()) {
+                subtotal= subtotal+specialPricePackage;
+            }else if(rdServiceStandar.isSelected()){
+                subtotal = subtotal+standarPricePackage;
+            }
+            
+            lblSubtotal.setText("El monto total a pagar es: Q"+subtotal);
+            
+            
+        } catch (Exception e) {
+            System.out.println("Error de cotizar");
+        }
+    }//GEN-LAST:event_buttonCustom5ActionPerformed
+    public static String CodeRegion ="";
+    private void cboDestinyDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboDestinyDepartmentItemStateChanged
+        // TODO add your handling code here:
+        for (int i = 0; i < SG.departments.getLength(); i++) {
+            Department department = SG.departments.getDepartmentRecord(i);
+            String regionCodeDepartment = department.getCode();
+            RegionAndPriceManagement regionAndPriceManagement = SG.managementsOfRegionsAndPrices.searchRegionCode(regionCodeDepartment);
+            if (cboDestinyDepartment.getSelectedItem().equals(department.getName())) {
+                specialPricePackage = regionAndPriceManagement.getSpecialPrice();
+                standarPricePackage = regionAndPriceManagement.getStandardPrice();
+                CodeRegion= regionAndPriceManagement.getCode();
+                rdServiceSpecial.setText("Servicio especial: "+specialPricePackage);
+                rdServiceStandar.setText("Servicio estandar: "+standarPricePackage);
+            }
+        }
+        
+    }//GEN-LAST:event_cboDestinyDepartmentItemStateChanged
+
+    private void cmdPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPayActionPerformed
+        // TODO add your handling code here:
+        
+        PackageDelivery packageDelivery = new PackageDelivery();
+        Date date = new Date();
+        Boolean validation= false;
+        String code=generateCode();
+        String serviceType="";
+        String packageSizeText="";
+        try {
+            if (validateCVV(cboCreditCard.getSelectedIndex(), txtCVV.getText())) {
+                
+            
+            if(rdServiceSpecial.isSelected()){
+                serviceType="Servicio Especial";
+            }else if(rdServiceStandar.isSelected()){
+                serviceType="Servicio Estandar";
+            }
+            
+            if (rdPegueño.isSelected()) {
+                packageSizeText="Pegueño";
+            }else if(rdMediano.isSelected()){
+                packageSizeText="Mediano";
+            }else if(rdGrande.isSelected()){
+                packageSizeText= "Grande";
+            }
+          
+            
+            packageDelivery.setClient(SG.getClientFound());
+            packageDelivery.setBillingData(SG.clientFound.getBillingData(cboBillingData.getSelectedIndex()));
+            packageDelivery.setCode(code);
+            
+            if(cboTypeOfPayment.getSelectedIndex()==1){
+                packageDelivery.setCreditCard(SG.clientFound.getCreditCardRecord(cboCreditCard.getSelectedIndex()));    
+                
+            }
+            
+            packageDelivery.setDateSent(date.toString());
+            packageDelivery.setDestiny(cboDestinyDepartment.getSelectedItem()+" / "+cboDestinyMunicipality.getSelectedItem());
+            packageDelivery.setNumberOfPackages(Integer.parseInt(txtNumberOfPackage.getText()));
+            packageDelivery.setOrigin(cboOriginDepartment.getSelectedItem()+" / "+cboOriginMunicipality.getSelectedItem());
+            packageDelivery.setPaymentMethod(cboTypeOfPayment.getSelectedIndex());
+            
+            packageDelivery.setRecipientsName(txtReceive.getText());
+            packageDelivery.setRegionOrigin(CodeRegion);
+            packageDelivery.setServiceType(serviceType);
+            packageDelivery.setSize(packageSizeText);
+            packageDelivery.setDescription(txtDescription.getText());
+            packageDelivery.setStatus("PENDING");
+            packageDelivery.setTotal(subtotal);
+            validation=true;
+            }else{
+                validation=false;
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+        
+        if(validation){
+            
+            SG.packages.addPackage(packageDelivery);
+            System.out.println("Paquete almacenado correctamente");
+            JOptionPane.showMessageDialog(null, "Almacenado Corrrectamente ");
+        }
+            
+    }//GEN-LAST:event_cmdPayActionPerformed
+
+    public static boolean validateCVV(Integer pos, String CVV){
+        Boolean validation = false;
+            
+            CreditCard creditCard = SG.clientFound.getCreditCardRecord(pos);
+            if (creditCard.getCVV().equals(CVV)) {
+                validation=true;
+            }
+        
+        return validation;
+    }
+public static String generateCode(){
+     final String SIGLAS = "IPC1B";
+     final int LARGO_CODIGO = 10;
+
+    final String CARACTERES_PERMITIDOS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
+
+    
+        StringBuilder sb = new StringBuilder();
+        sb.append(SIGLAS);
+
+        SecureRandom random = new SecureRandom();
+        for (int i = 0; i < LARGO_CODIGO - SIGLAS.length(); i++) {
+            int index = random.nextInt(CARACTERES_PERMITIDOS.length());
+            char c = CARACTERES_PERMITIDOS.charAt(index);
+            sb.append(c);
+        }
+        if(SG.packages.validateCodePackage(sb.toString())){
+            generateCode();
+        }
+        return sb.toString();
+    }
+    private void txtReceiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReceiveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtReceiveActionPerformed
+
+    private void cboTypeOfPaymentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTypeOfPaymentItemStateChanged
+        // TODO add your handling code here:
+         if(cboTypeOfPayment.getSelectedIndex()==0){
+                subtotal=subtotal+SG.SURCHARGE_DELIVERY;
+                lblTotal.setText("El total a pagar es: Q"+subtotal);
+         }
+    }//GEN-LAST:event_cboTypeOfPaymentItemStateChanged
+
+    private void cmdCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCancelActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Envio cancelado");
+    }//GEN-LAST:event_cmdCancelActionPerformed
+
+    private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescriptionActionPerformed
+
+    private void txtCVVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCVVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCVVActionPerformed
+
+    private void buttonCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonCustom3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswing.controls.ButtonCustom buttonCustom2;
     private javaswing.controls.ButtonCustom buttonCustom3;
     private javaswing.controls.ButtonCustom buttonCustom4;
     private javaswing.controls.ButtonCustom buttonCustom5;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javaswing.controls.Combobox combobox1;
-    private javaswing.controls.Combobox combobox2;
-    private javaswing.controls.Combobox combobox3;
-    private javaswing.controls.Combobox combobox4;
-    private javaswing.controls.Combobox combobox5;
-    private javaswing.controls.Combobox combobox6;
-    private javaswing.controls.Combobox combobox7;
+    private javaswing.controls.Combobox cboBillingData;
+    private javaswing.controls.Combobox cboCreditCard;
+    private javaswing.controls.Combobox cboDestinyDepartment;
+    private javaswing.controls.Combobox cboDestinyMunicipality;
+    private javaswing.controls.Combobox cboOriginDepartment;
+    private javaswing.controls.Combobox cboOriginMunicipality;
+    private javaswing.controls.Combobox cboTypeOfPayment;
+    private javaswing.controls.ButtonCustom cmdCancel;
+    private javaswing.controls.ButtonCustom cmdPay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JLabel lblSubtotal;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JRadioButton rdGrande;
     private javax.swing.JRadioButton rdMediano;
     private javax.swing.JRadioButton rdPegueño;
-    private javaswing.controls.TextField textField1;
+    private javax.swing.JRadioButton rdServiceSpecial;
+    private javax.swing.JRadioButton rdServiceStandar;
+    private javaswing.controls.TextField txtCVV;
+    private javaswing.controls.TextField txtDescription;
+    private javaswing.controls.TextField txtNumberOfPackage;
+    private javaswing.controls.TextField txtReceive;
     private javax.swing.JLabel txtUserName;
     private javax.swing.JLabel txtUserName1;
     private javax.swing.JLabel txtUserName2;
     private javax.swing.JLabel txtUserName3;
-    private javax.swing.JLabel txtUserName4;
     private javax.swing.JLabel txtUserName5;
     private javax.swing.JLabel txtUserName6;
-    private javax.swing.JLabel txtUserName7;
     // End of variables declaration//GEN-END:variables
 }

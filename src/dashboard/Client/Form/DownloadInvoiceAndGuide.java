@@ -4,6 +4,9 @@
  */
 package dashboard.Client.Form;
 
+import InitialData.PackageDelivery;
+import InitialData.SG;
+
 /**
  *
  * @author bruce
@@ -29,15 +32,15 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtUserName = new javax.swing.JLabel();
-        textField1 = new javaswing.controls.TextField();
-        textField2 = new javaswing.controls.TextField();
-        textField3 = new javaswing.controls.TextField();
+        txtCodePackage = new javaswing.controls.TextField();
+        txtOrigin = new javaswing.controls.TextField();
+        txtDestiny = new javaswing.controls.TextField();
         jLabel2 = new javax.swing.JLabel();
-        buttonCustom1 = new javaswing.controls.ButtonCustom();
-        buttonCustom2 = new javaswing.controls.ButtonCustom();
-        textField4 = new javaswing.controls.TextField();
-        textField5 = new javaswing.controls.TextField();
-        buttonCustom3 = new javaswing.controls.ButtonCustom();
+        cmdDownloadGuide = new javaswing.controls.ButtonCustom();
+        cmdSearch = new javaswing.controls.ButtonCustom();
+        txtTypeOfPayment = new javaswing.controls.TextField();
+        txtSizePackage = new javaswing.controls.TextField();
+        downloadInvoice = new javaswing.controls.ButtonCustom();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(999, 621));
@@ -51,59 +54,64 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
         txtUserName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtUserName.setText("Descargar Factura y Guia");
 
-        textField1.setLabelText("Codigo de paquete");
-        textField1.addActionListener(new java.awt.event.ActionListener() {
+        txtCodePackage.setLabelText("Codigo de paquete");
+        txtCodePackage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
+                txtCodePackageActionPerformed(evt);
             }
         });
 
-        textField2.setLabelText("Origen");
-        textField2.addActionListener(new java.awt.event.ActionListener() {
+        txtOrigin.setLabelText("Origen");
+        txtOrigin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
+                txtOriginActionPerformed(evt);
             }
         });
 
-        textField3.setLabelText("Destino");
-        textField3.addActionListener(new java.awt.event.ActionListener() {
+        txtDestiny.setLabelText("Destino");
+        txtDestiny.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField3ActionPerformed(evt);
+                txtDestinyActionPerformed(evt);
             }
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Delivery.png"))); // NOI18N
 
-        buttonCustom1.setText("Descargar guia");
-        buttonCustom1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        buttonCustom1.addActionListener(new java.awt.event.ActionListener() {
+        cmdDownloadGuide.setText("Descargar guia");
+        cmdDownloadGuide.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdDownloadGuide.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCustom1ActionPerformed(evt);
+                cmdDownloadGuideActionPerformed(evt);
             }
         });
 
-        buttonCustom2.setText("Buscar");
-        buttonCustom2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        textField4.setLabelText("Tipo de pago");
-        textField4.addActionListener(new java.awt.event.ActionListener() {
+        cmdSearch.setText("Buscar");
+        cmdSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField4ActionPerformed(evt);
+                cmdSearchActionPerformed(evt);
             }
         });
 
-        textField5.setLabelText("Tamaño de paquetes");
-        textField5.addActionListener(new java.awt.event.ActionListener() {
+        txtTypeOfPayment.setLabelText("Tipo de pago");
+        txtTypeOfPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField5ActionPerformed(evt);
+                txtTypeOfPaymentActionPerformed(evt);
             }
         });
 
-        buttonCustom3.setText("Descargar Factura");
-        buttonCustom3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        buttonCustom3.addActionListener(new java.awt.event.ActionListener() {
+        txtSizePackage.setLabelText("Tamaño de paquetes");
+        txtSizePackage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCustom3ActionPerformed(evt);
+                txtSizePackageActionPerformed(evt);
+            }
+        });
+
+        downloadInvoice.setText("Descargar Factura");
+        downloadInvoice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        downloadInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downloadInvoiceActionPerformed(evt);
             }
         });
 
@@ -115,19 +123,19 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
-                    .addComponent(textField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtOrigin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtDestiny, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodePackage, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonCustom2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(textField4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textField5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmdSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtTypeOfPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSizePackage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmdDownloadGuide, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonCustom3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(downloadInvoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, Short.MAX_VALUE))
         );
@@ -139,20 +147,20 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodePackage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDestiny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTypeOfPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSizePackage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmdDownloadGuide, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(downloadInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, Short.MAX_VALUE)
         );
@@ -169,47 +177,59 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+    private void txtCodePackageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodePackageActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField1ActionPerformed
+    }//GEN-LAST:event_txtCodePackageActionPerformed
 
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+    private void txtOriginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOriginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
+    }//GEN-LAST:event_txtOriginActionPerformed
 
-    private void textField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField3ActionPerformed
+    private void txtDestinyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDestinyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField3ActionPerformed
+    }//GEN-LAST:event_txtDestinyActionPerformed
 
-    private void buttonCustom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom1ActionPerformed
+    private void cmdDownloadGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDownloadGuideActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonCustom1ActionPerformed
+    }//GEN-LAST:event_cmdDownloadGuideActionPerformed
 
-    private void textField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField4ActionPerformed
+    private void txtTypeOfPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTypeOfPaymentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField4ActionPerformed
+    }//GEN-LAST:event_txtTypeOfPaymentActionPerformed
 
-    private void textField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField5ActionPerformed
+    private void txtSizePackageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSizePackageActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField5ActionPerformed
+    }//GEN-LAST:event_txtSizePackageActionPerformed
 
-    private void buttonCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom3ActionPerformed
+    private void downloadInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadInvoiceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonCustom3ActionPerformed
+    }//GEN-LAST:event_downloadInvoiceActionPerformed
+
+    private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
+        // TODO add your handling code here:
+        String code = txtCodePackage.getLabelText();
+        PackageDelivery packageDelivery = SG.packages.getPackagesByCode(code);
+        
+        txtOrigin.setText(packageDelivery.getOrigin());
+        txtDestiny.setText(packageDelivery.getDestiny());
+        txtTypeOfPayment.setText(SG.getTypeOfPayment(packageDelivery.getPaymentMethod()));
+        txtSizePackage.setText(packageDelivery.getSize());
+        
+    }//GEN-LAST:event_cmdSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswing.controls.ButtonCustom buttonCustom1;
-    private javaswing.controls.ButtonCustom buttonCustom2;
-    private javaswing.controls.ButtonCustom buttonCustom3;
+    private javaswing.controls.ButtonCustom cmdDownloadGuide;
+    private javaswing.controls.ButtonCustom cmdSearch;
+    private javaswing.controls.ButtonCustom downloadInvoice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javaswing.controls.TextField textField1;
-    private javaswing.controls.TextField textField2;
-    private javaswing.controls.TextField textField3;
-    private javaswing.controls.TextField textField4;
-    private javaswing.controls.TextField textField5;
+    private javaswing.controls.TextField txtCodePackage;
+    private javaswing.controls.TextField txtDestiny;
+    private javaswing.controls.TextField txtOrigin;
+    private javaswing.controls.TextField txtSizePackage;
+    private javaswing.controls.TextField txtTypeOfPayment;
     private javax.swing.JLabel txtUserName;
     // End of variables declaration//GEN-END:variables
 }

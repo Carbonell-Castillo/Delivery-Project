@@ -43,20 +43,20 @@
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="textField2" alignment="0" max="32767" attributes="0"/>
-                      <Component id="textField3" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtOrigin" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtDestiny" alignment="1" max="32767" attributes="0"/>
                       <Component id="txtUserName" alignment="0" pref="280" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="textField1" min="-2" pref="184" max="-2" attributes="0"/>
+                          <Component id="txtCodePackage" min="-2" pref="184" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonCustom2" max="32767" attributes="0"/>
+                          <Component id="cmdSearch" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="textField4" alignment="0" max="32767" attributes="0"/>
-                      <Component id="textField5" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtTypeOfPayment" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtSizePackage" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="buttonCustom1" min="-2" pref="136" max="-2" attributes="0"/>
+                          <Component id="cmdDownloadGuide" min="-2" pref="136" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonCustom3" max="32767" attributes="0"/>
+                          <Component id="downloadInvoice" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -72,21 +72,21 @@
                   <Component id="txtUserName" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="textField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonCustom2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="txtCodePackage" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmdSearch" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                  <Component id="textField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtOrigin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="textField3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDestiny" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="textField4" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTypeOfPayment" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="textField5" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSizePackage" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="buttonCustom1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="buttonCustom3" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="cmdDownloadGuide" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="downloadInvoice" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -118,28 +118,28 @@
             <Property name="text" type="java.lang.String" value="Descargar Factura y Guia"/>
           </Properties>
         </Component>
-        <Component class="javaswing.controls.TextField" name="textField1">
+        <Component class="javaswing.controls.TextField" name="txtCodePackage">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="Codigo de paquete"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodePackageActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javaswing.controls.TextField" name="textField2">
+        <Component class="javaswing.controls.TextField" name="txtOrigin">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="Origen"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtOriginActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javaswing.controls.TextField" name="textField3">
+        <Component class="javaswing.controls.TextField" name="txtDestiny">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="Destino"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDestinyActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -149,7 +149,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javaswing.controls.ButtonCustom" name="buttonCustom1">
+        <Component class="javaswing.controls.ButtonCustom" name="cmdDownloadGuide">
           <Properties>
             <Property name="text" type="java.lang.String" value="Descargar guia"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -157,34 +157,37 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCustom1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdDownloadGuideActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javaswing.controls.ButtonCustom" name="buttonCustom2">
+        <Component class="javaswing.controls.ButtonCustom" name="cmdSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdSearchActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javaswing.controls.TextField" name="textField4">
+        <Component class="javaswing.controls.TextField" name="txtTypeOfPayment">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="Tipo de pago"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTypeOfPaymentActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javaswing.controls.TextField" name="textField5">
+        <Component class="javaswing.controls.TextField" name="txtSizePackage">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="Tama&#xf1;o de paquetes"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField5ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSizePackageActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javaswing.controls.ButtonCustom" name="buttonCustom3">
+        <Component class="javaswing.controls.ButtonCustom" name="downloadInvoice">
           <Properties>
             <Property name="text" type="java.lang.String" value="Descargar Factura"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -192,7 +195,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCustom3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="downloadInvoiceActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

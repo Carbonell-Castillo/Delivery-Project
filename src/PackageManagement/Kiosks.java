@@ -40,4 +40,8 @@ public class Kiosks {
         return resultKiosks;
     }
     
+        
+    public Integer getLength(){
+        return kiosks.size();
+    }
 }

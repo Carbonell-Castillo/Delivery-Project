@@ -54,7 +54,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="imageAvatar1" min="-2" pref="110" max="-2" attributes="0"/>
+                                  <Component id="imageAvatar" min="-2" pref="110" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="buttonCustom1" max="32767" attributes="0"/>
@@ -88,7 +88,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="imageAvatar1" min="-2" pref="112" max="-2" attributes="0"/>
+                                  <Component id="imageAvatar" min="-2" pref="112" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -128,7 +128,7 @@
             <Property name="text" type="java.lang.String" value="Dashboard / Home"/>
           </Properties>
         </Component>
-        <Container class="Dashboard.style.menu.ImageAvatar" name="imageAvatar1">
+        <Container class="Dashboard.style.menu.ImageAvatar" name="imageAvatar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icon/profile2.jpg"/>
@@ -177,26 +177,26 @@
                           <Component id="buttonCustom2" min="-2" pref="141" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="passwordField1" max="32767" attributes="0"/>
-                                  <Component id="combobox1" max="32767" attributes="0"/>
-                                  <Component id="textField6" alignment="0" pref="311" max="32767" attributes="0"/>
+                                  <Component id="txtPassword" max="32767" attributes="0"/>
+                                  <Component id="cboGender" max="32767" attributes="0"/>
+                                  <Component id="txtEmail" alignment="0" pref="311" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="textField5" alignment="0" min="-2" pref="311" max="-2" attributes="0"/>
-                                  <Component id="textField7" min="-2" pref="311" max="-2" attributes="0"/>
-                                  <Component id="textField8" min="-2" pref="311" max="-2" attributes="0"/>
+                                  <Component id="txtDate" alignment="0" min="-2" pref="311" max="-2" attributes="0"/>
+                                  <Component id="txtNacionality" min="-2" pref="311" max="-2" attributes="0"/>
+                                  <Component id="txtPhone" min="-2" pref="311" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="textField3" min="-2" pref="311" max="-2" attributes="0"/>
+                              <Component id="txtLastName" min="-2" pref="311" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="textField4" min="-2" pref="311" max="-2" attributes="0"/>
+                              <Component id="txtUser" min="-2" pref="311" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="textField1" min="-2" pref="311" max="-2" attributes="0"/>
+                              <Component id="txtID" min="-2" pref="311" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="textField2" min="-2" pref="311" max="-2" attributes="0"/>
+                              <Component id="txtName" min="-2" pref="311" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="53" max="32767" attributes="0"/>
@@ -208,28 +208,28 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textField1" alignment="3" max="32767" attributes="0"/>
-                          <Component id="textField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtID" alignment="3" max="32767" attributes="0"/>
+                          <Component id="txtName" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtLastName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtUser" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textField6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDate" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="combobox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textField7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cboGender" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNacionality" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="passwordField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textField8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonCustom2" min="-2" max="-2" attributes="0"/>
@@ -239,43 +239,43 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javaswing.controls.TextField" name="textField1">
+            <Component class="javaswing.controls.TextField" name="txtID">
               <Properties>
                 <Property name="text" type="java.lang.String" value="312343143210101"/>
                 <Property name="labelText" type="java.lang.String" value="DPI"/>
               </Properties>
             </Component>
-            <Component class="javaswing.controls.TextField" name="textField2">
+            <Component class="javaswing.controls.TextField" name="txtName">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Bruce"/>
                 <Property name="labelText" type="java.lang.String" value="Nombre"/>
               </Properties>
             </Component>
-            <Component class="javaswing.controls.TextField" name="textField3">
+            <Component class="javaswing.controls.TextField" name="txtLastName">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Castillo"/>
                 <Property name="labelText" type="java.lang.String" value="Apellido"/>
               </Properties>
             </Component>
-            <Component class="javaswing.controls.TextField" name="textField4">
+            <Component class="javaswing.controls.TextField" name="txtUser">
               <Properties>
                 <Property name="text" type="java.lang.String" value="bruce_castillo1204"/>
                 <Property name="labelText" type="java.lang.String" value="Sobrenombre"/>
               </Properties>
             </Component>
-            <Component class="javaswing.controls.TextField" name="textField5">
+            <Component class="javaswing.controls.TextField" name="txtDate">
               <Properties>
                 <Property name="text" type="java.lang.String" value="14/08/2004"/>
                 <Property name="labelText" type="java.lang.String" value="Fecha de nacimiento"/>
               </Properties>
             </Component>
-            <Component class="javaswing.controls.TextField" name="textField6">
+            <Component class="javaswing.controls.TextField" name="txtEmail">
               <Properties>
                 <Property name="text" type="java.lang.String" value="brucecastillo@gmail.com"/>
                 <Property name="labelText" type="java.lang.String" value="Correo"/>
               </Properties>
             </Component>
-            <Component class="javaswing.controls.Combobox" name="combobox1">
+            <Component class="javaswing.controls.Combobox" name="cboGender">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -287,20 +287,20 @@
                 <Property name="labeText" type="java.lang.String" value="Genero"/>
               </Properties>
             </Component>
-            <Component class="javaswing.controls.TextField" name="textField7">
+            <Component class="javaswing.controls.TextField" name="txtNacionality">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Guatemalteco"/>
                 <Property name="labelText" type="java.lang.String" value="Nacionalidad"/>
               </Properties>
             </Component>
-            <Component class="javaswing.controls.PasswordField" name="passwordField1">
+            <Component class="javaswing.controls.PasswordField" name="txtPassword">
               <Properties>
                 <Property name="text" type="java.lang.String" value="passwordField1"/>
                 <Property name="labelText" type="java.lang.String" value="Contrase&#xf1;a"/>
                 <Property name="showAndHide" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Component class="javaswing.controls.TextField" name="textField8">
+            <Component class="javaswing.controls.TextField" name="txtPhone">
               <Properties>
                 <Property name="text" type="java.lang.String" value="57149818"/>
                 <Property name="labelText" type="java.lang.String" value="Telefono"/>

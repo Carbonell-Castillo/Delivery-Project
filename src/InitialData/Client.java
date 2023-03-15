@@ -13,16 +13,12 @@ import java.util.ArrayList;
  */
 public class Client extends InitialData.Person{
     private User user;
-    private String nameCreditCard, creditCard, expirationDate, CVV;
+    
     
     private ArrayList <CreditCard> creditCards;
     private ArrayList <BillingData> billingDatas;
    
     public Client(){
-        nameCreditCard="";
-        creditCard="";
-        expirationDate="";
-        CVV="";
         this.creditCards = new ArrayList();
         this.billingDatas = new ArrayList();
     }
@@ -62,22 +58,21 @@ public class Client extends InitialData.Person{
     public ArrayList getAllCreditCards(){
         return creditCards;
     }
-    
-    public Client(User user, String nameCreditCard, String creditCard, String expirationDate, String CVV) {
-        this.user = user;
-        this.nameCreditCard = nameCreditCard;
-        this.creditCard = creditCard;
-        this.expirationDate = expirationDate;
-        this.CVV = CVV;
+    public ArrayList getAllBillingData(){
+        return billingDatas;
     }
 
-    public Client(User user, String nameCreditCard, String creditCard, String expirationDate, String CVV, String id, String name, String lastName, String dateOfBirth, String gender, String nationality, String phoneNumber) {
+    public Client(User user, ArrayList<CreditCard> creditCards, ArrayList<BillingData> billingDatas) {
+        this.user = user;
+        this.creditCards = creditCards;
+        this.billingDatas = billingDatas;
+    }
+
+    public Client(User user, ArrayList<CreditCard> creditCards, ArrayList<BillingData> billingDatas, String id, String name, String lastName, String dateOfBirth, String gender, String nationality, String phoneNumber) {
         super(id, name, lastName, dateOfBirth, gender, nationality, phoneNumber);
         this.user = user;
-        this.nameCreditCard = nameCreditCard;
-        this.creditCard = creditCard;
-        this.expirationDate = expirationDate;
-        this.CVV = CVV;
+        this.creditCards = creditCards;
+        this.billingDatas = billingDatas;
     }
 
     public User getUser() {
@@ -88,37 +83,25 @@ public class Client extends InitialData.Person{
         this.user = user;
     }
 
-    public String getNameCreditCard() {
-        return nameCreditCard;
+    public ArrayList<CreditCard> getCreditCards() {
+        return creditCards;
     }
 
-    public void setNameCreditCard(String nameCreditCard) {
-        this.nameCreditCard = nameCreditCard;
+    public void setCreditCards(ArrayList<CreditCard> creditCards) {
+        this.creditCards = creditCards;
     }
 
-    public String getCreditCard() {
-        return creditCard;
+    public ArrayList<BillingData> getBillingDatas() {
+        return billingDatas;
     }
 
-    public void setCreditCard(String creditCard) {
-        this.creditCard = creditCard;
+    public void setBillingDatas(ArrayList<BillingData> billingDatas) {
+        this.billingDatas = billingDatas;
     }
+    
 
-    public String getExpirationDate() {
-        return expirationDate;
-    }
 
-    public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
-    }
 
-    public String getCVV() {
-        return CVV;
-    }
-
-    public void setCVV(String CVV) {
-        this.CVV = CVV;
-    }
     
     
     

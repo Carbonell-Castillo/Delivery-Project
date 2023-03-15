@@ -1,10 +1,23 @@
 package Dashboard.Admin.Form;
 
+import InitialData.Kiosk;
+import InitialData.RegionAndPriceManagement;
+import InitialData.SG;
+import javax.swing.JOptionPane;
+
 public class KioskManagement extends javax.swing.JPanel {
 
     public KioskManagement() {
         initComponents();
         setOpaque(false);
+        initData();
+    }
+    
+    public void initData(){
+        for (int i = 0; i < SG.managementsOfRegionsAndPrices.getLength(); i++) {
+            RegionAndPriceManagement regionAndPriceManagement = SG.managementsOfRegionsAndPrices.getRegionRecord(i);
+            cboRegion.addItem("["+regionAndPriceManagement.getCode()+"]"+regionAndPriceManagement.getName());
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -13,11 +26,11 @@ public class KioskManagement extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtUserName = new javax.swing.JLabel();
-        textField1 = new javaswing.controls.TextField();
-        textField2 = new javaswing.controls.TextField();
-        combobox1 = new javaswing.controls.Combobox();
+        txtCode = new javaswing.controls.TextField();
+        txtName = new javaswing.controls.TextField();
+        cboRegion = new javaswing.controls.Combobox();
         jLabel2 = new javax.swing.JLabel();
-        buttonCustom1 = new javaswing.controls.ButtonCustom();
+        cmdSave = new javaswing.controls.ButtonCustom();
 
         setPreferredSize(new java.awt.Dimension(999, 621));
 
@@ -33,22 +46,27 @@ public class KioskManagement extends javax.swing.JPanel {
         txtUserName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtUserName.setText("Manejo de kioscos");
 
-        textField1.setLabelText("Codigo de kiosco");
+        txtCode.setLabelText("Codigo de kiosco");
 
-        textField2.setLabelText("Nombre de Kiosco");
-        textField2.addActionListener(new java.awt.event.ActionListener() {
+        txtName.setLabelText("Nombre de Kiosco");
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
-        combobox1.setLabeText("Codigo de la Region");
+        cboRegion.setLabeText("Codigo de la Region");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add.png"))); // NOI18N
 
-        buttonCustom1.setText("Almacenar");
-        buttonCustom1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSave.setText("Almacenar");
+        cmdSave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -60,10 +78,10 @@ public class KioskManagement extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(buttonCustom1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                        .addComponent(combobox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(textField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(textField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cmdSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                        .addComponent(cboRegion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 677, Short.MAX_VALUE))
         );
@@ -74,16 +92,16 @@ public class KioskManagement extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -99,18 +117,38 @@ public class KioskManagement extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void cmdSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSaveActionPerformed
+        // TODO add your handling code here:
+        Kiosk kiosk = new Kiosk();
+        Boolean validation = false;
+        
+        try {
+            kiosk.setCode(txtCode.getText());
+            kiosk.setName(txtName.getText());
+            kiosk.setRegionCode(SG.managementsOfRegionsAndPrices.getRegionRecord(cboRegion.getSelectedIndex()).getCode());
+            validation= true;
+        } catch (Exception e) {
+            System.out.println("Error en Almacenar");
+        }
+        
+        if (validation) {
+            SG.kiosks.addKiosk(kiosk);
+            JOptionPane.showMessageDialog(null, "Almacenado Corrrectamente ");
+        }
+    }//GEN-LAST:event_cmdSaveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswing.controls.ButtonCustom buttonCustom1;
-    private javaswing.controls.Combobox combobox1;
+    private javaswing.controls.Combobox cboRegion;
+    private javaswing.controls.ButtonCustom cmdSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javaswing.controls.TextField textField1;
-    private javaswing.controls.TextField textField2;
+    private javaswing.controls.TextField txtCode;
+    private javaswing.controls.TextField txtName;
     private javax.swing.JLabel txtUserName;
     // End of variables declaration//GEN-END:variables
 }

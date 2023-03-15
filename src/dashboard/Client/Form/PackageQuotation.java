@@ -4,6 +4,11 @@
  */
 package dashboard.Client.Form;
 
+import InitialData.Department;
+import InitialData.Municipality;
+import InitialData.RegionAndPriceManagement;
+import InitialData.SG;
+import PackageManagement.ManagementsOfRegionsAndPrices;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 
@@ -19,9 +24,23 @@ public class PackageQuotation extends javax.swing.JPanel {
     public PackageQuotation() {
         initComponents();
         // Crea los botones de opción
-        
+        initData();
     }
 
+    public void initData(){
+        for (int i = 0; i < SG.departments.getLength(); i++) {
+            Department department = SG.departments.getDepartmentRecord(i);
+            cboOriginDepartment.addItem("["+department.getCode()+"]"+department.getName());    
+            cboDestinyDepartment.addItem(department.getName());  
+        }
+        
+        for (int i = 0; i < SG.municipalities.getLength(); i++) {
+            Municipality municipality = SG.municipalities.getMunicipalityRecord(i);
+            cboMunicipalityOrigin.addItem("["+municipality.getCode()+"]"+municipality.getName());
+            cboDestinyMunicipality.addItem(municipality.getName());
+        }
+      
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,18 +59,18 @@ public class PackageQuotation extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtUserName = new javax.swing.JLabel();
         txtUserName1 = new javax.swing.JLabel();
-        combobox1 = new javaswing.controls.Combobox();
+        cboOriginDepartment = new javaswing.controls.Combobox();
         txtUserName2 = new javax.swing.JLabel();
-        combobox2 = new javaswing.controls.Combobox();
-        combobox3 = new javaswing.controls.Combobox();
-        combobox4 = new javaswing.controls.Combobox();
-        textField1 = new javaswing.controls.TextField();
+        cboDestinyDepartment = new javaswing.controls.Combobox();
+        cboMunicipalityOrigin = new javaswing.controls.Combobox();
+        cboDestinyMunicipality = new javaswing.controls.Combobox();
+        txtNumberOfPackage = new javaswing.controls.TextField();
         txtUserName3 = new javax.swing.JLabel();
         rdPegueño = new javax.swing.JRadioButton();
         rdMediano = new javax.swing.JRadioButton();
         rdGrande = new javax.swing.JRadioButton();
-        buttonCustom1 = new javaswing.controls.ButtonCustom();
-        txtUserName4 = new javax.swing.JLabel();
+        cmdQuotation = new javaswing.controls.ButtonCustom();
+        txtSubtotal = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jBuyHere = new javax.swing.JLabel();
@@ -73,23 +92,23 @@ public class PackageQuotation extends javax.swing.JPanel {
         txtUserName1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtUserName1.setText("Origen");
 
-        combobox1.setLabeText("Departamentos");
+        cboOriginDepartment.setLabeText("Departamentos");
 
         txtUserName2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUserName2.setForeground(new java.awt.Color(0, 0, 0));
         txtUserName2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtUserName2.setText("Destino");
 
-        combobox2.setLabeText("Departamentos");
+        cboDestinyDepartment.setLabeText("Departamentos");
 
-        combobox3.setLabeText("Municipios");
+        cboMunicipalityOrigin.setLabeText("Municipios");
 
-        combobox4.setLabeText("Municipios");
+        cboDestinyMunicipality.setLabeText("Municipios");
 
-        textField1.setLabelText("Número de paquetes");
-        textField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNumberOfPackage.setLabelText("Número de paquetes");
+        txtNumberOfPackage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
+                txtNumberOfPackageActionPerformed(evt);
             }
         });
 
@@ -112,13 +131,18 @@ public class PackageQuotation extends javax.swing.JPanel {
         buttonGroup1.add(rdGrande);
         rdGrande.setText("Grande");
 
-        buttonCustom1.setText("Cotizar");
-        buttonCustom1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdQuotation.setText("Cotizar");
+        cmdQuotation.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdQuotation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdQuotationActionPerformed(evt);
+            }
+        });
 
-        txtUserName4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtUserName4.setForeground(new java.awt.Color(0, 0, 0));
-        txtUserName4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtUserName4.setText("El monto total a pagar es: Q120");
+        txtSubtotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSubtotal.setForeground(new java.awt.Color(0, 0, 0));
+        txtSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtSubtotal.setText("El monto total a pagar es: Q120");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Payments.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -141,14 +165,14 @@ public class PackageQuotation extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUserName4, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUserName3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumberOfPackage, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUserName1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(combobox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(combobox3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboOriginDepartment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboMunicipalityOrigin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(rdPegueño)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -158,9 +182,9 @@ public class PackageQuotation extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtUserName2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(combobox2, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .addComponent(combobox4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboDestinyDepartment, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                            .addComponent(cboDestinyMunicipality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(cmdQuotation, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -181,17 +205,17 @@ public class PackageQuotation extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtUserName1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cboOriginDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtUserName2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(combobox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cboDestinyDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combobox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combobox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboMunicipalityOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboDestinyMunicipality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNumberOfPackage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtUserName3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -200,9 +224,9 @@ public class PackageQuotation extends javax.swing.JPanel {
                     .addComponent(rdMediano)
                     .addComponent(rdGrande))
                 .addGap(18, 18, 18)
-                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdQuotation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtUserName4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -228,9 +252,9 @@ public class PackageQuotation extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+    private void txtNumberOfPackageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberOfPackageActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField1ActionPerformed
+    }//GEN-LAST:event_txtNumberOfPackageActionPerformed
 
     private void rdPegueñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdPegueñoActionPerformed
         // TODO add your handling code here:
@@ -241,18 +265,47 @@ public class PackageQuotation extends javax.swing.JPanel {
         System.out.println("Aquiiiiiii");
     }//GEN-LAST:event_jBuyHereMouseClicked
 
+    private void cmdQuotationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdQuotationActionPerformed
+        // TODO add your handling code here:
+        
+        String DestinyDepartment= (String) cboDestinyDepartment.getSelectedItem();
+        Department department = SG.departments.searchDeparmentName(DestinyDepartment);
+        Boolean validation = false;
+        double priceSize =0;
+        try {
+            if (rdPegueño.isSelected()) {
+                priceSize=100;
+            }else if(rdMediano.isSelected()){
+                priceSize=150;
+            }else if(rdGrande.isSelected()){
+                priceSize= 200;
+            }
+            Integer numberofPackage= Integer.parseInt(txtNumberOfPackage.getText());
+            String regionCodeDepartment = department.getCode();
+            RegionAndPriceManagement regionAndPriceManagement = SG.managementsOfRegionsAndPrices.searchRegionCode(regionCodeDepartment);
+            
+            PackageManagement.Buy buy = new PackageManagement.Buy(SG.getClientFound(), 0);
+            double subtotal =buy.getPackageQuote(regionAndPriceManagement.getStandardPrice(), priceSize, numberofPackage);
+            
+            txtSubtotal.setText("El monto total a pagar es: Q"+subtotal);
+            
+        } catch (Exception e) {
+            System.out.println("Error de cotizar");
+        }
+    }//GEN-LAST:event_cmdQuotationActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswing.controls.ButtonCustom buttonCustom1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.ButtonGroup buttonGroup5;
-    private javaswing.controls.Combobox combobox1;
-    private javaswing.controls.Combobox combobox2;
-    private javaswing.controls.Combobox combobox3;
-    private javaswing.controls.Combobox combobox4;
+    private javaswing.controls.Combobox cboDestinyDepartment;
+    private javaswing.controls.Combobox cboDestinyMunicipality;
+    private javaswing.controls.Combobox cboMunicipalityOrigin;
+    private javaswing.controls.Combobox cboOriginDepartment;
+    private javaswing.controls.ButtonCustom cmdQuotation;
     private javax.swing.JLabel jBuyHere;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -261,11 +314,11 @@ public class PackageQuotation extends javax.swing.JPanel {
     private javax.swing.JRadioButton rdGrande;
     private javax.swing.JRadioButton rdMediano;
     private javax.swing.JRadioButton rdPegueño;
-    private javaswing.controls.TextField textField1;
+    private javaswing.controls.TextField txtNumberOfPackage;
+    private javax.swing.JLabel txtSubtotal;
     private javax.swing.JLabel txtUserName;
     private javax.swing.JLabel txtUserName1;
     private javax.swing.JLabel txtUserName2;
     private javax.swing.JLabel txtUserName3;
-    private javax.swing.JLabel txtUserName4;
     // End of variables declaration//GEN-END:variables
 }

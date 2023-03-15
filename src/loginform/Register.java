@@ -341,7 +341,7 @@ public class Register extends javax.swing.JFrame {
                     user.setId(txtID.getText());
                     user.setName(txtName.getText());
                     user.setLastName(txtLastName.getText());
-                    user.setUser(txtUser.getLabelText());
+                    user.setUser(txtUser.getText());
                     user.setDateOfBirth(txtDateOfBirth.getText());
                     user.setGender(cboGender.getSelectedItem().toString());
                     user.setNationality(txtNacionality.getText());

@@ -4,6 +4,11 @@
  */
 package Dashboard.Admin.Form;
 
+import InitialData.Department;
+import InitialData.RegionAndPriceManagement;
+import InitialData.SG;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bruce
@@ -15,8 +20,15 @@ public class DepartmentManagement extends javax.swing.JPanel {
      */
     public DepartmentManagement() {
         initComponents();
+        initData();
     }
 
+    public void initData(){
+         for (int i = 0; i < SG.managementsOfRegionsAndPrices.getLength(); i++) {
+            RegionAndPriceManagement regionAndPriceManagement = SG.managementsOfRegionsAndPrices.getRegionRecord(i);
+            cboCodeRegion.addItem("["+regionAndPriceManagement.getCode()+"]"+regionAndPriceManagement.getName());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,11 +41,11 @@ public class DepartmentManagement extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtUserName = new javax.swing.JLabel();
-        textField2 = new javaswing.controls.TextField();
-        textField3 = new javaswing.controls.TextField();
+        txtRegion = new javaswing.controls.TextField();
+        txtName = new javaswing.controls.TextField();
         jLabel2 = new javax.swing.JLabel();
-        buttonCustom1 = new javaswing.controls.ButtonCustom();
-        combobox1 = new javaswing.controls.Combobox();
+        cmdSave = new javaswing.controls.ButtonCustom();
+        cboCodeRegion = new javaswing.controls.Combobox();
 
         setPreferredSize(new java.awt.Dimension(999, 621));
 
@@ -49,26 +61,36 @@ public class DepartmentManagement extends javax.swing.JPanel {
         txtUserName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtUserName.setText("Datos de Departamentos");
 
-        textField2.setLabelText("Region");
-        textField2.addActionListener(new java.awt.event.ActionListener() {
+        txtRegion.setLabelText("Region");
+        txtRegion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
+                txtRegionActionPerformed(evt);
             }
         });
 
-        textField3.setLabelText("Nombre");
-        textField3.addActionListener(new java.awt.event.ActionListener() {
+        txtName.setLabelText("Nombre");
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField3ActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/World.png"))); // NOI18N
 
-        buttonCustom1.setText("Almacenar");
-        buttonCustom1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSave.setText("Almacenar");
+        cmdSave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSaveActionPerformed(evt);
+            }
+        });
 
-        combobox1.setLabeText("Codigo de Region");
+        cboCodeRegion.setLabeText("Codigo de Region");
+        cboCodeRegion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboCodeRegionItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,10 +102,10 @@ public class DepartmentManagement extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(buttonCustom1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                        .addComponent(textField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(textField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(combobox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cmdSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                        .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtRegion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboCodeRegion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(90, 90, 90))
@@ -95,13 +117,13 @@ public class DepartmentManagement extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
-                .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboCodeRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 621, Short.MAX_VALUE)
         );
@@ -110,7 +132,7 @@ public class DepartmentManagement extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,23 +140,54 @@ public class DepartmentManagement extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+    private void txtRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
+    }//GEN-LAST:event_txtRegionActionPerformed
 
-    private void textField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField3ActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField3ActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void cmdSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSaveActionPerformed
+        // TODO add your handling code here:
+        Department department = new Department();
+        Boolean validation = false;
+        
+        try {
+            department.setCode(SG.managementsOfRegionsAndPrices.getRegionRecord(cboCodeRegion.getSelectedIndex()).getCode());
+            department.setRegionName(txtRegion.getText());
+            department.setName(txtName.getText());
+            validation= true;
+        } catch (Exception e) {
+            System.out.println("Error en almacenar departamento");
+        }
+        
+        if (validation) {
+            SG.departments.addDepartment(department);
+            JOptionPane.showMessageDialog(null, "Almacenado Corrrectamente ");
+        }
+        
+    }//GEN-LAST:event_cmdSaveActionPerformed
+
+    private void cboCodeRegionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCodeRegionItemStateChanged
+        // TODO add your handling code here:
+        for (int i = 0; i < SG.managementsOfRegionsAndPrices.getLength(); i++) {
+            RegionAndPriceManagement regionAndPriceManagement = SG.managementsOfRegionsAndPrices.getRegionRecord(i);
+            if (SG.managementsOfRegionsAndPrices.getRegionRecord(cboCodeRegion.getSelectedIndex()).getCode().equals(regionAndPriceManagement.getCode())) {
+                txtRegion.setText(regionAndPriceManagement.getName());
+            }
+        }
+    }//GEN-LAST:event_cboCodeRegionItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswing.controls.ButtonCustom buttonCustom1;
-    private javaswing.controls.Combobox combobox1;
+    private javaswing.controls.Combobox cboCodeRegion;
+    private javaswing.controls.ButtonCustom cmdSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javaswing.controls.TextField textField2;
-    private javaswing.controls.TextField textField3;
+    private javaswing.controls.TextField txtName;
+    private javaswing.controls.TextField txtRegion;
     private javax.swing.JLabel txtUserName;
     // End of variables declaration//GEN-END:variables
 }

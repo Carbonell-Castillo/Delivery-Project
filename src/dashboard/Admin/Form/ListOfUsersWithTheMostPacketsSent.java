@@ -5,6 +5,10 @@
 package Dashboard.Admin.Form;
 
 import Dashboard.table.ModelProfile;
+import InitialData.Client;
+import InitialData.PackageDelivery;
+import InitialData.SG;
+import InitialData.User;
 import javax.swing.ImageIcon;
 
 /**
@@ -22,13 +26,38 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
         setOpaque(false);
         initTableData();
     }
-        private void initTableData() {
         
+    private void initTableData() {
+        table1.clearTable();
+        Integer quantity = SG.packages.getUsersWithMorePackages().size();
+        for (int i = 0; i < quantity; i++) {
+            PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
+            Client client = packageDelivery.getClient();
+            User user = client.getUser();
+            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName() + " " + user.getLastName()), user.getNationality(), SG.quantityPackageFound[i]});
+
+        }
         //We added column names
-        table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Bruce Castillo"), "Guatemalteca","10"});
-        table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile1.jpg")), "Mario Lopez"), "Salvadoreño","8"});
-}
+
+        //table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile1.jpg")), "Mario Lopez"), "Salvadoreño","8"});
+    }
     
+    private void Search(String data){
+        table1.clearTable();
+        Integer quantity = SG.packages.getUsersWithMorePackages().size();
+        for (int i = 0; i < quantity; i++) {
+            PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
+            Client client = packageDelivery.getClient();
+            String name = client.getName()+" "+client.getLastName();
+            User user = client.getUser();
+            if(name.equals(data)){
+                
+            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName() + " " + user.getLastName()), user.getNationality(), SG.quantityPackageFound[i]});
+            }
+            
+
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,8 +73,9 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
         txtUserName = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table1 = new Dashboard.table.Table();
-        textField1 = new javaswing.controls.TextField();
-        buttonCustom1 = new javaswing.controls.ButtonCustom();
+        txtSearch = new javaswing.controls.TextField();
+        cmdSearch = new javaswing.controls.ButtonCustom();
+        cmdSearch1 = new javaswing.controls.ButtonCustom();
 
         setPreferredSize(new java.awt.Dimension(999, 621));
 
@@ -76,13 +106,22 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(table1);
 
-        textField1.setLabelText("Buscar por usuario");
+        txtSearch.setLabelText("Buscar por nombre");
 
-        buttonCustom1.setText("Buscar");
-        buttonCustom1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        buttonCustom1.addActionListener(new java.awt.event.ActionListener() {
+        cmdSearch.setText("Buscar");
+        cmdSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCustom1ActionPerformed(evt);
+                cmdSearchActionPerformed(evt);
+            }
+        });
+
+        cmdSearch1.setText("Actualizar");
+        cmdSearch1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSearch1.setStyle(javaswing.controls.ButtonCustom.ButtonStyle.DESTRUCTIVE);
+        cmdSearch1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSearch1ActionPerformed(evt);
             }
         });
 
@@ -98,9 +137,11 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmdSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -114,8 +155,10 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonCustom1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cmdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmdSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                 .addContainerGap())
@@ -144,19 +187,27 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonCustom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom1ActionPerformed
+    private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonCustom1ActionPerformed
+        String searchByName = txtSearch.getText();
+        Search(searchByName);
+    }//GEN-LAST:event_cmdSearchActionPerformed
+
+    private void cmdSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearch1ActionPerformed
+        // TODO add your handling code here:
+        initTableData();
+    }//GEN-LAST:event_cmdSearch1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswing.controls.ButtonCustom buttonCustom1;
+    private javaswing.controls.ButtonCustom cmdSearch;
+    private javaswing.controls.ButtonCustom cmdSearch1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private Dashboard.table.Table table1;
-    private javaswing.controls.TextField textField1;
+    private javaswing.controls.TextField txtSearch;
     private javax.swing.JLabel txtUserName;
     // End of variables declaration//GEN-END:variables
 }

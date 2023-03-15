@@ -82,6 +82,10 @@ public class Table extends JTable {
         DefaultTableModel mod = (DefaultTableModel) getModel();
         mod.addRow(row);
     }
+    public void clearTable(){
+        DefaultTableModel mod = (DefaultTableModel) getModel();
+        mod.setRowCount(0);
+    }
     public void addColumn(String columnName){
         DefaultTableModel mod = (DefaultTableModel) getModel();
         mod.addColumn(columnName);

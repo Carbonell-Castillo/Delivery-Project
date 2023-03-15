@@ -5,6 +5,10 @@
 package Dashboard.Admin.Form;
 
 import Dashboard.table.ModelProfile;
+import InitialData.Client;
+import InitialData.PackageDelivery;
+import InitialData.SG;
+import InitialData.User;
 import javax.swing.ImageIcon;
 
 /**
@@ -24,10 +28,30 @@ public class TotalNumberOfPackagesSent extends javax.swing.JPanel {
     }
     
     private void initTableData() {
-        
+        table1.clearTable();
+        Integer quantity= SG.packages.getLength();
+        lblTotal.setText("Numero de paquetes enviados: "+quantity);
+        for (int i = 0; i < quantity; i++) {
+            PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
+            Client client = packageDelivery.getClient();
+            User user = client.getUser();
+            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName()+" "+user.getLastName()), packageDelivery.getDescription(), packageDelivery.getOrigin(), packageDelivery.getDestiny(), packageDelivery.getDateSent(), packageDelivery.getTotal()});
+        }
         //We added column names
-        table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Bruce Castillo"), "Zapatos","Guatemala", "Mixco", "27/02/2023", "Q400"});
-        table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Mario Lopez"), "Celular","Zacapa", "Mixco", "17/02/2023", "Q230"});
+        //table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Bruce Castillo"), "Zapatos","Guatemala", "Mixco", "27/02/2023", "Q400"});
+        //table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Mario Lopez"), "Celular","Zacapa", "Mixco", "17/02/2023", "Q230"});
+    }
+    
+    private void Search(String data){
+        table1.clearTable();
+        Integer quantity= SG.packages.getPackageByOrigin(data).size();
+        lblTotal.setText("Numero de paquetes enviados: "+quantity);
+        for (int i = 0; i < quantity; i++) {
+            PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
+            Client client = packageDelivery.getClient();
+            User user = client.getUser();
+            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName()+" "+user.getLastName()), packageDelivery.getDescription(), packageDelivery.getOrigin(), packageDelivery.getDestiny(), packageDelivery.getDateSent(), packageDelivery.getTotal()});
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,11 +65,12 @@ public class TotalNumberOfPackagesSent extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtUserName = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table1 = new Dashboard.table.Table();
-        textField1 = new javaswing.controls.TextField();
-        buttonCustom1 = new javaswing.controls.ButtonCustom();
+        txtOrigin = new javaswing.controls.TextField();
+        cmdSearch = new javaswing.controls.ButtonCustom();
+        cmdSearch1 = new javaswing.controls.ButtonCustom();
 
         setPreferredSize(new java.awt.Dimension(999, 621));
 
@@ -58,10 +83,10 @@ public class TotalNumberOfPackagesSent extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(4, 72, 210));
         jLabel1.setText("Dashboard / Home");
 
-        txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtUserName.setForeground(new java.awt.Color(0, 0, 0));
-        txtUserName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtUserName.setText("Numero de paquetes enviados: 2");
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(0, 0, 0));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTotal.setText("Numero de paquetes enviados: 2");
 
         table1.setBackground(new java.awt.Color(255, 255, 255));
         table1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -76,13 +101,22 @@ public class TotalNumberOfPackagesSent extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(table1);
 
-        textField1.setLabelText("Buscar por origen");
+        txtOrigin.setLabelText("Buscar por origen");
 
-        buttonCustom1.setText("Buscar");
-        buttonCustom1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        buttonCustom1.addActionListener(new java.awt.event.ActionListener() {
+        cmdSearch.setText("Buscar");
+        cmdSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCustom1ActionPerformed(evt);
+                cmdSearchActionPerformed(evt);
+            }
+        });
+
+        cmdSearch1.setText("Actualizar");
+        cmdSearch1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmdSearch1.setStyle(javaswing.controls.ButtonCustom.ButtonStyle.DESTRUCTIVE);
+        cmdSearch1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSearch1ActionPerformed(evt);
             }
         });
 
@@ -93,15 +127,17 @@ public class TotalNumberOfPackagesSent extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 987, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cmdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmdSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -111,13 +147,15 @@ public class TotalNumberOfPackagesSent extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(8, 8, 8)
-                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonCustom1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cmdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmdSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -144,19 +182,29 @@ public class TotalNumberOfPackagesSent extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonCustom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom1ActionPerformed
+    private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonCustom1ActionPerformed
+        String dataSearch = txtOrigin.getText();
+        Search(dataSearch);
+        
+        
+    }//GEN-LAST:event_cmdSearchActionPerformed
+
+    private void cmdSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearch1ActionPerformed
+        // TODO add your handling code here:
+        initTableData();
+    }//GEN-LAST:event_cmdSearch1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javaswing.controls.ButtonCustom buttonCustom1;
+    private javaswing.controls.ButtonCustom cmdSearch;
+    private javaswing.controls.ButtonCustom cmdSearch1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTotal;
     private Dashboard.table.Table table1;
-    private javaswing.controls.TextField textField1;
-    private javax.swing.JLabel txtUserName;
+    private javaswing.controls.TextField txtOrigin;
     // End of variables declaration//GEN-END:variables
 }

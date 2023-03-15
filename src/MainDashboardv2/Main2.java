@@ -70,7 +70,7 @@ public class Main2 extends javax.swing.JFrame {
         menu.addEvent(new EventMenuSelected() {
             @Override
             public void menuSelected(int menuIndex, int subMenuIndex) {
-                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                
                 if(SG.SESSION_ROLE==0){
                 
                 if (menuIndex == 0) {
@@ -100,7 +100,9 @@ public class Main2 extends javax.swing.JFrame {
                         }
                     }else if(menuIndex==5){
                         main.showForm(new Account2());
-                    }
+                    }else if(menuIndex==6){
+                    main.setVisible(false);
+                }
             }else if(SG.SESSION_ROLE==1){
                 if (menuIndex == 0) {
                     main.showForm(new Form_Home());
@@ -120,6 +122,8 @@ public class Main2 extends javax.swing.JFrame {
                     main.showForm(new SeeRequestedShipments());
                 }else if(menuIndex==6){
                     main.showForm(new Account2());
+                }else if(menuIndex==7){
+                    main.setVisible(false);
                 }
                 
             }
