@@ -11,30 +11,34 @@ package InitialData;
 public class User extends Person{
     private String user, photo,email, password;
     private Integer role;
+    private String KiokName;
     
     public User(){
         user="";
         photo="";
         email="";
         password="";
+        KiokName="";
         role=0;
     }
 
-    public User(String user, String photo, String email, String password, Integer role) {
+    public User(String user, String photo, String email, String password, Integer role, String KiokName) {
         this.user = user;
         this.photo = photo;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.KiokName = KiokName;
     }
 
-    public User(String user, String photo, String email, String password, Integer role, String id, String name, String lastName, String dateOfBirth, String gender, String nationality, String phoneNumber) {
+    public User(String user, String photo, String email, String password, Integer role, String KiokName, String id, String name, String lastName, String dateOfBirth, String gender, String nationality, String phoneNumber) {
         super(id, name, lastName, dateOfBirth, gender, nationality, phoneNumber);
         this.user = user;
         this.photo = photo;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.KiokName = KiokName;
     }
 
     public String getUser() {
@@ -76,6 +80,14 @@ public class User extends Person{
     public void setRole(Integer role) {
         this.role = role;
     }
-    
+
+    public String getKiokName() {
+        return KiokName;
+    }
+
+    public void setKiokName(String KiokName) {
+        this.KiokName = KiokName;
+    }
+
     
 }

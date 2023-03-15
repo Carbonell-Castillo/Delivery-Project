@@ -42,7 +42,7 @@ public class ListOfUsers extends javax.swing.JPanel {
         table1.clearTable();
         Integer quantity = SG.user.searchUser(data).size();
         for (int i = 0; i < quantity; i++) {
-            User user =SG.user.getUserRecord(i);
+            User user =(User) SG.user.searchUser(data).get(i);
             table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName() + " " + user.getLastName()), user.getUser(), user.getGender(), user.getNationality(),user.getPhoneNumber(), SG.getTypeRole(user.getRole())});
         }
     }

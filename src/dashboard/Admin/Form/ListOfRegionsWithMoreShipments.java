@@ -36,11 +36,11 @@ public class ListOfRegionsWithMoreShipments extends javax.swing.JPanel {
     
     public void Search(String data){
         table1.clearTable();
+        
         Integer quantityListOfRegions=SG.packages.findPackagesWithHighShipmentVolumeInRegions(data).size();
          for (int i = 0; i < quantityListOfRegions; i++) {
-            PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
-            RegionAndPriceManagement regionAndPriceManagement = SG.managementsOfRegionsAndPrices.searchRegionCode(packageDelivery.getRegionOrigin());
-            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), regionAndPriceManagement.getName()), regionAndPriceManagement.getCode(),quantityListOfRegions});    
+            RegionAndPriceManagement regionAndPriceManagement = (RegionAndPriceManagement) SG.packages.findPackagesWithHighShipmentVolumeInRegions(data).get(i);
+            table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), regionAndPriceManagement.getName()), regionAndPriceManagement.getCode(),SG.quantityPackageFoundRegion[i]});    
         }
         
     }

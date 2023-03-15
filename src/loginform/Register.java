@@ -57,10 +57,10 @@ public class Register extends javax.swing.JFrame {
         txtEmail = new javaswing.controls.TextField();
         txtDateOfBirth = new javaswing.controls.TextField();
         cboGender = new javaswing.controls.Combobox();
-        txtNacionality = new javaswing.controls.TextField();
         txtPassword = new javaswing.controls.PasswordField();
         txtPhone = new javaswing.controls.TextField();
         cboRole = new javaswing.controls.Combobox();
+        cboNacionality = new javaswing.controls.Combobox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,16 +135,18 @@ public class Register extends javax.swing.JFrame {
         cboGender.setSelectedIndex(-1);
         cboGender.setLabeText("Genero");
 
-        txtNacionality.setLabelText("Nacionalidad");
-
         txtPassword.setLabelText("Contraseña");
         txtPassword.setShowAndHide(true);
 
         txtPhone.setLabelText("Telefono");
 
-        cboRole.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Cliente" }));
+        cboRole.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Cliente", "Empresarial" }));
         cboRole.setSelectedIndex(-1);
         cboRole.setLabeText("Rol");
+
+        cboNacionality.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Guatemalteca", "Española", "Mexicana", "Francesa", "Estadounidense", "Canadiense", "Japonesa", "Brasileña." }));
+        cboNacionality.setSelectedIndex(-1);
+        cboNacionality.setLabeText("Nacionalidad");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,8 +183,8 @@ public class Register extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtNacionality, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cboNacionality, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)
                             .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -225,8 +227,8 @@ public class Register extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNacionality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboNacionality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,7 +330,7 @@ public class Register extends javax.swing.JFrame {
         
         try {
             
-            if (validateText(txtID) || validateText(txtName) || validateText(txtLastName) || validateText(txtDateOfBirth) || validateText(txtPhone) || validateText(txtNacionality) || validateText(txtEmail) || validateText(txtPassword) || imagePath.trim().isBlank()) {
+            if (validateText(txtID) || validateText(txtName) || validateText(txtLastName) || validateText(txtDateOfBirth) || validateText(txtPhone) || validateText(txtEmail) || validateText(txtPassword) || imagePath.trim().isBlank()) {
                 panel = new Notification(this, Notification.Type.INFO, Notification.Location.TOP_CENTER, "Datos Vacios, intentelo nuevamente");    
                 panel.showNotification();
             
@@ -344,13 +346,16 @@ public class Register extends javax.swing.JFrame {
                     user.setUser(txtUser.getText());
                     user.setDateOfBirth(txtDateOfBirth.getText());
                     user.setGender(cboGender.getSelectedItem().toString());
-                    user.setNationality(txtNacionality.getText());
+                    user.setNationality((String) cboNacionality.getSelectedItem());
                     user.setPhoneNumber(txtPhone.getText());
                     user.setEmail(txtEmail.getText());
                     user.setPhoto(imagePath);
-
+                    
                     role = cboRole.getSelectedIndex();
-
+                    if(cboRole.getSelectedIndex()==2){
+                        role=0;
+                    }
+                    
                     if (role >= 0) {
                         user.setRole(role);
                         if (role == 0) {
@@ -468,6 +473,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnRegister;
     private javaswing.controls.Combobox cboGender;
+    private javaswing.controls.Combobox cboNacionality;
     private javaswing.controls.Combobox cboRole;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -480,7 +486,6 @@ public class Register extends javax.swing.JFrame {
     private javaswing.controls.TextField txtEmail;
     private javaswing.controls.TextField txtID;
     private javaswing.controls.TextField txtLastName;
-    private javaswing.controls.TextField txtNacionality;
     private javaswing.controls.TextField txtName;
     private javaswing.controls.PasswordField txtPassword;
     private javaswing.controls.TextField txtPhone;

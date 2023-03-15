@@ -35,6 +35,21 @@ public class Client extends InitialData.Person{
         billingDatas.add(billingData);
     }
     
+    public boolean searchNumberCreditCard(String number){
+        Boolean validation = false;
+        for (int i = 0; i < creditCards.size(); i++) {
+            CreditCard creditCard = creditCards.get(i);
+            
+            if (creditCard.getCreditCard().equals(number)) {
+                validation=true;
+            }
+        }
+       
+        return validation;
+    }
+    
+    
+    
     public BillingData getBillingData(int pos){
         return billingDatas.get(pos);
     }

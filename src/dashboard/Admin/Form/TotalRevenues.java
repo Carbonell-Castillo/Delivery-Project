@@ -49,13 +49,13 @@ public class TotalRevenues extends javax.swing.JPanel {
         Integer quantity= SG.packages.getPackageByDescription(data).size();
         double total=0;
         for (int i = 0; i < quantity; i++) {
-            PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
+            PackageDelivery packageDelivery = (PackageDelivery) SG.packages.getPackageByDescription(data).get(i);
             Client client = packageDelivery.getClient();
             total= total + packageDelivery.getTotal();
             User user = client.getUser();
             table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName()+" "+user.getLastName()), packageDelivery.getDescription(), packageDelivery.getOrigin(), packageDelivery.getDestiny(),SG.getTypeOfPayment(packageDelivery.getPaymentMethod()), packageDelivery.getDateSent(), packageDelivery.getTotal()});
         }
-        lblTotal.setText("Total de ingresos: "+quantity);
+        lblTotal.setText("Total de ingresos: "+total);
     }
     /**
      * This method is called from within the constructor to initialize the form.

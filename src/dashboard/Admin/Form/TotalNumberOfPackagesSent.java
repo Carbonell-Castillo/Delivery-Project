@@ -30,13 +30,18 @@ public class TotalNumberOfPackagesSent extends javax.swing.JPanel {
     private void initTableData() {
         table1.clearTable();
         Integer quantity= SG.packages.getLength();
-        lblTotal.setText("Numero de paquetes enviados: "+quantity);
+        if(SG.packages.getLength()>0){
         for (int i = 0; i < quantity; i++) {
             PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
             Client client = packageDelivery.getClient();
             User user = client.getUser();
             table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName()+" "+user.getLastName()), packageDelivery.getDescription(), packageDelivery.getOrigin(), packageDelivery.getDestiny(), packageDelivery.getDateSent(), packageDelivery.getTotal()});
+        }    
+        }else{
+            System.out.println("No existen paquetes");
         }
+        lblTotal.setText("Numero de paquetes enviados: "+quantity);
+        
         //We added column names
         //table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Bruce Castillo"), "Zapatos","Guatemala", "Mixco", "27/02/2023", "Q400"});
         //table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/profile.jpg")), "Mario Lopez"), "Celular","Zacapa", "Mixco", "17/02/2023", "Q230"});
@@ -45,13 +50,18 @@ public class TotalNumberOfPackagesSent extends javax.swing.JPanel {
     private void Search(String data){
         table1.clearTable();
         Integer quantity= SG.packages.getPackageByOrigin(data).size();
-        lblTotal.setText("Numero de paquetes enviados: "+quantity);
+        if(SG.packages.getLength()>0){
+            
         for (int i = 0; i < quantity; i++) {
-            PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
+            PackageDelivery packageDelivery = (PackageDelivery) SG.packages.getPackageByOrigin(data).get(i);
             Client client = packageDelivery.getClient();
             User user = client.getUser();
             table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName()+" "+user.getLastName()), packageDelivery.getDescription(), packageDelivery.getOrigin(), packageDelivery.getDestiny(), packageDelivery.getDateSent(), packageDelivery.getTotal()});
         }
+         }else{
+            System.out.println("No existen paquetes");
+        }
+        lblTotal.setText("Numero de paquetes enviados: "+quantity);
     }
     /**
      * This method is called from within the constructor to initialize the form.

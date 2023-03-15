@@ -31,7 +31,8 @@ public class SeeRequestedShipments extends javax.swing.JPanel {
         if(SG.packages.allPackageClient(SG.getClientFound()).size()>0){
             for (int i = 0; i < SG.packages.allPackageClient(SG.getClientFound()).size(); i++) {
                 PackageDelivery packageDelivery = (PackageDelivery) SG.packages.allPackageClient(SG.getClientFound()).get(i);
-                table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), packageDelivery.getCode()), packageDelivery.getServiceType(),packageDelivery.getClient().getName(), packageDelivery.getTotal(), SG.getTypeOfPayment(packageDelivery.getPaymentMethod())});        
+                System.out.println("Nombre del recepcion "+packageDelivery.getRecipientsName());
+                table1.addRow(new Object[]{new ModelProfile(new ImageIcon(getClass().getResource("/icon/package.jpg")), packageDelivery.getCode()), packageDelivery.getServiceType(), packageDelivery.getRecipientsName(), packageDelivery.getTotal(), SG.getTypeOfPayment(packageDelivery.getPaymentMethod())});        
             }
         }else{
             System.out.println("No existen registros previos");
@@ -143,7 +144,7 @@ public class SeeRequestedShipments extends javax.swing.JPanel {
 
     private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
         // TODO add your handling code here:
-        String codePackageSearch ="";
+        String codePackageSearch =txtCodePackage.getText();
         
          if(SG.packages.allPackageClient(SG.getClientFound()).size()>0){
             for (int i = 0; i < SG.packages.searchPackageClientCode(SG.getClientFound(), codePackageSearch).size(); i++) {

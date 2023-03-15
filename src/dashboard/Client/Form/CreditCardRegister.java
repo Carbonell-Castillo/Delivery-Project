@@ -176,10 +176,16 @@ public class CreditCardRegister extends javax.swing.JPanel {
             creditCard.setExpirationDate(txtExpirationDate.getText());
             creditCard.setCVV(txtCVV.getText());
             creditCard.setCreditCard(txtCreditCard.getText());
-            validation= true;
+            if(client.searchNumberCreditCard(txtCreditCard.getText())){
+                validation=false;
+                JOptionPane.showMessageDialog(null, "La tarjeta de crediro ya existe");
+            }else{
+                validation= true;    
+            }
+            
             
         } catch (Exception e) {
-            System.out.println("Error een almacenar");
+            JOptionPane.showMessageDialog(null, "Error en  Almacenar ");
         }
         
         if(validation){

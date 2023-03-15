@@ -506,7 +506,9 @@ public class Buy extends javax.swing.JPanel {
         String packageSizeText="";
         packageDelivery = new PackageDelivery();
         try {
-            if (validateCVV(cboCreditCard.getSelectedIndex(), txtCVV.getText())) {
+            
+            
+            
                 
             
             if(rdServiceSpecial.isSelected()){
@@ -540,16 +542,26 @@ public class Buy extends javax.swing.JPanel {
             packageDelivery.setPaymentMethod(cboTypeOfPayment.getSelectedIndex());
             
             packageDelivery.setRecipientsName(txtReceive.getText());
+                System.out.println("1111 "+txtReceive.getText());
+                System.out.println("222 "+packageDelivery.getRecipientsName() );
             packageDelivery.setRegionOrigin(CodeRegion);
             packageDelivery.setServiceType(serviceType);
             packageDelivery.setSize(packageSizeText);
             packageDelivery.setDescription(txtDescription.getText());
             packageDelivery.setStatus("PENDING");
             packageDelivery.setTotal(subtotal);
-            validation=true;
+            
+            if (cboTypeOfPayment.getSelectedIndex()==0) {
+                validation=true;
+                
             }else{
-                validation=false;
-            }
+                if (validateCVV(cboCreditCard.getSelectedIndex(), txtCVV.getText())) {   
+                    validation=true;
+                    }else{
+                        validation=false;
+                    }
+             }
+            
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -597,13 +609,26 @@ public static String generateCode(){
     private void txtReceiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReceiveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtReceiveActionPerformed
-
+    public static Integer iType=0;
     private void cboTypeOfPaymentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTypeOfPaymentItemStateChanged
         // TODO add your handling code here:
          if(cboTypeOfPayment.getSelectedIndex()==0){
-                subtotal=subtotal+SG.SURCHARGE_DELIVERY;
-                lblTotal.setText("El total a pagar es: Q"+subtotal);
+          if(iType==0){
+             subtotal=subtotal+SG.SURCHARGE_DELIVERY;
+             lblTotal.setText("El total a pagar es: Q"+subtotal);
+             iType=1;
          }
+                
+                txtCVV.setEditable(false);
+         }else{
+             if(iType==1){
+             subtotal=subtotal-SG.SURCHARGE_DELIVERY;
+             lblTotal.setText("El total a pagar es: Q"+subtotal);    
+             iType=0;
+             }
+            txtCVV.setEditable(true);
+         }
+                 
     }//GEN-LAST:event_cboTypeOfPaymentItemStateChanged
 
     private void cmdCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCancelActionPerformed

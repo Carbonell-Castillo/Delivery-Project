@@ -65,6 +65,24 @@ public class Users {
         
         return resultUsers;
     }
+    public Boolean updateData(String id, User user){
+        Boolean validation= false;
+            for (int i = 0; i < users.size(); i++) {
+            User userFind = users.get(i);
+            
+            if(userFind.getId().equals(id)){
+                if (userFind.getRole()==1) {
+                    updateUserClient(userFind, user);
+                }
+                users.set(i, user);
+                SG.setUserFound(user);
+                
+            }
+        }
+        
+        return validation; 
+    }
+    
     
     public Boolean validationUser(String email, String password){
         Boolean validacion=false;
@@ -82,6 +100,7 @@ public class Users {
         return validacion;
     }
     
+    
     public void findClient(User user){
         for (int i = 0; i < customers.size(); i++) {
             Client client = customers.get(i);
@@ -91,6 +110,18 @@ public class Users {
             
         }
     }
+    
+    public void updateUserClient(User userSearch, User newUser){
+        for (int i = 0; i < customers.size(); i++) {
+            Client client = customers.get(i);
+            if(client.getUser().equals(userSearch)){
+                customers.get(i).setUser(newUser);
+                SG.setClientFound(customers.get(i));
+            }
+            
+        }
+    }
+    
     public Boolean validationUserRegister(String dpi, String user, String email){
         Boolean validation=false;
         for (int i = 0; i < users.size(); i++) {

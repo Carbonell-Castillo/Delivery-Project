@@ -38,9 +38,29 @@ public class SG {
     public static Client clientFound;
     public static final double SURCHARGE_DELIVERY=5;
     public static Integer quantityPackageFound[];
+    
+    public static Integer quantityPackageFoundRegion[];
+    
+    
     public static final double STICKY_PACKAGE=100;
     public static final double MEDIUM_PACKAGE=200;
     public static final double LARGE_PACKAGE=300;
+
+    public static Integer[] getQuantityPackageFound() {
+        return quantityPackageFound;
+    }
+
+    public static void setQuantityPackageFound(Integer[] quantityPackageFound) {
+        SG.quantityPackageFound = quantityPackageFound;
+    }
+
+    public static Integer[] getQuantityPackageFoundRegion() {
+        return quantityPackageFoundRegion;
+    }
+
+    public static void setQuantityPackageFoundRegion(Integer[] quantityPackageFoundRegion) {
+        SG.quantityPackageFoundRegion = quantityPackageFoundRegion;
+    }
     
     public static String getTypeOfPayment(Integer type){
         String typePayment;
@@ -392,6 +412,8 @@ public class SG {
 "                </div>\n" +
 "                <div class=\"top-right\">\n" +
 "                    <div class=\"date\">Fecha: "+packageDelivery.getDateSent()+"</div>\n" +
+"                    <div class=\"date\">Codigo: "+packageDelivery.getCode()+"</div>\n" +
+"                    <div class=\"date\">Tipo de pago: "+getTypeOfPayment(packageDelivery.getPaymentMethod())+"</div>\n" +
 "                </div>\n" +
 "            </div>\n" +
 "            <div class=\"bill-box\">\n" +
@@ -406,7 +428,8 @@ public class SG {
 "                    <div class=\"addr\">"+packageDelivery.getDestiny()+"</div>\n" +
 "                </div>\n" +
 "            </div>\n" +
-"            <center>\n" +
+"                    <div class=\"addr\">Numero de paqutes: "+packageDelivery.getNumberOfPackages()+"</div>\n" +
+"            <br><center>\n" +
 "\n" +"<img src=\""+fname+"\" alt=\"Barcode\">" +
 "            </center>\n" +
 "            <div class=\"actions\">\n" +
@@ -749,6 +772,8 @@ public class SG {
 "                </div>\n" +
 "                <div class=\"top-right\">\n" +
 "                    <div class=\"date\">Fecha: "+packageDelivery.getDateSent()+"</div>\n" +
+"                    <div class=\"date\">Codigo: "+packageDelivery.getCode()+"</div>\n" +
+"                    <div class=\"date\">Tipo de pago: "+getTypeOfPayment(packageDelivery.getPaymentMethod())+"</div>\n" +
 "                </div>\n" +
 "            </div>\n" +
 "            <div class=\"bill-box\">\n" +

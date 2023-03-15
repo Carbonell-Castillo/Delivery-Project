@@ -31,8 +31,7 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
         table1.clearTable();
         Integer quantity = SG.packages.getUsersWithMorePackages().size();
         for (int i = 0; i < quantity; i++) {
-            PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
-            Client client = packageDelivery.getClient();
+            Client client = (Client) SG.packages.getUsersWithMorePackages().get(i);
             User user = client.getUser();
             table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName() + " " + user.getLastName()), user.getNationality(), SG.quantityPackageFound[i]});
 
@@ -46,10 +45,10 @@ public class ListOfUsersWithTheMostPacketsSent extends javax.swing.JPanel {
         table1.clearTable();
         Integer quantity = SG.packages.getUsersWithMorePackages().size();
         for (int i = 0; i < quantity; i++) {
-            PackageDelivery packageDelivery = SG.packages.getPackageRecord(i);
-            Client client = packageDelivery.getClient();
-            String name = client.getName()+" "+client.getLastName();
+            Client client = (Client) SG.packages.getUsersWithMorePackages().get(i);
             User user = client.getUser();
+            String name = user.getName()+" "+user.getLastName();
+            
             if(name.equals(data)){
                 
             table1.addRow(new Object[]{new ModelProfile(new ImageIcon(user.getPhoto()), user.getName() + " " + user.getLastName()), user.getNationality(), SG.quantityPackageFound[i]});

@@ -45,6 +45,7 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
         txtTypeOfPayment = new javaswing.controls.TextField();
         txtSizePackage = new javaswing.controls.TextField();
         downloadInvoice = new javaswing.controls.ButtonCustom();
+        txtRecipient = new javaswing.controls.TextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(999, 621));
@@ -119,6 +120,13 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
             }
         });
 
+        txtRecipient.setLabelText("Destinatario");
+        txtRecipient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRecipientActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,7 +147,8 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cmdDownloadGuide, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(downloadInvoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(downloadInvoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtRecipient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, Short.MAX_VALUE))
         );
@@ -154,9 +163,11 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
                     .addComponent(txtCodePackage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addComponent(txtOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtDestiny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtRecipient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtTypeOfPayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -165,7 +176,7 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmdDownloadGuide, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(downloadInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(62, 62, 62))
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, Short.MAX_VALUE)
         );
 
@@ -220,15 +231,20 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
     public static PackageDelivery packageDelivery;
     private void cmdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSearchActionPerformed
         // TODO add your handling code here:
-        String code = txtCodePackage.getLabelText();
+        String code = txtCodePackage.getText();
         packageDelivery = SG.packages.getPackagesByCode(code);
         
         txtOrigin.setText(packageDelivery.getOrigin());
         txtDestiny.setText(packageDelivery.getDestiny());
+        txtRecipient.setText(packageDelivery.getRecipientsName());
         txtTypeOfPayment.setText(SG.getTypeOfPayment(packageDelivery.getPaymentMethod()));
         txtSizePackage.setText(packageDelivery.getSize());
         
     }//GEN-LAST:event_cmdSearchActionPerformed
+
+    private void txtRecipientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRecipientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRecipientActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -241,6 +257,7 @@ public class DownloadInvoiceAndGuide extends javax.swing.JPanel {
     private javaswing.controls.TextField txtCodePackage;
     private javaswing.controls.TextField txtDestiny;
     private javaswing.controls.TextField txtOrigin;
+    private javaswing.controls.TextField txtRecipient;
     private javaswing.controls.TextField txtSizePackage;
     private javaswing.controls.TextField txtTypeOfPayment;
     private javax.swing.JLabel txtUserName;

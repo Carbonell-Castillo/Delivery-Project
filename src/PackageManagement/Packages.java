@@ -8,7 +8,9 @@ import InitialData.Client;
 import InitialData.PackageDelivery;
 import InitialData.RegionAndPriceManagement;
 import InitialData.SG;
+import InitialData.User;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -76,12 +78,69 @@ public class Packages {
         return resultPackages;
     }
     
-    public ArrayList findPackagesWithHighShipmentVolumeInRegions(String region) {
+    
+    
+     public ArrayList findPackagesWithHighShipmentVolumeInRegions(String region) {
+        
+        ArrayList<RegionAndPriceManagement> result;
+        result = new ArrayList();
+        SG.setQuantityPackageFoundRegion(new Integer[SG.managementsOfRegionsAndPrices.getLength()]);
+         System.out.println("Longitud ahora: "+SG.quantityPackageFoundRegion.length);
+         
+         for (int i = 0; i < SG.quantityPackageFoundRegion.length; i++) {
+             SG.quantityPackageFoundRegion[i]=0;
+         }
+        for (int i = 0; i < SG.managementsOfRegionsAndPrices.getLength(); i++) {
+            RegionAndPriceManagement managementsOfRegionsAndPrices = SG.managementsOfRegionsAndPrices.getRegionRecord(i);
+            String regionCode;
+            
+            if(region.isBlank()){
+             regionCode= managementsOfRegionsAndPrices.getCode();
+            }else{
+                regionCode= region;
+            }
+            
+            
+            for (int j = 0; j < packages.size(); j++) {
+                PackageDelivery packageDelivery = packages.get(j);
+                if (packageDelivery.getRegionOrigin().equals(regionCode)) {
+                    
+                    if (SG.quantityPackageFoundRegion[i] != 0) {
+                        SG.quantityPackageFoundRegion[i] = SG.quantityPackageFoundRegion[i] + 1;
+                        result.set(i, managementsOfRegionsAndPrices);
+                    } else {
+                        SG.quantityPackageFoundRegion[i] = 1;
+                        result.add(managementsOfRegionsAndPrices);            
+                    }
+                    
+                }
+            }
+         //   result.add(managementsOfRegionsAndPrices);
+        }
+
+        for (int i = 0; i < SG.quantityPackageFoundRegion.length - 1; i++) {
+            for (int j = 0; j < SG.quantityPackageFoundRegion.length - i - 1; j++) {
+                if (SG.quantityPackageFoundRegion[j] < SG.quantityPackageFoundRegion[j + 1]) {
+                    int temp = SG.quantityPackageFoundRegion[j];
+                    SG.quantityPackageFoundRegion[j] = SG.quantityPackageFoundRegion[j + 1];
+                    SG.quantityPackageFoundRegion[j + 1] = temp;
+
+                    RegionAndPriceManagement tempPackage = result.get(j);
+                    result.set(j, result.get(j + 1));
+                    result.set(j + 1, tempPackage);
+                }
+            }
+        }
+        return result;
+
+    }
+    
+    /*public ArrayList findPackagesWithHighShipmentVolumeInRegions(String region) {
         ArrayList<PackageDelivery> resultPackages;
         resultPackages = new ArrayList();
 
         Integer quantityPackageFound[] = new Integer[packages.size()];
-    int i2=0;
+    int i2=resultPackages.size();
         for (int i = 0; i < SG.managementsOfRegionsAndPrices.getLength(); i++) {
             RegionAndPriceManagement managementsOfRegionsAndPrices = SG.managementsOfRegionsAndPrices.getRegionRecord(i);
             String regionCode;
@@ -98,9 +157,11 @@ public class Packages {
                 if (packageDelivery.getRegionOrigin().equals(regionCode)) {
                     
                     if (i2 > 0) {
-                        if (!(resultPackages.get(j - 1).equals(resultPackages.get(j)))) {
+                        if (!(resultPackages.get(i2 - 1).equals(resultPackages.get(i2)))) {
                             resultPackages.add(packageDelivery);
                         }
+                    }else{
+                        resultPackages.add(packageDelivery);
                     }
                     if (quantityPackageFound[i] != null) {
                         quantityPackageFound[i] = quantityPackageFound[i] + 1;
@@ -127,7 +188,7 @@ public class Packages {
         }
         return resultPackages;
 
-    }
+    }*/
     
     public double getTotalIncome(){
         double TotalIncome=0;
@@ -169,17 +230,67 @@ public class Packages {
     
     public PackageDelivery getPackagesByCode(String code){
     PackageDelivery resultPackage = new PackageDelivery();
-        
+        Boolean find = false;
         for (int i = 0; i < packages.size(); i++) {
             PackageDelivery packageDelivery = packages.get(i);
             if(packageDelivery.getCode().equals(code)){
                 resultPackage= packageDelivery;
+                System.out.println("encontradooooo");
+                find = true;
             }
+        }
+        
+        if(find){
+            JOptionPane.showMessageDialog(null, "Paquete encontrado");
+        }else{
+            JOptionPane.showMessageDialog(null, "No se encontraron resultados");
         }
         return resultPackage;
     
     }
+    public ArrayList getUsersWithMorePackages(){
+        ArrayList<Client> result;
+        result = new ArrayList();
+        SG.setQuantityPackageFound(new Integer[packages.size()]);
+        System.out.println("Longitd user: "+SG.getQuantityPackageFound().length);
+        for (int i = 0; i < SG.quantityPackageFound.length; i++) {
+             SG.quantityPackageFound[i]=0;
+         }
+        for (int i = 0; i < SG.user.getCustomers().size(); i++) {
+            Client client = SG.user.getClientRecord(i);
+
+            for (int j = 0; j < packages.size(); j++) {
+                PackageDelivery packageDelivery = packages.get(j);
+                if (packageDelivery.getClient().equals(client)) {          
+                    if ( SG.quantityPackageFound[i] != 0) {
+                         SG.quantityPackageFound[i] =  SG.quantityPackageFound[i] + 1;
+                    } else {
+                         SG.quantityPackageFound[i] = 1;
+                    }
+                    
+                }
+            }
+            result.add(client);
+        }
+
+        for (int i = 0; i <  SG.quantityPackageFound.length - 1; i++) {
+            for (int j = 0; j <  SG.quantityPackageFound.length - i - 1; j++) {
+                if ( SG.quantityPackageFound[j] <  SG.quantityPackageFound[j + 1]) {
+                    int temp =  SG.quantityPackageFound[j];
+                     SG.quantityPackageFound[j] =  SG.quantityPackageFound[j + 1];
+                     SG.quantityPackageFound[j + 1] = temp;
+
+                    Client tempPackage = result.get(j);
+                    result.set(j, result.get(j + 1));
+                    result.set(j + 1, tempPackage);
+                }
+            }
+        }
         
+        
+        return result;
+    }
+        /*
     public ArrayList getUsersWithMorePackages(){
         ArrayList<PackageDelivery> resultPackages;
         resultPackages = new ArrayList();
@@ -193,7 +304,7 @@ public class Packages {
                 PackageDelivery packageDelivery = packages.get(j);
                 if (packageDelivery.getClient().equals(client)) {
                     if (i2 > 0) {
-                        if (!(resultPackages.get(j - 1).equals(resultPackages.get(j)))) {
+                        if (!(resultPackages.get(i2 - 1).equals(resultPackages.get(i2)))) {
                             resultPackages.add(packageDelivery);
                         }
                     }
@@ -223,7 +334,7 @@ public class Packages {
         
         
         return resultPackages;
-    }
+    }*/
     
     public Boolean validateCodePackage(String code){
         Boolean validation = false;
