@@ -100,7 +100,7 @@ public class Account2 extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(4, 72, 210));
-        jLabel2.setText("Dashboard / Home");
+        jLabel2.setText("Cuenta");
 
         jPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/profile2.jpg"))); // NOI18N
 
