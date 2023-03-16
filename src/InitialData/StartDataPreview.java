@@ -19,9 +19,9 @@ public class StartDataPreview {
         user.setGender("Masculino");
         user.setNationality("Guatemalteco");
         user.setPhoneNumber("57149818");
-        user.setEmail("admin");
-        user.setPhoto("/icon/profile.jpg");
-        user.setPassword("admin");
+        user.setEmail("ipc1_202203069@ipc1delivery.com");
+        user.setPhoto("C:\\Users\\brand\\Documents\\Avatars\\eren4.jpeg");
+        user.setPassword("202203069");
         
         user.setRole(0);
         SG.user.addUserRecord(user);
@@ -36,10 +36,10 @@ public class StartDataPreview {
         user.setUser("Cliente");
         user.setDateOfBirth("12/08/2004");
         user.setGender("Masculino");
-        user.setNationality("Guatemalteco");
+        user.setNationality("Guatemalteca");
         user.setPhoneNumber("57149818");
         user.setEmail("cliente");
-        user.setPhoto("/icon/profile1.jpg");
+        user.setPhoto("C:\\Users\\brand\\Documents\\Avatars\\eren2.jpeg");
         user.setPassword("cliente");
         
         user.setRole(1);

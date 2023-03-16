@@ -3,30 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/Form_Home.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/TotalRevenues.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/style/menu/ImageAvatar.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Client/Form/PackageQuotation.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/MainForm.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/javaswing/controls/ButtonCustom.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/Account2.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/loginform/Register1.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/KioskManagement.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/MunicipalitiesManagement.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/ListOfUsersWithTheMostPacketsSent.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/loginform/Register.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/ListOfRegionsWithMoreShipments.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/MainDashboardv2/Main2.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/style/menu/Menu1.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/javaswing/controls/Combobox.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/MainDashboardv2/Main.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/ManagementOfRegionsAndPrices.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/DepartmentManagement.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Client/Form/CreditCardRegister.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Admin/Form/Account.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/MainDashboardv2/Main2User.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/javaswing/controls/PasswordField.java</file>
-            <file>file:/C:/Users/bruce/OneDrive/Escritorio/Proyecto1%20IPC/IPC1%20Proyecto%201/Dashboard%20V2/src/dashboard/Client/Form/InvoiceRegistration.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/CreditCard.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/PackageDelivery.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/DataManagement.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/RegionAndPriceManagement.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/SG.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/Municipality.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/BillingData.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/Kiosk.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/Client.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/Department.java</file>
+            <file>file:/C:/Users/brand/Desktop/Bruce/USAC/IPC/-IPC1-S12023_Proyecto1_-202203069-/src/InitialData/Person.java</file>
         </group>
     </open-files>
 </project-private>

@@ -21,9 +21,9 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
-        /*StartDataPreview startDataPreview = new StartDataPreview();
+        StartDataPreview startDataPreview = new StartDataPreview();
         startDataPreview.StartUsersData();
-        startDataPreview.StartClientData();*/
+        startDataPreview.StartClientData();
         
         txtusername.setBackground(new java.awt.Color(0,0,0,1));
         txtpassword.setBackground(new java.awt.Color(0,0,0,1));

@@ -9,6 +9,7 @@ package InitialData;
  * @author bruce
  */
 public class Person {
+    
     private String id, name, lastName, dateOfBirth, gender, nationality, phoneNumber;
     
     public Person(){

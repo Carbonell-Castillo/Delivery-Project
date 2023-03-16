@@ -445,11 +445,34 @@ public class Register extends javax.swing.JFrame {
         }
     }
 
-    public static Boolean verifyPassword(String password){
-        String expresionRegular = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
-        Pattern pattern = Pattern.compile(expresionRegular);
-        Matcher matcher = pattern.matcher(password);
-        return matcher.matches();
+    public static boolean verifyPassword(String password) {
+
+        boolean hasUppercase = false;
+        boolean hasLowercase = false;
+        boolean hasNumber = false;
+        boolean hasSpecialChar = false;
+
+        // Check each character of the password
+        for (int i = 0; i < password.length(); i++) {
+            char character = password.charAt(i);
+
+            if (Character.isUpperCase(character)) {
+                hasUppercase = true;
+            } else if (Character.isLowerCase(character)) {
+                hasLowercase = true;
+            } else if (Character.isDigit(character)) {
+                hasNumber = true;
+            } else if (Character.isLetterOrDigit(character) == false) {
+                hasSpecialChar = true;
+            }
+        }
+
+        // Check if all requirements are met
+        if (hasUppercase && hasLowercase && hasNumber && hasSpecialChar) {
+            return true;
+        } else {
+            return false;
+        }
     }
     /**
      * @param args the command line arguments
