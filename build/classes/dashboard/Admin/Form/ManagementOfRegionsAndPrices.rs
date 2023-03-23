@@ -1,0 +1,5 @@
+Dashboard.Admin.Form.ManagementOfRegionsAndPrices
+Dashboard.Admin.Form.ManagementOfRegionsAndPrices$3
+Dashboard.Admin.Form.ManagementOfRegionsAndPrices$4
+Dashboard.Admin.Form.ManagementOfRegionsAndPrices$1
+Dashboard.Admin.Form.ManagementOfRegionsAndPrices$2
